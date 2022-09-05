@@ -19,24 +19,27 @@ env:
 
 
 
-# jobs:
+jobs:
 
-#   deploy-nuget:
-#     name: "Deploy nuget"
-#     runs-on: 'ubuntu-latest'
-#     if: github.event_name == 'push'
+  deploy-nuget:
+    name: "Deploy nuget"
+    runs-on: 'ubuntu-latest'
+    if: github.event_name == 'push'
 
-#     steps:
-#     - name: "Checkout"
-#       uses: actions/checkout@v3
-#       with:
-#         fetch-depth: 0
-#         persist-credentials: false
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        persist-credentials: false
 
-#     - name: "Setup .NET"
-#       uses: actions/setup-dotnet@v2
-#       with:
-#         dotnet-version: ${{ env.SDK_VERSION }}
+    - name: "Setup .NET"
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ env.SDK_VERSION }}
+
+    - name: "Temp"
+      run: echo "Not finished"
 
 #     - name: Semantic Release
 #       id: 'semantic-release'
