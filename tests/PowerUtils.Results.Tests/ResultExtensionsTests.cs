@@ -4,14 +4,14 @@ using Xunit;
 
 namespace PowerUtils.Results.Tests
 {
-    public class ResultExtensions
+    public class ResultExtensionsTests
     {
         private readonly Error _firstError = new("FirstProperty", "FirstCode", "FirstDescription");
         private readonly Error _lastError = new("LastProperty", "LastCode", "LastDescription");
 
         private readonly Result _result;
 
-        public ResultExtensions()
+        public ResultExtensionsTests()
             => _result = new Error[] { _firstError, _lastError };
 
 
