@@ -369,5 +369,10 @@ namespace PowerUtils.Results
 #else
         public static implicit operator Result<TValue>(ValidationError error) => new(error as IError);
 #endif
+
+        /// <summary>
+        /// Creates an value from a <see cref="Result{TValue}"/>
+        /// </summary>
+        public static implicit operator TValue(Result<TValue> result) => result.Value;
     }
 }

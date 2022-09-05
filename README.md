@@ -22,6 +22,8 @@
       - [Add more errors](#return-results-errors-add)
   - [Extensions](#return-extensions)
     - [OfTypeFirstError](#return-extensions-OfTypeFirstError)
+  - [Deconstruct operators](#return-deconstruct-operators)
+  - [Implicit conversion](#return-implicit-conversion)
 - [How is this different from error-of?](#how-is-different)
 - [Contribution](#contribution)
 - [License](./LICENSE)
@@ -136,6 +138,19 @@ var type = result.GetType(); // ForbiddenError
 var model = new Model();
 Result<Model> result = model;
 var type = result.GetType(); // Model
+```
+
+### Deconstruct operators <a name="return-deconstruct-operators"></a>
+
+```csharp
+var (property, code, description) = Error.Unauthorized("property", "code", "description");
+```
+
+### Implicit conversion <a name="return-implicit-conversion"></a>
+
+```csharp
+Result<Model> result = new Model { Id = id, Name = name };
+Model model = result;
 ```
 
 

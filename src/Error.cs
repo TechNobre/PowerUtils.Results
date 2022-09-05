@@ -54,6 +54,16 @@
 
             Description = BuildErrorDescription(Code, description);
         }
+
+        /// <summary>
+        /// Gets properties of the error
+        /// </summary>
+        public void Deconstruct(out string property, out string code, out string description)
+        {
+            property = Property;
+            code = Code;
+            description = Description;
+        }
     }
 
 
@@ -88,6 +98,16 @@
             Code = code;
 
             Description = Error.BuildErrorDescription(Code, description);
+        }
+
+        /// <summary>
+        /// Gets properties of the error
+        /// </summary>
+        public void Deconstruct(out string property, out string code, out string description)
+        {
+            property = Property;
+            code = Code;
+            description = Description;
         }
     }
 
@@ -124,6 +144,16 @@
 
             Description = Error.BuildErrorDescription(Code, description);
         }
+
+        /// <summary>
+        /// Gets properties of the error
+        /// </summary>
+        public void Deconstruct(out string property, out string code, out string description)
+        {
+            property = Property;
+            code = Code;
+            description = Description;
+        }
     }
 
 
@@ -158,6 +188,16 @@
             Code = code;
 
             Description = Error.BuildErrorDescription(Code, description);
+        }
+
+        /// <summary>
+        /// Gets properties of the error
+        /// </summary>
+        public void Deconstruct(out string property, out string code, out string description)
+        {
+            property = Property;
+            code = Code;
+            description = Description;
         }
     }
 
@@ -194,6 +234,16 @@
 
             Description = Error.BuildErrorDescription(Code, description);
         }
+
+        /// <summary>
+        /// Gets properties of the error
+        /// </summary>
+        public void Deconstruct(out string property, out string code, out string description)
+        {
+            property = Property;
+            code = Code;
+            description = Description;
+        }
     }
 
 
@@ -228,6 +278,16 @@
             Code = code;
 
             Description = Error.BuildErrorDescription(Code, description);
+        }
+
+        /// <summary>
+        /// Gets properties of the error
+        /// </summary>
+        public void Deconstruct(out string property, out string code, out string description)
+        {
+            property = Property;
+            code = Code;
+            description = Description;
         }
     }
 }

@@ -316,5 +316,24 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().Be(typeof(NotFoundError));
         }
+
+        [Fact]
+        public void ResultWithValue_ImplicitAssignment_Value()
+        {
+            // Arrange
+            var id = 45615;
+            var name = "fake name";
+
+            Result<FakeModel> result = new FakeModel { Id = id, Name = name };
+
+
+            // Act
+            FakeModel act = result;
+
+
+            // Assert
+            act.Id.Should().Be(id);
+            act.Name.Should().Be(name);
+        }
     }
 }
