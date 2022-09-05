@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System.Linq;
+using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -29,6 +30,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<Error>();
         }
 
         [Fact]
@@ -54,6 +57,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnauthorizedError>();
         }
 
         [Fact]
@@ -78,6 +83,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.UNAUTHORIZED);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnauthorizedError>();
         }
 
         [Fact]
@@ -103,6 +110,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ForbiddenError>();
         }
 
         [Fact]
@@ -127,6 +136,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.FORBIDDEN);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ForbiddenError>();
         }
 
         [Fact]
@@ -152,6 +163,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<NotFoundError>();
         }
 
         [Fact]
@@ -176,6 +189,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.NOT_FOUND);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<NotFoundError>();
         }
 
         [Fact]
@@ -201,6 +216,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ConflictError>();
         }
 
         [Fact]
@@ -225,6 +242,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.CONFLICT);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ConflictError>();
         }
 
 
@@ -251,6 +270,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<Error>();
         }
 
         [Fact]
@@ -276,6 +297,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnauthorizedError>();
         }
 
         [Fact]
@@ -300,6 +323,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.UNAUTHORIZED);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnauthorizedError>();
         }
 
         [Fact]
@@ -325,6 +350,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ForbiddenError>();
         }
 
         [Fact]
@@ -349,6 +376,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.FORBIDDEN);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ForbiddenError>();
         }
 
         [Fact]
@@ -374,6 +403,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<NotFoundError>();
         }
 
         [Fact]
@@ -398,6 +429,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.NOT_FOUND);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<NotFoundError>();
         }
 
         [Fact]
@@ -423,6 +456,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ConflictError>();
         }
 
         [Fact]
@@ -447,6 +482,8 @@ namespace PowerUtils.Results.Tests
                 .ContainSingle(s => s.Code == ErrorCodes.CONFLICT);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ConflictError>();
         }
 
         [Fact]
@@ -468,6 +505,8 @@ namespace PowerUtils.Results.Tests
                .ContainSingle(s => s.Code == ErrorCodes.VALIDATION);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ValidationError>();
         }
 
         [Fact]
@@ -490,6 +529,8 @@ namespace PowerUtils.Results.Tests
                .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ValidationError>();
         }
 
         [Fact]
@@ -511,6 +552,8 @@ namespace PowerUtils.Results.Tests
                .ContainSingle(s => s.Code == ErrorCodes.VALIDATION);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ValidationError>();
         }
 
         [Fact]
@@ -533,6 +576,8 @@ namespace PowerUtils.Results.Tests
                .ContainSingle(s => s.Code == code);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<ValidationError>();
         }
     }
 }
