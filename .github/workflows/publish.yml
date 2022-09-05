@@ -38,69 +38,66 @@ jobs:
       with:
         dotnet-version: ${{ env.SDK_VERSION }}
 
-    - name: "Temp"
-      run: echo "Not finished"
+    - name: Semantic Release
+      id: 'semantic-release'
+      uses: cycjimmy/semantic-release-action@v2
+      with:
+        semantic_version: 19.0.3
+        extra_plugins: |
+          semantic-release-plugin-csproj
+          @semantic-release/changelog
+          @semantic-release/github
+          @semantic-release/git
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-#     - name: Semantic Release
-#       id: 'semantic-release'
-#       uses: cycjimmy/semantic-release-action@v2
-#       with:
-#         semantic_version: 19.0.3
-#         extra_plugins: |
-#           semantic-release-plugin-csproj
-#           @semantic-release/changelog
-#           @semantic-release/github
-#           @semantic-release/git
-#       env:
-#         GH_TOKEN: ${{ secrets.GH_TOKEN }}
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: "New version"
+      run: echo "New version ${{ steps.semantic-release.outputs.new_release_version }}"
 
-#     - name: "New version"
-#       run: echo "New version ${{ steps.semantic-release.outputs.new_release_version }}"
+    - name: "Restore dependencies"
+      if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
+      run: dotnet restore
 
-#     - name: "Restore dependencies"
-#       if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
-#       run: dotnet restore
+    - name: "Build"
+      if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
+      run: dotnet build -c Release --no-restore
 
-#     - name: "Build"
-#       if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
-#       run: dotnet build -c Release --no-restore
+    - name: "Pack"
+      if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
+      run: dotnet pack -c Release --no-build -p:PackageVersion=${{ steps.semantic-release.outputs.new_release_version }} -p:Version==${{ steps.semantic-release.outputs.new_release_version }}
 
-#     - name: "Pack"
-#       if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
-#       run: dotnet pack -c Release --no-build -p:PackageVersion=${{ steps.semantic-release.outputs.new_release_version }} -p:Version==${{ steps.semantic-release.outputs.new_release_version }}
-
-#     - name: "Publish nuget"
-#       if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
-#       run: dotnet nuget push ${{ env.PACKAGE_PATH }} --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SERVER }} --skip-duplicate
+    - name: "Publish nuget"
+      if: ${{ steps.semantic-release.outputs.new_release_version != '' }}
+      run: dotnet nuget push ${{ env.PACKAGE_PATH }} --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SERVER }} --skip-duplicate
 
 
-#   # To can dispatch manually when the semantic-release-action is not working or failed
-#   deploy-nuget-manually:
-#     name: "Deploy nuget manually"
-#     runs-on: 'ubuntu-latest'
-#     if: github.event_name == 'workflow_dispatch'
+  # To can dispatch manually when the semantic-release-action is not working or failed
+  deploy-nuget-manually:
+    name: "Deploy nuget manually"
+    runs-on: 'ubuntu-latest'
+    if: github.event_name == 'workflow_dispatch'
 
-#     steps:
-#     - name: "Checkout"
-#       uses: actions/checkout@v3
-#       with:
-#         fetch-depth: 0
-#         persist-credentials: false
+    steps:
+    - name: "Checkout"
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        persist-credentials: false
 
-#     - name: "Setup .NET"
-#       uses: actions/setup-dotnet@v2
-#       with:
-#         dotnet-version: ${{ env.SDK_VERSION }}
+    - name: "Setup .NET"
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: ${{ env.SDK_VERSION }}
 
-#     - name: "Restore dependencies"
-#       run: dotnet restore
+    - name: "Restore dependencies"
+      run: dotnet restore
 
-#     - name: "Build"
-#       run: dotnet build -c Release --no-restore
+    - name: "Build"
+      run: dotnet build -c Release --no-restore
 
-#     - name: "Pack"
-#       run: dotnet pack -c Release --no-build
+    - name: "Pack"
+      run: dotnet pack -c Release --no-build
 
-#     - name: "Publish nuget"
-#       run: dotnet nuget push ${{ env.PACKAGE_PATH }} --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SERVER }} --skip-duplicate
+    - name: "Publish nuget"
+      run: dotnet nuget push ${{ env.PACKAGE_PATH }} --api-key ${{ secrets.NUGET_TOKEN }} --source ${{ env.NUGET_SERVER }} --skip-duplicate
