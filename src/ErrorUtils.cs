@@ -63,7 +63,7 @@
             => new(property, code, description);
 
         /// <summary>
-        /// Creates an 'Conflict:409' error result with the given error and code: 'DUPLICATED'
+        /// Creates an 'Conflict:409' error result with the given error and code: 'CONFLICT'
         /// </summary>
         public static ConflictError Conflict(string property, string description = null)
             => new(property, ErrorCodes.CONFLICT, description);

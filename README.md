@@ -16,6 +16,11 @@
 - [Support](#support-to)
 - [How to use](#how-to-use)
   - [Install NuGet package](#Installation)
+  - [Return results](#return-results)
+    - [Success](#return-results-success)
+    - [Errors](#return-results-errors)
+      - [Add more errors](#return-results-errors-add)
+  - [Extensions](#return-extensions)
 - [How is this different from error-of?](#how-is-different)
 - [Contribution](#contribution)
 - [License](./LICENSE)
@@ -46,9 +51,71 @@ dotnet add package PowerUtils.Results
 
 
 
-### ???? <a name="???"></a>
-TODO: here
+### Return results <a name="return-results"></a>
 
+#### Success <a name="return-results-success"></a>
+```csharp
+// Without payload
+var result = Result.Ok();
+
+// With payload
+var model = new Model();
+var result = Result<Model>.Ok(model);
+
+// Implicit assignment
+Result<Model> = model;
+```
+
+#### Errors <a name="return-results-errors"></a>
+- `Error.Error()`;
+- `Error.UnauthorizedError()`
+- `Error.ForbiddenError()`
+- `Error.NotFoundError()`
+- `Error.ConflictError()`
+- `Error.ValidationError()`
+
+```csharp
+Result result = Error.Forbidden("property", "code", "description2");
+
+// Implicit assignment
+Result result = new Error("property", "code", "description2");
+
+// Error list
+var errors = new List<Error>
+{
+    new Error("property", "code", "description2"),
+    new Error("property", "code", "description2")
+};
+
+Result result = errors;
+```
+
+##### Add more errors <a name="return-results-errors-add"></a>
+
+```csharp
+Result result = new Error("property", "code", "description2");
+result.AddError(new Error("property", "code", "description2"));
+result.AddError("property", "code", "description2");
+```
+
+### Extensions <a name="return-extensions"></a>
+
+```csharp
+Result result = new Error[]
+{
+    new("Property", "Code", "Description"),
+    new("Property", "Code", "Description")
+};
+
+var error = result.FirstError();
+var error = result.FirstOrDefaultError();
+
+var error = result.LastError();
+var error = result.LastOrDefaultError();
+
+var error = result.SingleError();
+var error = result.SingleOrDefaultError();
+```
 
 
 
