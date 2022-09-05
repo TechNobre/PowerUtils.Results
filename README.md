@@ -51,6 +51,7 @@ TODO: here
 
 
 
+
 ## How is this different from error-of? <a name="how-is-different"></a>
 
 - Support to `.NET 5.0` using only `record` instead of `record struct` available only `.NET 6.0` or greater;
