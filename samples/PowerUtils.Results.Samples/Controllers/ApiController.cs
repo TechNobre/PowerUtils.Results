@@ -35,6 +35,11 @@ public class ApiController : ControllerBase
             return Conflict(result.Errors);
         }
 
+        if (baseError is ValidationError)
+        {
+            return BadRequest(result.Errors);
+        }
+
         throw new InvalidOperationException();
     }
 }

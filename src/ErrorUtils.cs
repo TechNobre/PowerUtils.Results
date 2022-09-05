@@ -66,7 +66,21 @@
         /// Creates an 'Conflict:409' error result with the given error and code: 'DUPLICATED'
         /// </summary>
         public static ConflictError Conflict(string property, string description = null)
-            => new(property, ErrorCodes.DUPLICATED, description);
+            => new(property, ErrorCodes.CONFLICT, description);
+
+
+
+        /// <summary>
+        /// Create an 'Validation:400' error result with the given error
+        /// </summary>
+        public static ValidationError Validation(string property, string code, string description = null)
+            => new(property, code, description);
+
+        /// <summary>
+        /// Create an 'Validation:400' error result with the given error and code: 'VALIDATION'
+        /// </summary>
+        public static ValidationError Validation(string property, string description = null)
+            => new(property, ErrorCodes.VALIDATION, description);
 
         internal static string BuildErrorDescription(string code, string description)
             => string.IsNullOrWhiteSpace(description) ? $"An error has occurred with code '{code}'" : description;
