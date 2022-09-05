@@ -165,5 +165,6 @@ If you have any questions, comments, or suggestions, please open an [issue](http
 This project is totally inspired by [error-or](https://github.com/amantinband/error-or) that are excellent libraries.
 
 Other excellent libraries used as inspiration
+- [Ardalis.Result](https://github.com/ardalis/result)
 - [FluentResults](https://github.com/altmann/FluentResults)
 - [OneOf](https://github.com/mcintyre321/OneOf)
