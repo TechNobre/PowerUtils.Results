@@ -21,6 +21,7 @@
     - [Errors](#return-results-errors)
       - [Add more errors](#return-results-errors-add)
   - [Extensions](#return-extensions)
+    - [OfTypeFirstError](#return-extensions-OfTypeFirstError)
 - [How is this different from error-of?](#how-is-different)
 - [Contribution](#contribution)
 - [License](./LICENSE)
@@ -115,6 +116,26 @@ var error = result.LastOrDefaultError();
 
 var error = result.SingleError();
 var error = result.SingleOrDefaultError();
+```
+
+#### OfTypeFirstError <a name="return-extensions-OfTypeFirstError"></a>
+
+```csharp
+Result result = Error.Conflict("property", "code", "description");
+var type = result.OfTypeFirstError(); // Conflict
+
+Result result = Result.Ok();
+var type = result.GetType(); // Success
+
+Result result = Error.Unauthorized("property", "code", "description");
+var type = result.GetType(); // UnauthorizedError
+
+Result<Model> result = Error.Forbidden("property", "code", "description");
+var type = result.GetType(); // ForbiddenError
+
+var model = new Model();
+Result<Model> result = model;
+var type = result.GetType(); // Model
 ```
 
 

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace PowerUtils.Results
 {
@@ -60,5 +61,11 @@ namespace PowerUtils.Results
 
             return result.Errors.SingleOrDefault();
         }
+
+        /// <summary>
+        /// Gets the type of the first error
+        /// </summary>
+        public static Type OfTypeFirstError(this IResult result)
+            => result.Errors.First().GetType();
     }
 }

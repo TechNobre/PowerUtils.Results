@@ -94,6 +94,19 @@ namespace PowerUtils.Results
             => AddError(new Error(property, code, description));
 
         /// <summary>
+        /// Gets the type of the value or type of the first error
+        /// </summary>
+        public new Type GetType()
+        {
+            if(IsError)
+            {
+                return this.OfTypeFirstError();
+            }
+
+            return typeof(Success);
+        }
+
+        /// <summary>
         /// Creates a success result
         /// </summary>
         public static Result Ok() => new();
@@ -265,6 +278,19 @@ namespace PowerUtils.Results
         /// </summary>
         public void AddError(string property, string code, string description = null)
             => AddError(new Error(property, code, description));
+
+        /// <summary>
+        /// Gets the type of the value or type of the first error
+        /// </summary>
+        public new Type GetType()
+        {
+            if(IsError)
+            {
+                return this.OfTypeFirstError();
+            }
+
+            return _value.GetType();
+        }
 
         /// <summary>
         /// Creates a success result

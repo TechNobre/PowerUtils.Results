@@ -3,7 +3,7 @@
     /// <summary>
     /// Basic structure of an error
     /// </summary>
-    public interface IError
+    public interface IError : IType
     {
         /// <summary>
         /// Property with error
