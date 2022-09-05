@@ -88,6 +88,12 @@ namespace PowerUtils.Results
         }
 
         /// <summary>
+        /// Add error in result
+        /// </summary>
+        public void AddError(string property, string code, string description = null)
+            => AddError(new Error(property, code, description));
+
+        /// <summary>
         /// Creates a success result
         /// </summary>
         public static Result Ok() => new();
@@ -253,6 +259,12 @@ namespace PowerUtils.Results
 
             _errors.Add(error);
         }
+
+        /// <summary>
+        /// Add error in result
+        /// </summary>
+        public void AddError(string property, string code, string description = null)
+            => AddError(new Error(property, code, description));
 
         /// <summary>
         /// Creates a success result

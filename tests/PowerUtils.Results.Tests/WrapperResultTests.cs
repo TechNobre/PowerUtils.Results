@@ -230,7 +230,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void TwoErrors_AddFromDefaultConstructor_HasErrors()
+        public void TwoErrors_AddObjectFromDefaultConstructor_HasErrors()
         {
             // Arrange
             var property1 = "fakeProperty1";
@@ -245,7 +245,7 @@ namespace PowerUtils.Results.Tests
             // Act
             var act = Result<FakeModel>.Ok(null);
             act.AddError(new Error(property1, code1, description1));
-            act.AddError(new Error(property2, code2, description2));
+            act.AddError(property2, code2, description2);
 
 
             // Assert
