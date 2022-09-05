@@ -150,6 +150,15 @@ namespace PowerUtils.Results
 #else
         public static implicit operator Result(ConflictError error) => new(error as IError);
 #endif
+
+        /// <summary>
+        /// Creates an <see cref="Result"/> from an validation error
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public static implicit operator Result(ValidationError error) => new(error);
+#else
+        public static implicit operator Result(ValidationError error) => new(error as IError);
+#endif
     }
 
 
@@ -312,6 +321,15 @@ namespace PowerUtils.Results
         public static implicit operator Result<TValue>(ConflictError error) => new(error);
 #else
         public static implicit operator Result<TValue>(ConflictError error) => new(error as IError);
+#endif
+
+        /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from an validation error
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public static implicit operator Result<TValue>(ValidationError error) => new(error);
+#else
+        public static implicit operator Result<TValue>(ValidationError error) => new(error as IError);
 #endif
     }
 }
