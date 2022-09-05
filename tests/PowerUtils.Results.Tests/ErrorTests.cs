@@ -262,5 +262,119 @@ namespace PowerUtils.Results.Tests
             act.Description.Should()
                 .Be($"An error has occurred with code '{code}'");
         }
+
+        [Fact]
+        public void Error_Deconstruct_Properties()
+        {
+            // Arrange
+            var property = "fakeProperty";
+            var code = "fakeCode";
+            var description = "fakeDescription";
+
+
+            // Act
+            var (actProperty, actCode, actDescription) = Error.Failure(property, code, description);
+
+
+            // Assert
+            actProperty.Should().Be(property);
+            actCode.Should().Be(code);
+            actDescription.Should().Be(description);
+        }
+
+        [Fact]
+        public void UnauthorizedError_Deconstruct_Properties()
+        {
+            // Arrange
+            var property = "fakeUnauthorizedProperty";
+            var code = "fakeUnauthorizedCode";
+            var description = "fakeUnauthorizedDescription";
+
+
+            // Act
+            var (actProperty, actCode, actDescription) = Error.Unauthorized(property, code, description);
+
+
+            // Assert
+            actProperty.Should().Be(property);
+            actCode.Should().Be(code);
+            actDescription.Should().Be(description);
+        }
+
+        [Fact]
+        public void ForbiddenError_Deconstruct_Properties()
+        {
+            // Arrange
+            var property = "fakeForbiddenProperty";
+            var code = "fakeForbiddenCode";
+            var description = "fakeForbiddenDescription";
+
+
+            // Act
+            var (actProperty, actCode, actDescription) = Error.Forbidden(property, code, description);
+
+
+            // Assert
+            actProperty.Should().Be(property);
+            actCode.Should().Be(code);
+            actDescription.Should().Be(description);
+        }
+
+        [Fact]
+        public void NotFoundError_Deconstruct_Properties()
+        {
+            // Arrange
+            var property = "fakeNotFoundProperty";
+            var code = "fakeNotFoundCode";
+            var description = "fakeNotFoundDescription";
+
+
+            // Act
+            var (actProperty, actCode, actDescription) = Error.NotFound(property, code, description);
+
+
+            // Assert
+            actProperty.Should().Be(property);
+            actCode.Should().Be(code);
+            actDescription.Should().Be(description);
+        }
+
+        [Fact]
+        public void ConflictError_Deconstruct_Properties()
+        {
+            // Arrange
+            var property = "fakeConflictProperty";
+            var code = "fakeConflictCode";
+            var description = "fakeConflictDescription";
+
+
+            // Act
+            var (actProperty, actCode, actDescription) = Error.Conflict(property, code, description);
+
+
+            // Assert
+            actProperty.Should().Be(property);
+            actCode.Should().Be(code);
+            actDescription.Should().Be(description);
+        }
+
+        [Fact]
+        public void ValidationError_Deconstruct_Properties()
+        {
+            // Arrange
+            var property = "fakeValidationProperty";
+            var code = "fakeValidationCode";
+            var description = "fakeValidationDescription";
+
+
+            // Act
+            var (actProperty, actCode, actDescription) = Error.Validation(property, code, description);
+
+
+            // Assert
+            actProperty.Should().Be(property);
+            actCode.Should().Be(code);
+            actDescription.Should().Be(description);
+        }
     }
 }
