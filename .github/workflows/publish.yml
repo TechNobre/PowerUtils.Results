@@ -1,21 +1,21 @@
-# name: 'Publish'
+name: 'Publish'
 
 
-# on:
-#   workflow_dispatch: # To can dispatch manually
+on:
+  workflow_dispatch: # To can dispatch manually
 
-#   push: # First pipeline to run when deploy a new version
-#     branches:
-#       - main
-#     paths:
-#       - "src/**" # Only run when exists changes in source code
+  push: # First pipeline to run when deploy a new version
+    branches:
+      - main
+    paths:
+      - "src/**" # Only run when exists changes in source code
 
 
 
-# env:
-#   SDK_VERSION: '6.0.400'
-#   PACKAGE_PATH: ./src/**/*.nupkg
-#   NUGET_SERVER: https://api.nuget.org/v3/index.json
+env:
+  SDK_VERSION: '6.0.400'
+  PACKAGE_PATH: ./src/**/*.nupkg
+  NUGET_SERVER: https://api.nuget.org/v3/index.json
 
 
 
