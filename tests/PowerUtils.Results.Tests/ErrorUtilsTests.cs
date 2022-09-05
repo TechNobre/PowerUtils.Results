@@ -222,7 +222,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == ErrorCodes.DUPLICATED);
+                .ContainSingle(s => s.Code == ErrorCodes.CONFLICT);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
         }
@@ -444,9 +444,95 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == ErrorCodes.DUPLICATED);
+                .ContainSingle(s => s.Code == ErrorCodes.CONFLICT);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
+        }
+
+        [Fact]
+        public void ValidationErrorWithDefaultCode_ImplicitResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeValidationProperty";
+            var description = "fakeValidationDescription";
+
+            //Act
+            Result act = Error.Validation(property, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == ErrorCodes.VALIDATION);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
+        }
+
+        [Fact]
+        public void ValidationError_ImplicitResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeValidationProperty";
+            var description = "fakeValidationDescription";
+            var code = "fakeValidationCode";
+
+            //Act
+            Result act = Error.Validation(property, code, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == code);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
+        }
+
+        [Fact]
+        public void ValidationErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeValidationProperty";
+            var description = "fakeValidationDescription";
+
+            //Act
+            Result<FakeModel> act = Error.Validation(property, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == ErrorCodes.VALIDATION);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
+        }
+
+        [Fact]
+        public void ValidationError_ImplicitWrapperResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeValidationProperty";
+            var description = "fakeValidationDescription";
+            var code = "fakeValidationCode";
+
+            //Act
+            Result<FakeModel> act = Error.Validation(property, code, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == code);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
         }
     }
 }

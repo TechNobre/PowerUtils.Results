@@ -195,4 +195,39 @@
             Description = Error.BuildErrorDescription(Code, description);
         }
     }
+
+
+
+    /// <summary>
+    /// Error type similar to a Validation:400
+    /// </summary>
+#if NET6_0_OR_GREATER
+    public readonly record struct ValidationError : IError
+#else
+    public record ValidationError : IError
+#endif
+    {
+        /// <summary>
+        /// Property with error
+        /// </summary>
+        public string Property { get; init; }
+
+        /// <summary>
+        /// Code that defines the error
+        /// </summary>
+        public string Code { get; init; }
+
+        /// <summary>
+        /// Gets the error description
+        /// </summary>
+        public string Description { get; init; }
+
+        public ValidationError(string property, string code, string description = null)
+        {
+            Property = property;
+            Code = code;
+
+            Description = Error.BuildErrorDescription(Code, description);
+        }
+    }
 }
