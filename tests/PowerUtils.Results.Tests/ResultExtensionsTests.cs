@@ -28,7 +28,52 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void TwoErrors_LastError_First()
+        public void WithoutErrors_FirstError_InvalidOperationException()
+        {
+            // Arrange
+            var result = Result.Ok();
+
+
+            // Act
+            var act = Record.Exception(() => result.FirstError());
+
+
+            // Assert
+            act.Should().BeOfType<InvalidOperationException>();
+        }
+
+
+
+        [Fact]
+        public void TwoErrors_FirstOrDefaultError_First()
+        {
+            // Arrange && Act
+            var act = _result.FirstOrDefaultError();
+
+
+            // Assert
+            act.Should().Be(_firstError);
+        }
+
+        [Fact]
+        public void WithoutErrors_FirstOrDefaultError_Null()
+        {
+            // Arrange
+            var result = Result.Ok();
+
+
+            // Act
+            var act = result.FirstOrDefaultError();
+
+
+            // Assert
+            act.Should().BeNull();
+        }
+
+
+
+        [Fact]
+        public void TwoErrors_LastError_Last()
         {
             // Arrange && Act
             var act = _result.LastError();
@@ -37,6 +82,51 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().Be(_lastError);
         }
+
+        [Fact]
+        public void WithoutErrors_LastError_InvalidOperationException()
+        {
+            // Arrange
+            var result = Result.Ok();
+
+
+            // Act
+            var act = Record.Exception(() => result.LastError());
+
+
+            // Assert
+            act.Should().BeOfType<InvalidOperationException>();
+        }
+
+
+
+        [Fact]
+        public void TwoErrors_LastOrDefaultError_Last()
+        {
+            // Arrange && Act
+            var act = _result.LastOrDefaultError();
+
+
+            // Assert
+            act.Should().Be(_lastError);
+        }
+
+        [Fact]
+        public void WithoutErrors_LastOrDefaultError_Null()
+        {
+            // Arrange
+            var result = Result.Ok();
+
+
+            // Act
+            var act = result.LastOrDefaultError();
+
+
+            // Assert
+            act.Should().BeNull();
+        }
+
+
 
         [Fact]
         public void TwoErrors_SingleError_InvalidOperationException()
@@ -50,7 +140,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void OneErrorSingleError_Error()
+        public void OneError_SingleError_Error()
         {
             // Arrange
             Result result = new Error[] { _firstError };
@@ -63,6 +153,65 @@ namespace PowerUtils.Results.Tests
 
             // Assert
             act.Should().Be(_firstError);
+        }
+
+        [Fact]
+        public void WithoutErrors_SingleError_InvalidOperationException()
+        {
+            // Arrange
+            var result = Result.Ok();
+
+
+            // Act
+            var act = Record.Exception(() => result.SingleError());
+
+
+            // Assert
+            act.Should().BeOfType<InvalidOperationException>();
+        }
+
+
+
+        [Fact]
+        public void TwoErrors_SingleOrDefaultError_InvalidOperationException()
+        {
+            // Arrange && Act
+            var act = Record.Exception(() => _result.SingleOrDefaultError());
+
+
+            // Assert
+            act.Should().BeOfType<InvalidOperationException>();
+        }
+
+        [Fact]
+        public void OneError_SingleOrDefaultError_Error()
+        {
+            // Arrange
+            Result result = new Error[] { _firstError };
+
+
+            // Act
+            var act = result.SingleOrDefaultError();
+
+
+            // Assert
+            act.Should().Be(_firstError);
+        }
+
+        [Fact]
+        public void WithoutErrors_SingleOrDefaultError_InvalidOperationException()
+        {
+            // Arrange
+            var result = Result.Ok();
+
+
+
+            // Act
+            var act = result.SingleOrDefaultError();
+
+
+            // Assert
+            act.Should().BeNull();
         }
     }
 }
