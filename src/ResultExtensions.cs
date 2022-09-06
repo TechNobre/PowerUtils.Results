@@ -47,7 +47,7 @@ namespace PowerUtils.Results
             => result.Errors.Last();
 
         /// <summary>
-        /// Gets the last error, if does not contain errors return null
+        /// Gets the last error, if does not contain errors returns null
         /// </summary>
         public static IError LastOrDefaultError(this IResult result)
         {
@@ -60,13 +60,29 @@ namespace PowerUtils.Results
         }
 
         /// <summary>
+        /// Gets the last error that satisfies the condition otherwise returns null
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static IError LastOrDefaultError(this IResult result, Func<IError, bool> predicate)
+        {
+            if(!result.IsError)
+            {
+                return default;
+            }
+
+            return result.Errors.LastOrDefault(predicate);
+        }
+
+        /// <summary>
         /// Gets the error when only exists one
         /// </summary>
         public static IError SingleError(this IResult result)
             => result.Errors.Single();
 
         /// <summary>
-        /// Gets the error when only exists one, if does not contain errors return null
+        /// Gets the error when only exists one, if does not contain errors returns null
         /// </summary>
         public static IError SingleOrDefaultError(this IResult result)
         {
@@ -76,6 +92,16 @@ namespace PowerUtils.Results
             }
 
             return result.Errors.SingleOrDefault();
+        }
+
+        public static IError SingleOrDefaultError(this IResult result, Func<IError, bool> predicate)
+        {
+            if(!result.IsError)
+            {
+                return default;
+            }
+
+            return result.Errors.SingleOrDefault(predicate);
         }
 
         /// <summary>

@@ -141,24 +141,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void OneError_FirstOrDefaultErrorWithPredicate_Error()
-        {
-            // Arrange
-            Result result = new Error[] { _firstError };
-            Func<IError, bool> fakePredicate = x => x.Code == _firstError.Code;
-
-
-            //Act
-            var act = result.FirstOrDefaultError(fakePredicate);
-
-
-            // Assert
-            act.Should()
-               .Be(_firstError);
-        }
-
-        [Fact]
-        public void MoreThanOneError_FirstOrDefaultErrorWithPredicate_Error()
+        public void MoreThanOneError_FirstOrDefaultErrorWithPredicate_FirstError()
         {
             // Arrange
             Func<IError, bool> fakePredicate = x => x.Code == _firstError.Code;
@@ -182,6 +165,100 @@ namespace PowerUtils.Results.Tests
 
             //Act
             var act = _result.FirstOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should().BeNull();
+        }
+
+        [Fact]
+        public void WithoutError_LastOrDefaultErrorWithPredicate_Null()
+        {
+            // Arrange
+            Result result = Result.Ok();
+            Func<IError, bool> fakePredicate = x => x.Code == "fakeErrorCodeToFail";
+
+
+            //Act
+            var act = result.LastOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should().BeNull();
+        }
+
+        [Fact]
+        public void MoreThanOneError_LastOrDefaultErrorWithPredicate_LastError()
+        {
+            // Arrange
+            Func<IError, bool> fakePredicate = x => x.Code == _lastError.Code;
+
+
+            //Act
+            var act = _result.LastOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should()
+               .Be(_lastError);
+        }
+
+        [Fact]
+        public void MoreThanOneError_LastOrDefaultErrorWithPredicate_Null()
+        {
+            // Arrange
+            Func<IError, bool> fakePredicate = x => x.Code == "fakeLastErrorCodeToFail";
+
+
+            //Act
+            var act = _result.LastOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should().BeNull();
+        }
+
+        [Fact]
+        public void WithoutErrors_SigleOrDefaultErrorWithPredicate_Null()
+        {
+            // Arrange
+            Result result = Result.Ok();
+            Func<IError, bool> fakePredicate = x => x.Code == "fakeLastErrorCodeToFail";
+
+
+            //Act
+            var act = result.SingleOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should().BeNull();
+        }
+
+        [Fact]
+        public void MoreThanOneError_SigleOrDefaultErrorWithPredicate_Error()
+        {
+            // Arrange
+            Func<IError, bool> fakePredicate = x => x.Code == _firstError.Code;
+
+
+            //Act
+            var act = _result.SingleOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should()
+               .Be(_firstError);
+        }
+
+        [Fact]
+        public void MoreThanOneError_SigleOrDefaultErrorWithPredicate_Null()
+        {
+            // Arrange
+            Func<IError, bool> fakePredicate = x => x.Code == "fakeSingleErrorCodeToFail";
+
+
+            //Act
+            var act = _result.SingleOrDefaultError(fakePredicate);
 
 
             // Assert
