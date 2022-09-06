@@ -178,6 +178,16 @@ namespace PowerUtils.Results
 #else
         public static implicit operator Result(ValidationError error) => new(error as IError);
 #endif
+
+        /// <summary>
+        /// Creates an <see cref="Result"/> from an <see cref="IError"/>
+        /// </summary>
+        public static Result From(IError error) => new(error);
+
+        /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from an <see cref="IError"/>
+        /// </summary>
+        public static Result<TValue> From<TValue>(IError error) => Result<TValue>.From(error);
     }
 
 
@@ -374,5 +384,10 @@ namespace PowerUtils.Results
         /// Creates an value from a <see cref="Result{TValue}"/>
         /// </summary>
         public static implicit operator TValue(Result<TValue> result) => result.Value;
+
+        /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from an <see cref="IError"/>
+        /// </summary>
+        public static Result<TValue> From(IError error) => new(error);
     }
 }
