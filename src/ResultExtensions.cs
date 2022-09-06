@@ -12,7 +12,7 @@ namespace PowerUtils.Results
             => result.Errors.First();
 
         /// <summary>
-        /// Gets the first error, if does not contain errors return null
+        /// Gets the first error, if does not contain errors returns null
         /// </summary>
         public static IError FirstOrDefaultError(this IResult result)
         {
@@ -22,6 +22,22 @@ namespace PowerUtils.Results
             }
 
             return result.Errors.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets the first error that satisfies the condition otherwise returns null
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static IError FirstOrDefaultError(this IResult result, Func<IError, bool> predicate)
+        {
+            if(!result.IsError)
+            {
+                return default;
+            }
+
+            return result.Errors.FirstOrDefault(predicate);
         }
 
         /// <summary>

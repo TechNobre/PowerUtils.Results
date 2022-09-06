@@ -126,7 +126,67 @@ namespace PowerUtils.Results.Tests
             act.Should().BeNull();
         }
 
+        [Fact]
+        public void WithoutErrors_FirstOrDefaultErrorWithPredicate_Null()
+        {
+            // Arrange
+            var result = Result.Ok();
+            Func<IError, bool> fakePredicate = x => x.Code == ErrorCodes.VALIDATION;
 
+            //Act
+            var act = result.FirstOrDefaultError(fakePredicate);
+
+            // Assert
+            act.Should().BeNull();
+        }
+
+        [Fact]
+        public void OneError_FirstOrDefaultErrorWithPredicate_Error()
+        {
+            // Arrange
+            Result result = new Error[] { _firstError };
+            Func<IError, bool> fakePredicate = x => x.Code == _firstError.Code;
+
+
+            //Act
+            var act = result.FirstOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should()
+               .Be(_firstError);
+        }
+
+        [Fact]
+        public void MoreThanOneError_FirstOrDefaultErrorWithPredicate_Error()
+        {
+            // Arrange
+            Func<IError, bool> fakePredicate = x => x.Code == _firstError.Code;
+
+
+            //Act
+            var act = _result.FirstOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should()
+               .Be(_firstError);
+        }
+
+        [Fact]
+        public void MoreThanOneError_FirstOrDefaultErrorWithPredicate_Null()
+        {
+            // Arrange
+            Func<IError, bool> fakePredicate = x => x.Code == "fakeErrorCodeToFail";
+
+
+            //Act
+            var act = _result.FirstOrDefaultError(fakePredicate);
+
+
+            // Assert
+            act.Should().BeNull();
+        }
 
         [Fact]
         public void TwoErrors_SingleError_InvalidOperationException()
