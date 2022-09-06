@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
@@ -311,6 +312,198 @@ namespace PowerUtils.Results.Tests
 
             // Act
             var act = result.ContainsError<ConflictError>(fakePredicate);
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
+        public void VoidResultWithoutErrors_Switch_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            var result = Result.Ok();
+
+            void onSuccessAction() => act = true;
+            void onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            result.Switch(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+        [Fact]
+        public void VoidResultWithErrors_Switch_ShouldExecuteOnErrorsAction()
+        {
+            // Arrange
+            var act = false;
+
+            Result result = _firstError;
+
+            void onSuccessAction() => throw new FakeException();
+            void onErrorsAction(IEnumerable<IError> _) => act = true;
+
+
+            // Act
+            result.Switch(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
+        public void WrapperResultWithoutErrors_Switch_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            var result = Result.Ok(new FakeModel());
+
+            void onSuccessAction(FakeModel _) => act = true;
+            void onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            result.Switch(
+               onSuccessAction,
+               onErrorsAction
+           );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+        [Fact]
+        public void WrapperResultWithErrors_Switch_ShouldExecuteOnErrorsAction()
+        {
+            // Arrange
+            var act = false;
+
+            Result<FakeModel> result = _firstError;
+
+            void onSuccessAction(FakeModel _) => throw new FakeException();
+            void onErrorsAction(IEnumerable<IError> _) => act = true;
+
+
+            // Act
+            result.Switch(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
+        public void VoidResultWithoutErrors_SwitchFirst_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            var result = Result.Ok();
+
+            void onSuccessAction() => act = true;
+            void onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            result.SwitchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+        [Fact]
+        public void VoidResultWithErrors_SwitchFirst_ShouldExecuteOnErrorAction()
+        {
+            // Arrange
+            var act = false;
+
+            Result result = _firstError;
+
+            void onSuccessAction() => throw new FakeException();
+            void onErrorAction(IError _) => act = true;
+
+
+            // Act
+            result.SwitchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
+        public void WrapperResultWithoutErrors_SwitchFirst_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            var result = Result.Ok(new FakeModel());
+
+            void onSuccessAction(FakeModel _) => act = true;
+            void onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            result.SwitchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+        [Fact]
+        public void WrapperResultWithErrors_SwitchFirst_ShouldExecuteOnErrorAction()
+        {
+            // Arrange
+            var act = false;
+
+            Result<FakeModel> result = _firstError;
+
+            void onSuccessAction(FakeModel _) => throw new FakeException();
+            void onErrorAction(IError _) => act = true;
+
+
+            // Act
+            result.SwitchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
 
 
             // Assert

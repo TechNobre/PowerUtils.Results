@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PowerUtils.Results
@@ -72,6 +73,62 @@ namespace PowerUtils.Results
             }
 
             return false;
+        }
+
+        /// <summary>
+        /// Run the onError action with error list if there are errors otherwise run the onSuccess action
+        /// </summary>
+        public static void Switch(this Result result, Action onSuccess, Action<IEnumerable<IError>> onErrors)
+        {
+            if(result.IsError)
+            {
+                onErrors(result.Errors);
+                return;
+            }
+
+            onSuccess();
+        }
+
+        /// <summary>
+        /// Run the onError action with error list if there are errors otherwise run the onSuccess action with value
+        /// </summary>
+        public static void Switch<TValue>(this Result<TValue> result, Action<TValue> onSuccess, Action<IEnumerable<IError>> onErrors)
+        {
+            if(result.IsError)
+            {
+                onErrors(result.Errors);
+                return;
+            }
+
+            onSuccess(result.Value);
+        }
+
+        /// <summary>
+        /// Run the onError action with first error if there are errors otherwise run the onSuccess action
+        /// </summary>
+        public static void SwitchFirst(this Result result, Action onSuccess, Action<IError> onError)
+        {
+            if(result.IsError)
+            {
+                onError(result.Errors.First());
+                return;
+            }
+
+            onSuccess();
+        }
+
+        /// <summary>
+        /// Run the onError action with first error if there are errors otherwise run the OnSuccess action with value
+        /// </summary>
+        public static void SwitchFirst<TValue>(this Result<TValue> result, Action<TValue> onSuccess, Action<IError> onError)
+        {
+            if(result.IsError)
+            {
+                onError(result.Errors.First());
+                return;
+            }
+
+            onSuccess(result.Value);
         }
     }
 }
