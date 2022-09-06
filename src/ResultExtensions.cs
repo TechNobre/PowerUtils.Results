@@ -18,7 +18,7 @@ namespace PowerUtils.Results
         {
             if(!result.IsError)
             {
-                return null;
+                return default;
             }
 
             return result.Errors.FirstOrDefault();
@@ -53,7 +53,7 @@ namespace PowerUtils.Results
         {
             if(!result.IsError)
             {
-                return null;
+                return default;
             }
 
             return result.Errors.LastOrDefault();
@@ -88,7 +88,7 @@ namespace PowerUtils.Results
         {
             if(!result.IsError)
             {
-                return null;
+                return default;
             }
 
             return result.Errors.SingleOrDefault();
