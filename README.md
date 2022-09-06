@@ -20,6 +20,7 @@
     - [Success](#return-results-success)
     - [Errors](#return-results-errors)
       - [Add more errors](#return-results-errors-add)
+      - [Custom error](#return-results-custom-error)
   - [Extensions](#return-extensions)
     - [OfTypeFirstError](#return-extensions-OfTypeFirstError)
   - [Deconstruct operators](#return-deconstruct-operators)
@@ -99,6 +100,30 @@ Result result = errors;
 Result result = new Error("property", "code", "description2");
 result.AddError(new Error("property", "code", "description2"));
 result.AddError("property", "code", "description2");
+```
+
+##### Custom error <a name="return-results-custom-error"></a>
+
+```csharp
+public class CustomError : IError
+{
+    public string Property { get; init; }
+    public string Code { get; init; }
+    public string Description { get; init; }
+
+    public CustomError(string property, string code, string description)
+    {
+        Property = property;
+        Code = code;
+        Description = description;
+    }
+}
+
+var error = new CustomError(property, code, description);
+
+var act = Result.From(error);
+var act = Result<FakeModel>.From(error);
+var act = Result.From<FakeModel>(error);
 ```
 
 ### Extensions <a name="return-extensions"></a>
