@@ -112,6 +112,11 @@ namespace PowerUtils.Results
         public static Result Ok() => new();
 
         /// <summary>
+        /// Creates a success result
+        /// </summary>
+        public static Result<TValue> Ok<TValue>(TValue value) => Result<TValue>.Ok(value);
+
+        /// <summary>
         /// Creates an <see cref="Result"/> from a list of errors
         /// </summary>
         public static implicit operator Result(List<Error> errors)

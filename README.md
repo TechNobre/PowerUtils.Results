@@ -64,7 +64,9 @@ var result = Result.Ok();
 
 // With payload
 var model = new Model();
-var result = Result<Model>.Ok(model);
+var result = Result<Model>.Ok(model); // Creation style 1
+var result = Result.Ok<Model>(model); // Creation style 2
+var result = Result.Ok(model);        // Creation style 3
 
 // Implicit assignment
 Result<Model> = model;
