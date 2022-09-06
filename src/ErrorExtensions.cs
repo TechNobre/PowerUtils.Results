@@ -91,9 +91,6 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the error when only one satisfies the condition otherwise returns null
         /// </summary>
-        /// <param name="result"></param>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
         public static IError SingleOrDefaultError(this IResult result, Func<IError, bool> predicate)
         {
             if(!result.IsError)
