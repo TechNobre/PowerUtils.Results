@@ -387,5 +387,49 @@ namespace PowerUtils.Results.Tests
 
             act.GetType().Should().Be(typeof(CustomError));
         }
+
+        [Fact]
+        public void Value_Ok_ResultModel()
+        {
+            // Arrange
+            var id = 4723789;
+            var name = "fake name";
+            var mode = new FakeModel { Id = id, Name = name };
+
+            var result = Result<FakeModel>.Ok(mode);
+
+
+            // Act
+            var act = result.Value;
+
+
+            // Assert
+            act.Id.Should().Be(id);
+            act.Name.Should().Be(name);
+
+            act.Should().BeOfType<FakeModel>();
+        }
+
+        [Fact]
+        public void Value_OkImplicit_ResultModel()
+        {
+            // Arrange
+            var id = 4723789;
+            var name = "fake name";
+            var mode = new FakeModel { Id = id, Name = name };
+
+            var result = Result.Ok(mode);
+
+
+            // Act
+            var act = result.Value;
+
+
+            // Assert
+            act.Id.Should().Be(id);
+            act.Name.Should().Be(name);
+
+            act.Should().BeOfType<FakeModel>();
+        }
     }
 }
