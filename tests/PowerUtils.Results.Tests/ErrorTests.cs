@@ -264,6 +264,49 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public void UnexpectedErrorWithDescription_Construct_CustomDescription()
+        {
+            // Arrange
+            var property = "fakeUnexpectedProperty";
+            var code = "fakeValidationCode";
+            var description = "fakeUnexpectedDescription";
+
+
+            // Act
+            var act = new UnexpectedError(property, code, description);
+
+
+            // Assert
+            act.Property.Should()
+                .Be(property);
+            act.Code.Should()
+                .Be(code);
+            act.Description.Should()
+                .Be(description);
+        }
+
+        [Fact]
+        public void UnexpectedErrorWithoutDescription_Construct_DefaultDescription()
+        {
+            // Arrange
+            var property = "fakeUnexpectedProperty";
+            var code = "fakeUnexpectedCode";
+
+
+            // Act
+            var act = new UnexpectedError(property, code);
+
+
+            // Assert
+            act.Property.Should()
+                .Be(property);
+            act.Code.Should()
+                .Be(code);
+            act.Description.Should()
+                .Be($"An error has occurred with code '{code}'");
+        }
+
+        [Fact]
         public void Error_Deconstruct_Properties()
         {
             // Arrange
@@ -369,6 +412,25 @@ namespace PowerUtils.Results.Tests
 
             // Act
             var (actProperty, actCode, actDescription) = Error.Validation(property, code, description);
+
+
+            // Assert
+            actProperty.Should().Be(property);
+            actCode.Should().Be(code);
+            actDescription.Should().Be(description);
+        }
+
+        [Fact]
+        public void UnexpectedError_Deconstruct_Properties()
+        {
+            // Arrange
+            var property = "fakeUnexpectedProperty";
+            var code = "fakeUnexpectedCode";
+            var description = "fakeUnexpectedDescription";
+
+
+            // Act
+            var (actProperty, actCode, actDescription) = Error.Unexpected(property, code, description);
 
 
             // Assert

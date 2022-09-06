@@ -185,6 +185,15 @@ namespace PowerUtils.Results
 #endif
 
         /// <summary>
+        /// Creates an <see cref="Result"/> from an unexpected error
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public static implicit operator Result(UnexpectedError error) => new(error);
+#else
+        public static implicit operator Result(UnexpectedError error) => new(error as IError);
+#endif
+
+        /// <summary>
         /// Creates an <see cref="Result"/> from an <see cref="IError"/>
         /// </summary>
         public static Result From(IError error) => new(error);
@@ -383,6 +392,15 @@ namespace PowerUtils.Results
         public static implicit operator Result<TValue>(ValidationError error) => new(error);
 #else
         public static implicit operator Result<TValue>(ValidationError error) => new(error as IError);
+#endif
+
+        /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from an unexpected error
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public static implicit operator Result<TValue>(UnexpectedError error) => new(error);
+#else
+        public static implicit operator Result<TValue>(UnexpectedError error) => new(error as IError);
 #endif
 
         /// <summary>

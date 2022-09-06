@@ -290,4 +290,49 @@
             description = Description;
         }
     }
+
+
+
+    /// <summary>
+    /// Error type similar to a Unexpected:500
+    /// </summary>
+#if NET6_0_OR_GREATER
+    public readonly record struct UnexpectedError : IError
+#else
+    public record UnexpectedError : IError
+#endif
+    {
+        /// <summary>
+        /// Property with error
+        /// </summary>
+        public string Property { get; init; }
+
+        /// <summary>
+        /// Code that defines the error
+        /// </summary>
+        public string Code { get; init; }
+
+        /// <summary>
+        /// Gets the error description
+        /// </summary>
+        public string Description { get; init; }
+
+        public UnexpectedError(string property, string code, string description = null)
+        {
+            Property = property;
+            Code = code;
+
+            Description = Error.BuildErrorDescription(Code, description);
+        }
+
+        /// <summary>
+        /// Gets properties of the error
+        /// </summary>
+        public void Deconstruct(out string property, out string code, out string description)
+        {
+            property = Property;
+            code = Code;
+            description = Description;
+        }
+    }
 }

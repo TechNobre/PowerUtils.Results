@@ -493,8 +493,10 @@ namespace PowerUtils.Results.Tests
             var property = "fakeValidationProperty";
             var description = "fakeValidationDescription";
 
+
             //Act
             Result act = Error.Validation(property, description);
+
 
             //Assert
             act.IsError.Should()
@@ -517,8 +519,10 @@ namespace PowerUtils.Results.Tests
             var description = "fakeValidationDescription";
             var code = "fakeValidationCode";
 
+
             //Act
             Result act = Error.Validation(property, code, description);
+
 
             //Assert
             act.IsError.Should()
@@ -539,6 +543,7 @@ namespace PowerUtils.Results.Tests
             //Arrange
             var property = "fakeValidationProperty";
             var description = "fakeValidationDescription";
+
 
             //Act
             Result<FakeModel> act = Error.Validation(property, description);
@@ -564,6 +569,7 @@ namespace PowerUtils.Results.Tests
             var description = "fakeValidationDescription";
             var code = "fakeValidationCode";
 
+
             //Act
             Result<FakeModel> act = Error.Validation(property, code, description);
 
@@ -578,6 +584,106 @@ namespace PowerUtils.Results.Tests
                .ContainSingle(s => s.Description == description);
 
             act.Errors.First().Should().BeOfType<ValidationError>();
+        }
+
+
+
+        [Fact]
+        public void UnexpectedErrorWithDefaultCode_ImplicitResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeUnexpectedProperty";
+            var description = "fakeUnexpectedDescription";
+
+
+            //Act
+            Result act = Error.Unexpected(property, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == ErrorCodes.UNEXPECTED);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnexpectedError>();
+        }
+
+        [Fact]
+        public void UnexpectedError_ImplicitResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeUnexpectedProperty";
+            var description = "fakeUnexpectedDescription";
+            var code = "fakeUnexpectedCode";
+
+
+            //Act
+            Result act = Error.Unexpected(property, code, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == code);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnexpectedError>();
+        }
+
+        [Fact]
+        public void UnexpectedErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeUnexpectedProperty";
+            var description = "fakeUnexpectedDescription";
+
+
+            //Act
+            Result<FakeModel> act = Error.Unexpected(property, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == ErrorCodes.UNEXPECTED);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnexpectedError>();
+        }
+
+        [Fact]
+        public void UnexpectedError_ImplicitWrapperResult_IsErrorTrue()
+        {
+            //Arrange
+            var property = "fakeUnexpectedProperty";
+            var description = "fakeUnexpectedDescription";
+            var code = "fakeUnexpectedCode";
+
+
+            //Act
+            Result<FakeModel> act = Error.Unexpected(property, code, description);
+
+            //Assert
+            act.IsError.Should()
+               .BeTrue();
+            act.Errors.Should()
+               .ContainSingle(s => s.Property == property);
+            act.Errors.Should()
+               .ContainSingle(s => s.Code == code);
+            act.Errors.Should()
+               .ContainSingle(s => s.Description == description);
+
+            act.Errors.First().Should().BeOfType<UnexpectedError>();
         }
     }
 }
