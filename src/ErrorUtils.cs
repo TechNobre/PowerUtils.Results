@@ -77,10 +77,26 @@
             => new(property, code, description);
 
         /// <summary>
-        /// Create an 'Validation:400' error result with the given error and code: 'VALIDATION'
+        /// Create an 'Validation:400' error result with the given error and code: 'UNEXPECTED'
         /// </summary>
         public static ValidationError Validation(string property, string description = null)
             => new(property, ErrorCodes.VALIDATION, description);
+
+
+
+        /// <summary>
+        /// Create an 'Unexpected:500' error result with the given error
+        /// </summary>
+        public static UnexpectedError Unexpected(string property, string code, string description = null)
+            => new(property, code, description);
+
+        /// <summary>
+        /// Create an 'Unexpected:500' error result with the given error and code: 'UNEXPECTED'
+        /// </summary>
+        public static UnexpectedError Unexpected(string property, string description = null)
+            => new(property, ErrorCodes.UNEXPECTED, description);
+
+
 
         internal static string BuildErrorDescription(string code, string description)
             => string.IsNullOrWhiteSpace(description) ? $"An error has occurred with code '{code}'" : description;
