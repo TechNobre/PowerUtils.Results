@@ -1,0 +1,17 @@
+# 1.0.0 (2022-09-06)
+
+
+### Features
+
+* added `FirstOrDefaultError()` with predicate ([968380f](https://github.com/TechNobre/PowerUtils.Results/commit/968380fdc7d197e59927e03ed5d492a5c689247a))
+* Added extension `Result.ContainsError()` ([b6bc3dc](https://github.com/TechNobre/PowerUtils.Results/commit/b6bc3dc9bcecc89c646b9df9d3e49c97b68339b3))
+* Added extension `Result.IsSuccess()` ([5565011](https://github.com/TechNobre/PowerUtils.Results/commit/55650110f745f3a09542973abd02fb47f5742f01))
+* Added extensions `FirstOrDefaultError`, `LastOrDefaultError`, `SingleOrDefaultError` ([5c43285](https://github.com/TechNobre/PowerUtils.Results/commit/5c432855e5d1db97e7c24e0d481bf6fd9769861f))
+* Added extensions `Result.Switch()` and `Result.SwitchFirst()` ([82d5a4e](https://github.com/TechNobre/PowerUtils.Results/commit/82d5a4ebf7916920ff41cae3defd7b95a4208fd5))
+* Added implicit conversion from `Result<TModel>` to `TModel` ([7459537](https://github.com/TechNobre/PowerUtils.Results/commit/7459537b2d85dff744e11c1cbc6d72e3cea4ecdf))
+* Added method `Result.From()` for errors ([a9f8a30](https://github.com/TechNobre/PowerUtils.Results/commit/a9f8a30fa40c609ebfc344c5bb2ef3dd8e945867))
+* Added method `Result.Ok<TValue>();` ([6acbca0](https://github.com/TechNobre/PowerUtils.Results/commit/6acbca03bbdffc38fc0e99b55594f06bf67a3990))
+* Added new error type `Unexpected` ([a343a02](https://github.com/TechNobre/PowerUtils.Results/commit/a343a02045cffbdc7a4703f9425b28922aabf04e))
+* added ValidationError ([6e709db](https://github.com/TechNobre/PowerUtils.Results/commit/6e709db160ea63a70164c450f20ced501a38ec0b))
+* Kickoff ([61acf06](https://github.com/TechNobre/PowerUtils.Results/commit/61acf06ef87a86666b8b1a19375d128198406555))
+* Override method `Result.GetType()` ([48a24be](https://github.com/TechNobre/PowerUtils.Results/commit/48a24bef96beb8d9ca2851ab3a6ebf2515c11547))
