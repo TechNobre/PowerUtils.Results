@@ -16,15 +16,18 @@
 - [Support](#support-to)
 - [How to use](#how-to-use)
   - [Install NuGet package](#Installation)
-  - [Return results](#return-results)
-    - [Success](#return-results-success)
-    - [Errors](#return-results-errors)
-      - [Add more errors](#return-results-errors-add)
-      - [Custom error](#return-results-custom-error)
-  - [Extensions](#return-extensions)
-    - [OfTypeFirstError](#return-extensions-OfTypeFirstError)
-  - [Deconstruct operators](#return-deconstruct-operators)
-  - [Implicit conversion](#return-implicit-conversion)
+  - [Creating a Result](#doc-creating-result)
+    - [Success](#doc-creating-result-success)
+    - [Errors](#doc-creating-result-errors)
+      - [Add more errors](#doc-creating-result-errors-add)
+	  - [Built-in error types](#doc-creating-result-errors-types)
+      - [Custom error](#doc-creating-custom-error)
+  - [Extensions](#doc-extensions)
+    - [Handling errors](#doc-extensions-handling-errors)
+    - [OfTypeFirstError](#doc-extensions-OfTypeFirstError)
+    - [Handling success](#doc-extensions-handling-success)
+  - [Deconstruct operators](#doc-deconstruct-operators)
+  - [Implicit conversion](#doc-implicit-conversion)
 - [How is this different from error-of?](#how-is-different)
 - [Contribution](#contribution)
 - [License](./LICENSE)
@@ -55,36 +58,43 @@ dotnet add package PowerUtils.Results
 
 
 
-### Return results <a name="return-results"></a>
+### Creating a Result <a name="doc-creating-result"></a>
 
-#### Success <a name="return-results-success"></a>
+#### Success <a name="doc-creating-result-success"></a>
 ```csharp
-// Without payload
+// Void result
 var result = Result.Ok();
 
-// With payload
+// Result with typed value
 var model = new Model();
-var result = Result<Model>.Ok(model); // Creation style 1
-var result = Result.Ok<Model>(model); // Creation style 2
-var result = Result.Ok(model);        // Creation style 3
+var result = Result<Model>.Ok(model);
+var result = Result.Ok<Model>(model);
+var result = Result.Ok(model);
 
 // Implicit assignment
-Result<Model> = model;
+Result<Model> result = model;
 ```
 
-#### Errors <a name="return-results-errors"></a>
-- `Error.Error()`;
-- `Error.UnauthorizedError()`
-- `Error.ForbiddenError()`
-- `Error.NotFoundError()`
-- `Error.ConflictError()`
-- `Error.ValidationError()`
+#### Errors <a name="doc-creating-result-errors"></a>
+
 
 ```csharp
-Result result = Error.Forbidden("property", "code", "description2");
+Result result = Error.Failure("property", "code", "description");
+Result result = Error.Unauthorized("property", "code", "description");
+Result result = Error.Forbidden("property", "code", "description");
+Result result = Error.NotFound("property", "code", "description");
+Result result = Error.Conflict("property", "code", "description");
+Result result = Error.Validation("property", "code", "description");
+Result result = Error.Unexpected("property", "code", "description");
 
 // Implicit assignment
-Result result = new Error("property", "code", "description2");
+Result result = new Error("property", "code", "description");
+Result result = new UnauthorizedError("property", "code", "description");
+Result result = new ForbiddenError("property", "code", "description");
+Result result = new NotFoundError("property", "code", "description");
+Result result = new ConflictError("property", "code", "description");
+Result result = new ValidationError("property", "code", "description");
+Result result = new UnexpectedError("property", "code", "description");
 
 // Error list
 var errors = new List<Error>
@@ -96,15 +106,26 @@ var errors = new List<Error>
 Result result = errors;
 ```
 
-##### Add more errors <a name="return-results-errors-add"></a>
+##### Add more errors <a name="doc-creating-result-errors-add"></a>
 
 ```csharp
-Result result = new Error("property", "code", "description2");
-result.AddError(new Error("property", "code", "description2"));
-result.AddError("property", "code", "description2");
+Result result = new Error("property", "code", "description");
+result.AddError(new Error("property", "code", "description"));
+result.AddError("property", "code", "description");
 ```
 
-##### Custom error <a name="return-results-custom-error"></a>
+##### Built-in error types <a name="doc-creating-result-errors-types"></a>
+
+- `Error.Error()`;
+- `Error.Unauthorized()`
+- `Error.Forbidden()`
+- `Error.NotFound()`
+- `Error.Conflict()`
+- `Error.Validation()`
+- `Error.Validation()`
+- `Error.Unexpected()`
+
+##### Custom error <a name="doc-creating-custom-error"></a>
 
 ```csharp
 public class CustomError : IError
@@ -123,13 +144,14 @@ public class CustomError : IError
 
 var error = new CustomError(property, code, description);
 
-var act = Result.From(error);
-var act = Result<FakeModel>.From(error);
-var act = Result.From<FakeModel>(error);
+var result = Result.From(error);
+var result = Result<FakeModel>.From(error);
+var result = Result.From<FakeModel>(error);
 ```
 
-### Extensions <a name="return-extensions"></a>
+### Extensions <a name="doc-extensions"></a>
 
+#### Handling errors <a name="doc-extensions-handling-errors"></a>
 ```csharp
 Result result = new Error[]
 {
@@ -137,17 +159,23 @@ Result result = new Error[]
     new("Property", "Code", "Description")
 };
 
-var error = result.FirstError();
-var error = result.FirstOrDefaultError();
+IError error = result.FirstError();
+IError error = result.FirstOrDefaultError();
+IError error = result.FirstOrDefaultError(Func<IError, bool> predicate);
 
-var error = result.LastError();
-var error = result.LastOrDefaultError();
+IError error = result.LastError();
+IError error = result.LastOrDefaultError();
+IError error = result.LastOrDefaultError(Func<IError, bool> predicate);
 
-var error = result.SingleError();
-var error = result.SingleOrDefaultError();
+IError error = result.SingleError();
+IError error = result.SingleOrDefaultError();
+IError error = result.SingleOrDefaultError(Func<IError, bool> predicate);
+
+bool IResult.ContainsError();
+bool IResult.ContainsError(Func<IError, bool> predicate);
 ```
 
-#### OfTypeFirstError <a name="return-extensions-OfTypeFirstError"></a>
+#### OfTypeFirstError <a name="doc-extensions-OfTypeFirstError"></a>
 
 ```csharp
 Result result = Error.Conflict("property", "code", "description");
@@ -167,18 +195,41 @@ Result<Model> result = model;
 var type = result.GetType(); // Model
 ```
 
-### Deconstruct operators <a name="return-deconstruct-operators"></a>
+#### Handling success <a name="doc-extensions-handling-success"></a>
+
+```csharp
+bool IResult.IsSuccess();
+bool IResult.IsSuccess(Func<TValue, bool> predicate);
+```
+
+#### Switch <a name="doc-extensions-Switch"></a>
+
+```csharp
+Result.Switch(
+    value => onSuccess(value),
+    errors => onErrors(errors)
+);
+
+// Only return the value or first erro
+Result.SwitchFirst(
+    value => onSuccess(value),
+    error => onError(error)
+);
+```
+
+### Deconstruct operators <a name="doc-deconstruct-operators"></a>
 
 ```csharp
 var (property, code, description) = Error.Unauthorized("property", "code", "description");
 ```
 
-### Implicit conversion <a name="return-implicit-conversion"></a>
+### Implicit conversion <a name="doc-implicit-conversion"></a>
 
 ```csharp
 Result<Model> result = new Model { Id = id, Name = name };
 Model model = result;
 ```
+
 
 
 
