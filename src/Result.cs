@@ -71,8 +71,15 @@ namespace PowerUtils.Results
         /// </summary>
         private Result(List<IError> errors)
         {
-            IsError = true;
             _errors = errors;
+            if(errors.Count == 0)
+            {
+                IsError = false;
+            }
+            else
+            {
+                IsError = true;
+            }
         }
 
         /// <summary>
@@ -281,8 +288,15 @@ namespace PowerUtils.Results
         {
             _value = default;
 
-            IsError = true;
             _errors = errors;
+            if(errors.Count == 0)
+            {
+                IsError = false;
+            }
+            else
+            {
+                IsError = true;
+            }
         }
 
         /// <summary>
