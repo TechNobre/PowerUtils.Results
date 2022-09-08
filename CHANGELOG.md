@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.0.0...v1.1.0) (2022-09-08)
+
+
+### Features
+
+* Added extension `Result.Match()` and `Result.MatchFirst()` ([7d55f5b](https://github.com/TechNobre/PowerUtils.Results/commit/7d55f5b2fabbbdf6fe47624f7406813f00a0df17))
+* Added factory `Result.Create()`; ([b9f419b](https://github.com/TechNobre/PowerUtils.Results/commit/b9f419b1b1d0c2a447cff419b2abfc7b4cf3b7b8))
+* Added implicit conversion from `VoidResult` to `ValueResult` and from `ValueResult` to `VoidResult` ([9ac8628](https://github.com/TechNobre/PowerUtils.Results/commit/9ac8628422256f98738a18c0c8518c2b7c51b1d3))
+
 # 1.0.0 (2022-09-06)
 
 
