@@ -3,7 +3,7 @@
 #if NET6_0_OR_GREATER
     public readonly partial record struct Error : IError
 #else
-    public partial record Error : IError
+    public partial struct Error : IError
 #endif
     {
         /// <summary>

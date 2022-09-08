@@ -29,7 +29,7 @@
 #if NET6_0_OR_GREATER
     public readonly partial record struct Error : IError
 #else
-    public partial record Error : IError
+    public readonly partial struct Error : IError
 #endif
     {
         /// <summary>
@@ -74,7 +74,7 @@
 #if NET6_0_OR_GREATER
     public readonly record struct UnauthorizedError : IError
 #else
-    public record UnauthorizedError : IError
+    public readonly struct UnauthorizedError : IError
 #endif
     {
         /// <summary>
@@ -119,7 +119,7 @@
 #if NET6_0_OR_GREATER
     public readonly record struct ForbiddenError : IError
 #else
-    public record ForbiddenError : IError
+    public readonly struct ForbiddenError : IError
 #endif
     {
         /// <summary>
@@ -164,7 +164,7 @@
 #if NET6_0_OR_GREATER
     public readonly record struct NotFoundError : IError
 #else
-    public record NotFoundError : IError
+    public readonly struct NotFoundError : IError
 #endif
     {
         /// <summary>
@@ -209,7 +209,7 @@
 #if NET6_0_OR_GREATER
     public readonly record struct ConflictError : IError
 #else
-    public record ConflictError : IError
+    public readonly struct ConflictError : IError
 #endif
     {
         /// <summary>
@@ -254,7 +254,7 @@
 #if NET6_0_OR_GREATER
     public readonly record struct ValidationError : IError
 #else
-    public record ValidationError : IError
+    public readonly struct ValidationError : IError
 #endif
     {
         /// <summary>
@@ -299,7 +299,7 @@
 #if NET6_0_OR_GREATER
     public readonly record struct UnexpectedError : IError
 #else
-    public record UnexpectedError : IError
+    public readonly struct UnexpectedError : IError
 #endif
     {
         /// <summary>

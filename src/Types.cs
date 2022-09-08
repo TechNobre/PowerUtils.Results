@@ -5,6 +5,6 @@
 #if NET6_0_OR_GREATER
     public readonly record struct Success : IType;
 #else
-    public record Success : IType;
+    public readonly struct Success : IType { }
 #endif
 }
