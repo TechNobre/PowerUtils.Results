@@ -509,5 +509,196 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().BeTrue();
         }
+
+
+
+        [Fact]
+        public void VoidResultWithoutErrors_Match_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            var result = Result.Ok();
+
+            string onSuccessAction() => expected;
+            string onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            var act = result.Match(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public void VoidResultWithErrors_Match_ShouldExecuteOnErrorsAction()
+        {
+            // Arrange
+            var expected = "Wow no, wow no...!!!";
+
+            Result result = _firstError;
+
+            string onSuccessAction() => throw new FakeException();
+            string onErrorsAction(IEnumerable<IError> _) => expected;
+
+
+            // Act
+            var act = result.Match(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+
+        [Fact]
+        public void WrapperResultWithoutErrors_Match_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            var result = Result.Ok(new FakeModel());
+
+            string onSuccessAction(FakeModel _) => expected;
+            string onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            var act = result.Match(
+               onSuccessAction,
+               onErrorsAction
+           );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public void WrapperResultWithErrors_Match_ShouldExecuteOnErrorsAction()
+        {
+            // Arrange
+            var expected = "Wow no, wow no...!!!";
+
+            Result<FakeModel> result = _firstError;
+
+            string onSuccessAction(FakeModel _) => throw new FakeException();
+            string onErrorsAction(IEnumerable<IError> _) => expected;
+
+
+            // Act
+            var act = result.Match(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+
+
+        [Fact]
+        public void VoidResultWithoutErrors_MatchFirst_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            var result = Result.Ok();
+
+            string onSuccessAction() => expected;
+            string onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            var act = result.MatchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public void VoidResultWithErrors_MatchFirst_ShouldExecuteOnErrorAction()
+        {
+            // Arrange
+            var expected = "Wow no, wow no...!!!";
+
+            Result result = _firstError;
+
+            string onSuccessAction() => throw new FakeException();
+            string onErrorAction(IError _) => expected;
+
+
+            // Act
+            var act = result.MatchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+
+
+        [Fact]
+        public void WrapperResultWithoutErrors_MatchFirst_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            var result = Result.Ok(new FakeModel());
+
+            string onSuccessAction(FakeModel _) => expected;
+            string onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            var act = result.MatchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public void WrapperResultWithErrors_MatchFirst_ShouldExecuteOnErrorAction()
+        {
+            // Arrange
+            var expected = "Wow no, wow no...!!!";
+
+            Result<FakeModel> result = _firstError;
+
+            string onSuccessAction(FakeModel _) => throw new FakeException();
+            string onErrorAction(IError _) => expected;
+
+
+            // Act
+            var act = result.MatchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using MediatR;
 using PowerUtils.Results.MediatR.Samples.Behaviors;
 using PowerUtils.Results.MediatR.Samples.DTOs;
@@ -30,5 +33,28 @@ public record AddProductCommand(string Name, uint Quantity) : IRequest<Result<Pr
         }
 
         return errors;
+    }
+
+
+    public class Handler : IRequestHandler<AddProductCommand, Result<ProductResponse>>
+    {
+        public async Task<Result<ProductResponse>> Handle(AddProductCommand command, CancellationToken cancellationToken)
+        {
+            if(Random.Shared.Next(2) % 2 == 0)
+            {
+                return Error.Conflict(
+                    nameof(command.Name),
+                    "DUPLICATED",
+                    $"Already exists a product with name '{command.Name}'"
+                );
+            }
+
+            return new ProductResponse
+            {
+                Id = Guid.NewGuid(),
+                Name = command.Name,
+                Quantity = command.Quantity,
+            };
+        }
     }
 }

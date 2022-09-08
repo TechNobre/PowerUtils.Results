@@ -27,6 +27,8 @@
     - [Handling errors](#doc-extensions-handling-errors)
     - [OfTypeFirstError](#doc-extensions-OfTypeFirstError)
     - [Handling success](#doc-extensions-handling-success)
+    - [Switch](#doc-extensions-Switch)
+    - [Match](#doc-extensions-Match)
   - [Deconstruct operators](#doc-deconstruct-operators)
   - [Implicit conversion](#doc-implicit-conversion)
 - [How is this different from error-of?](#how-is-different)
@@ -227,13 +229,28 @@ bool IResult.IsSuccess(Func<TValue, bool> predicate);
 #### Switch <a name="doc-extensions-Switch"></a>
 
 ```csharp
-Result.Switch(
+result.Switch(
     value => onSuccess(value),
     errors => onErrors(errors)
 );
 
 // Only return the value or first erro
-Result.SwitchFirst(
+result.SwitchFirst(
+    value => onSuccess(value),
+    error => onError(error)
+);
+```
+
+#### Match <a name="doc-extensions-Match"></a>
+
+```csharp
+TOutput response = result.Match<TValue, TOutput>(
+    value => onSuccess(value),
+    errors => onErrors(errors)
+);
+
+// Only return the value or first erro
+TOutput response = result.MatchFirst<TValue, TOutput>(
     value => onSuccess(value),
     error => onError(error)
 );
