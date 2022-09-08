@@ -2,3 +2,6 @@
 using PowerUtils.Results.Benchmarks.Tests;
 
 BenchmarkRunner.Run<CreatingValueResultBenchmarks>();
+
+//BenchmarkRunner.Run<CreatingErrorVoidResultBenchmarks>();
+//BenchmarkRunner.Run<CreatingErrorValueResultBenchmarks>();
