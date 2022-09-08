@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Samples", "samples\PowerUti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Results.Tests", "tests\PowerUtils.Results.Tests\PowerUtils.Results.Tests.csproj", "{0E98EFA3-61F3-43A7-908A-859C36D0D699}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Results.Benchmarks", "tests\PowerUtils.Results.Benchmarks\PowerUtils.Results.Benchmarks.csproj", "{9448A236-B753-4112-9039-1F10D6D5BA66}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0E98EFA3-61F3-43A7-908A-859C36D0D699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E98EFA3-61F3-43A7-908A-859C36D0D699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E98EFA3-61F3-43A7-908A-859C36D0D699}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9448A236-B753-4112-9039-1F10D6D5BA66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9448A236-B753-4112-9039-1F10D6D5BA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9448A236-B753-4112-9039-1F10D6D5BA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9448A236-B753-4112-9039-1F10D6D5BA66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -41,6 +47,7 @@ Global
 		{3BE5FCAC-9891-41C4-9E11-7B9124EEC769} = {5237E842-79D4-4478-A2B2-03A9550DF961}
 		{064A0818-E6AE-47E6-9509-E784AB2C0E03} = {B81DD0A3-C252-4D42-A6B5-7DFFD54EEC02}
 		{0E98EFA3-61F3-43A7-908A-859C36D0D699} = {205F8EB8-DA99-44B8-878B-9BC54E4C86EF}
+		{9448A236-B753-4112-9039-1F10D6D5BA66} = {205F8EB8-DA99-44B8-878B-9BC54E4C86EF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66F63D6E-842C-4E46-BAED-807221FA508C}
