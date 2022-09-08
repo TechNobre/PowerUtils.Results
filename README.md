@@ -283,3 +283,6 @@ Other excellent libraries used as inspiration
 - [Ardalis.Result](https://github.com/ardalis/result)
 - [FluentResults](https://github.com/altmann/FluentResults)
 - [OneOf](https://github.com/mcintyre321/OneOf)
+- [CSharpFunctionalExtensions](https://github.com/vkhorikov/CSharpFunctionalExtensions)
+
+_Give your support to the projects mentioned above by giving a star, to encourage the creators to continue the work._
