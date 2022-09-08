@@ -41,14 +41,110 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void EmptyErrorList_CreateValueResult_IsErrorFalse()
+        public void EmptyIErrorList_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
-            var errors = new List<Error>();
+            var errors = new List<IError>();
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void EmptyErrorArray_CreateVoidResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = Array.Empty<Error>();
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void EmptyIErrorArray_CreateVoidResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = Array.Empty<IError>();
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullErrorList_CreateVoidResult_IsErrorFalse()
+        {
+            // Arrange
+            List<Error> errors = null;
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullIErrorList_CreateVoidResult_IsErrorFalse()
+        {
+            // Arrange
+            List<IError> errors = null;
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullErrorArray_CreateVoidResult_IsErrorFalse()
+        {
+            // Arrange
+            Error[] errors = null;
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullIErrorArray_CreateVoidResult_IsErrorFalse()
+        {
+            // Arrange
+            IError[] errors = null;
+
+
+            // Act
+            Result act = errors;
 
 
             // Assert

@@ -41,6 +41,134 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public void EmptyErrorList_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<Error>();
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void EmptyIErrorList_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<IError>();
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void EmptyErrorArray_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = Array.Empty<Error>();
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void EmptyIErrorArray_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = Array.Empty<IError>();
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullErrorList_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            List<Error> errors = null;
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullIErrorList_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            List<IError> errors = null;
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullErrorArray_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            Error[] errors = null;
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void NullIErrorArray_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            IError[] errors = null;
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
         public void WithValue_GetValue_SameValue()
         {
             // Arrange
