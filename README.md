@@ -22,6 +22,7 @@
       - [Add more errors](#doc-creating-result-errors-add)
 	  - [Built-in error types](#doc-creating-result-errors-types)
       - [Custom error](#doc-creating-custom-error)
+    - [Result factory](#doc-creating-result-factory)
   - [Extensions](#doc-extensions)
     - [Handling errors](#doc-extensions-handling-errors)
     - [OfTypeFirstError](#doc-extensions-OfTypeFirstError)
@@ -148,6 +149,27 @@ var result = Result.From(error);
 var result = Result<FakeModel>.From(error);
 var result = Result.From<FakeModel>(error);
 ```
+
+
+#### Result factory <a name="doc-creating-result-factory"></a>
+Creates a `Result<TValue>` when the error list is null or empty otherwise creates a result with a list of errors.
+
+Delegate is used to instantiate the value only when there are no errors
+```csharp
+// Returns `Result` with value
+var result = Result.Create(
+    Array.Empty<Error>(),
+    () => new Model()
+);
+
+// Returns `Result` with errors
+var result = Result.Create(
+    new List<Error> { Error.Failure("property", "code", "description") },
+    () => new Model()
+);
+```
+
+
 
 ### Extensions <a name="doc-extensions"></a>
 

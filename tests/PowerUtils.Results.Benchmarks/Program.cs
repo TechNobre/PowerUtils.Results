@@ -5,3 +5,5 @@ BenchmarkRunner.Run<CreatingValueResultBenchmarks>();
 
 //BenchmarkRunner.Run<CreatingErrorVoidResultBenchmarks>();
 //BenchmarkRunner.Run<CreatingErrorValueResultBenchmarks>();
+
+//BenchmarkRunner.Run<FactoryResultFromErrorOrValueBenchmarks>();
