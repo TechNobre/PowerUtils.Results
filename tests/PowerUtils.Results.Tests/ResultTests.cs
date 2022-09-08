@@ -25,6 +25,38 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public void EmptyErrorList_CreateVoidResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<Error>();
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void EmptyErrorList_CreateValueResult_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<Error>();
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
         public void ErrorList_ImplicitAssignment_ErrorResult()
         {
             // Arrange
