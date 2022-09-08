@@ -10,38 +10,32 @@ namespace PowerUtils.Results.Benchmarks.Tests
     [MemoryDiagnoser]
     [Orderer(SummaryOrderPolicy.FastestToSlowest)]
     [RankColumn]
-    public class CreatingValueResultBenchmarks
+    public class CreatingErrorValueResultBenchmarks
     {
-        private FakeModel _model;
-
+        private Error _error;
 
         [GlobalSetup]
         public void Setup()
-            => _model = new();
+            => _error = Error.Failure("fake", "fake", "fake");
+
 
 
         [Benchmark(Baseline = true)]
         public void ImplicitCreation()
         {
-            Result<FakeModel> result = _model;
+            Result<FakeModel> result = _error;
         }
 
         [Benchmark]
-        public void Method_ResultTypeOk()
+        public void Method_ResultTypeFrom()
         {
-            var result = Result<FakeModel>.Ok(_model);
+            var result = Result<FakeModel>.From(_error);
         }
 
         [Benchmark]
-        public void Method_ResultOkType()
+        public void Method_ResultFromType()
         {
-            var result = Result.Ok<FakeModel>(_model);
-        }
-
-        [Benchmark]
-        public void Method_ResultOk()
-        {
-            var result = Result.Ok(_model);
+            var result = Result.From<FakeModel>(_error);
         }
     }
 }
