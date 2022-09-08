@@ -74,7 +74,7 @@ namespace PowerUtils.Results
         private Result(List<IError> errors)
         {
             _errors = errors;
-            if(errors.Count == 0)
+            if(_errors is null || _errors.Count == 0)
             {
                 IsError = false;
             }
@@ -113,15 +113,22 @@ namespace PowerUtils.Results
         /// Creates an <see cref="Result"/> from a list of errors
         /// </summary>
         public static implicit operator Result(List<Error> errors)
-        {
-            var list = errors.Select(s => s as IError).ToList();
-            return new(list);
-        }
+            => new(errors?.Select(s => s as IError).ToList());
+
+        /// <summary>
+        /// Creates an <see cref="Result"/> from a array of errors
+        /// </summary>
+        public static implicit operator Result(Error[] errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result"/> from a list of errors
         /// </summary>
-        public static implicit operator Result(Error[] errors) => errors.ToList();
+        public static implicit operator Result(List<IError> errors) => new(errors);
+
+        /// <summary>
+        /// Creates an <see cref="Result"/> from a array of errors
+        /// </summary>
+        public static implicit operator Result(IError[] errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an error
@@ -265,7 +272,7 @@ namespace PowerUtils.Results
             _value = default;
 
             _errors = errors;
-            if(errors.Count == 0)
+            if(_errors is null || _errors.Count == 0)
             {
                 IsError = false;
             }
@@ -314,17 +321,22 @@ namespace PowerUtils.Results
         /// Creates an <see cref="Result{TValue}"/> from a list of errors
         /// </summary>
         public static implicit operator Result<TValue>(List<Error> errors)
-            => new(errors.Select(s => s as IError).ToList());
+            => new(errors?.Select(s => s as IError).ToList());
 
         /// <summary>
-        /// Creates an <see cref="Result{TValue}"/> from a list of errors
+        /// Creates an <see cref="Result{TValue}"/> from a array of errors
         /// </summary>
-        public static implicit operator Result<TValue>(Error[] errors) => errors.ToList();
+        public static implicit operator Result<TValue>(Error[] errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a list of errors
         /// </summary>
         public static implicit operator Result<TValue>(List<IError> errors) => new(errors);
+
+        /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from a array of errors
+        /// </summary>
+        public static implicit operator Result<TValue>(IError[] errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an error
