@@ -402,6 +402,56 @@ namespace PowerUtils.Results
 #endif
 
         /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from a <see cref="Result"/>
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public static implicit operator Result<TValue>(Result result)
+        {
+            if(result.IsError)
+            {
+                return new(result.Errors.ToList());
+            }
+
+            return new();
+        }
+#else
+        public static implicit operator Result<TValue>(Result result)
+        {
+            if(result?.IsError == true)
+            {
+                return result.Errors.ToList();
+            }
+
+            return new List<IError>();
+        }
+#endif
+
+        /// <summary>
+        /// Creates an <see cref="Result"/> from a <see cref="Result{TValue}"/>
+        /// </summary>
+#if NET6_0_OR_GREATER
+        public static implicit operator Result(Result<TValue> result)
+        {
+            if(result.IsError)
+            {
+                return result.Errors.ToList();
+            }
+
+            return new();
+        }
+#else
+        public static implicit operator Result(Result<TValue> result)
+        {
+            if(result?.IsError == true)
+            {
+                return result.Errors.ToList();
+            }
+
+            return new List<IError>();
+        }
+#endif
+
+        /// <summary>
         /// Creates an value from a <see cref="Result{TValue}"/>
         /// </summary>
         public static implicit operator TValue(Result<TValue> result) => result.Value;

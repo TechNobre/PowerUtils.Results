@@ -411,5 +411,65 @@ namespace PowerUtils.Results.Tests
 
             act.GetType().Should().Be(typeof(CustomError));
         }
+
+
+        [Fact]
+        public void ValueResultWithErrors_ImplicitAssignment_VoidResult()
+        {
+            // Arrange
+            var property = "fakeProperty";
+            var code = "fakeCode";
+            var description = "fakeDescription";
+            Result<FakeModel> result = Error.Conflict(property, code, description);
+
+
+            // Act
+            Result act = result;
+
+
+            // Assert
+            act.FirstError().Property.Should()
+                .Be(property);
+            act.FirstError().Code.Should()
+                .Be(code);
+            act.FirstError().Description.Should()
+                .Be(description);
+
+            act.GetType().Should().Be(typeof(ConflictError));
+        }
+
+        [Fact]
+        public void ValueResultWithoutErrors_ImplicitAssignment_VoidResult()
+        {
+            // Arrange
+            Result<FakeModel> result = Array.Empty<Error>();
+
+
+            // Act
+            Result act = result;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+#if NET5_0
+        [Fact]
+        public void ValueResultNull_ImplicitAssignment_VoidResult()
+        {
+            // Arrange
+            Result<FakeModel> result = null;
+
+
+            // Act
+            Result act = result;
+
+
+            // Assert
+            act?.IsError.Should()
+                .BeFalse();
+        }
+#endif
     }
 }
