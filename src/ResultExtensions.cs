@@ -7,6 +7,12 @@ namespace PowerUtils.Results
     public static class ResultExtensions
     {
         /// <summary>
+        /// Add error in result
+        /// </summary>
+        public static void AddError(this IResult result, string property, string code, string description = null)
+            => result.AddError(new Error(property, code, description));
+
+        /// <summary>
         /// Gets the type of the first error
         /// </summary>
         public static Type OfTypeFirstError(this IResult result)

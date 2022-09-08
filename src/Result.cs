@@ -15,6 +15,8 @@ namespace PowerUtils.Results
         /// Gets the list of errors
         /// </summary>
         IEnumerable<IError> Errors { get; }
+
+        void AddError(IError error);
     }
 
 
@@ -93,12 +95,6 @@ namespace PowerUtils.Results
 
             _errors.Add(error);
         }
-
-        /// <summary>
-        /// Add error in result
-        /// </summary>
-        public void AddError(string property, string code, string description = null)
-            => AddError(new Error(property, code, description));
 
         /// <summary>
         /// Gets the type of the value or type of the first error
@@ -290,12 +286,6 @@ namespace PowerUtils.Results
 
             _errors.Add(error);
         }
-
-        /// <summary>
-        /// Add error in result
-        /// </summary>
-        public void AddError(string property, string code, string description = null)
-            => AddError(new Error(property, code, description));
 
         /// <summary>
         /// Gets the type of the value or type of the first error
