@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Results.Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerUtils.Results.Benchmarks", "tests\PowerUtils.Results.Benchmarks\PowerUtils.Results.Benchmarks.csproj", "{9448A236-B753-4112-9039-1F10D6D5BA66}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatR.Samples", "samples\PowerUtils.Results.MediatR.Samples\MediatR.Samples.csproj", "{966ED0AA-A2B8-4DC5-9794-97B76A711B38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9448A236-B753-4112-9039-1F10D6D5BA66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9448A236-B753-4112-9039-1F10D6D5BA66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9448A236-B753-4112-9039-1F10D6D5BA66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966ED0AA-A2B8-4DC5-9794-97B76A711B38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966ED0AA-A2B8-4DC5-9794-97B76A711B38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966ED0AA-A2B8-4DC5-9794-97B76A711B38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966ED0AA-A2B8-4DC5-9794-97B76A711B38}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 		{064A0818-E6AE-47E6-9509-E784AB2C0E03} = {B81DD0A3-C252-4D42-A6B5-7DFFD54EEC02}
 		{0E98EFA3-61F3-43A7-908A-859C36D0D699} = {205F8EB8-DA99-44B8-878B-9BC54E4C86EF}
 		{9448A236-B753-4112-9039-1F10D6D5BA66} = {205F8EB8-DA99-44B8-878B-9BC54E4C86EF}
+		{966ED0AA-A2B8-4DC5-9794-97B76A711B38} = {B81DD0A3-C252-4D42-A6B5-7DFFD54EEC02}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {66F63D6E-842C-4E46-BAED-807221FA508C}
