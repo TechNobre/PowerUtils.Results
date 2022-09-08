@@ -81,6 +81,8 @@ namespace PowerUtils.Results
             return false;
         }
 
+
+
         /// <summary>
         /// Run the onError action with error list if there are errors otherwise run the onSuccess action
         /// </summary>
@@ -135,6 +137,60 @@ namespace PowerUtils.Results
             }
 
             onSuccess(result.Value);
+        }
+
+
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onErrors"/> function
+        /// </summary>
+        public static TOutput Match<TOutput>(this Result result, Func<TOutput> onSuccess, Func<IEnumerable<IError>, TOutput> onErrors)
+        {
+            if(result.IsError)
+            {
+                return onErrors(result.Errors);
+            }
+
+            return onSuccess();
+        }
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onErrors"/> function
+        /// </summary>
+        public static TOutput Match<TValue, TOutput>(this Result<TValue> result, Func<TValue, TOutput> onSuccess, Func<IEnumerable<IError>, TOutput> onErrors)
+        {
+            if(result.IsError)
+            {
+                return onErrors(result.Errors);
+            }
+
+            return onSuccess(result.Value);
+        }
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onError"/> function
+        /// </summary>
+        public static TOutput MatchFirst<TOutput>(this Result result, Func<TOutput> onSuccess, Func<IError, TOutput> onError)
+        {
+            if(result.IsError)
+            {
+                return onError(result.Errors.First());
+            }
+
+            return onSuccess();
+        }
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onError"/> function
+        /// </summary>
+        public static TOutput MatchFirst<TValue, TOutput>(this Result<TValue> result, Func<TValue, TOutput> onSuccess, Func<IError, TOutput> onError)
+        {
+            if(result.IsError)
+            {
+                return onError(result.Errors.First());
+            }
+
+            return onSuccess(result.Value);
         }
     }
 }
