@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net6.0;net5.0</TargetFrameworks>
+
+    <RootNamespace>PowerUtils.Results.Benchmarks</RootNamespace>
+    <AssemblyName>PowerUtils.Results.Benchmarks</AssemblyName>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+
+  <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);BenchmarkDotNet.Artifacts/**/*</DefaultItemExcludes>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.1" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\PowerUtils.Results.csproj" />
+  </ItemGroup>
+
+
+  <PropertyGroup>
+    <!-- Exclude the project from analysis -->
+    <SonarQubeExclude>true</SonarQubeExclude>
+  </PropertyGroup>
+
+
+</Project>
