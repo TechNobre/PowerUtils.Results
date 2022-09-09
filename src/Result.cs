@@ -23,7 +23,7 @@ namespace PowerUtils.Results
 #if NET6_0_OR_GREATER
     public partial record struct Result : IResult
 #else
-    public partial record Result : IResult
+    public sealed partial record Result : IResult
 #endif
     {
         /// <summary>
@@ -199,7 +199,7 @@ namespace PowerUtils.Results
 #if NET6_0_OR_GREATER
     public record struct Result<TValue> : IResult
 #else
-    public record Result<TValue> : IResult
+    public sealed record Result<TValue> : IResult
 #endif
     {
         /// <summary>
