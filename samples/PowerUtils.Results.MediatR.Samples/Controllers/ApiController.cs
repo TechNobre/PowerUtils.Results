@@ -7,37 +7,38 @@ namespace PowerUtils.Results.MediatR.Samples.Controllers;
 public class ApiController : ControllerBase
 {
     protected IActionResult MapErrors(IResult result)
+        => MapError(result.FirstError());
+
+    protected IActionResult MapError(IError error)
     {
-        var baseError = result.FirstError();
-
-        if(baseError is Error)
+        if(error is Error)
         {
-            return BadRequest(result.Errors);
+            return BadRequest(error);
         }
 
-        if(baseError is UnauthorizedError)
+        if(error is UnauthorizedError)
         {
-            return Unauthorized(result.Errors);
+            return Unauthorized(error);
         }
 
-        if(baseError is ForbiddenError)
+        if(error is ForbiddenError)
         {
-            return BadRequest(result.Errors);
+            return BadRequest(error);
         }
 
-        if(baseError is NotFoundError)
+        if(error is NotFoundError)
         {
-            return NotFound(result.Errors);
+            return NotFound(error);
         }
 
-        if(baseError is ConflictError)
+        if(error is ConflictError)
         {
-            return Conflict(result.Errors);
+            return Conflict(error);
         }
 
-        if(baseError is ValidationError)
+        if(error is ValidationError)
         {
-            return BadRequest(result.Errors);
+            return BadRequest(error);
         }
 
         throw new InvalidOperationException();

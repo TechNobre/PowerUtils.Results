@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using PowerUtils.Results.MediatR.Samples.Behaviors;
 using PowerUtils.Results.MediatR.Samples.DTOs;
+using PowerUtils.Results.MediatR.Samples.Entities;
+using PowerUtils.Results.MediatR.Samples.Repositories;
+using PowerUtils.Results.MediatR.Samples.Validations;
 
 namespace PowerUtils.Results.MediatR.Samples.Services;
 
@@ -38,9 +39,14 @@ public record AddProductCommand(string Name, uint Quantity) : IRequest<Result<Pr
 
     public class Handler : IRequestHandler<AddProductCommand, Result<ProductResponse>>
     {
+        private readonly IProductsRepository _repository;
+        public Handler(IProductsRepository repository)
+            => _repository = repository;
+
+
         public async Task<Result<ProductResponse>> Handle(AddProductCommand command, CancellationToken cancellationToken)
         {
-            if(Random.Shared.Next(2) % 2 == 0)
+            if(await _repository.Any(command.Name, cancellationToken))
             {
                 return Error.Conflict(
                     nameof(command.Name),
@@ -49,11 +55,16 @@ public record AddProductCommand(string Name, uint Quantity) : IRequest<Result<Pr
                 );
             }
 
+
+            var product = new Product(command.Name, command.Quantity);
+            await _repository.Add(product, cancellationToken);
+
+
             return new ProductResponse
             {
-                Id = Guid.NewGuid(),
-                Name = command.Name,
-                Quantity = command.Quantity,
+                Id = product.Id,
+                Name = product.Name,
+                Quantity = product.Quantity,
             };
         }
     }

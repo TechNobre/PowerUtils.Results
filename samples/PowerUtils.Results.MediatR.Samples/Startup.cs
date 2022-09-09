@@ -2,7 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using PowerUtils.Results.MediatR.Samples.Behaviors;
+using PowerUtils.Results.MediatR.Samples.Repositories;
+using PowerUtils.Results.MediatR.Samples.Validations;
 
 namespace PowerUtils.Results.MediatR.Samples;
 
@@ -14,7 +15,9 @@ public class Startup
         services.AddSwaggerGen();
 
         services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipeline<,>));
+
+        services.AddSingleton<IProductsRepository, ProductsRepository>();
     }
 
     public void Configure(IApplicationBuilder app)
