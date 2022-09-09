@@ -248,7 +248,7 @@ namespace PowerUtils.Results.Tests
 
 
         [Fact]
-        public void Error_ImplicitWrapperResult_IsErrorTrue()
+        public void Error_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeFailureProperty";
@@ -275,7 +275,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void UnauthorizedError_ImplicitWrapperResult_IsErrorTrue()
+        public void UnauthorizedError_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeUnauthorizedProperty";
@@ -302,7 +302,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void UnauthorizedErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        public void UnauthorizedErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeUnauthorizedProperty";
@@ -328,7 +328,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ForbiddenError_ImplicitWrapperResult_IsErrorTrue()
+        public void ForbiddenError_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeForbiddenProperty";
@@ -355,7 +355,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ForbiddenErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        public void ForbiddenErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeForbiddenProperty";
@@ -381,7 +381,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void NotFoundError_ImplicitWrapperResult_IsErrorTrue()
+        public void NotFoundError_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeNotFoundProperty";
@@ -408,7 +408,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void NotFoundErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        public void NotFoundErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeNotFoundProperty";
@@ -434,7 +434,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ConflictError_ImplicitWrapperResult_IsErrorTrue()
+        public void ConflictError_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeConflictProperty";
@@ -461,7 +461,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ConflictErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        public void ConflictErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
             // Arrange
             var property = "fakeConflictProperty";
@@ -538,7 +538,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ValidationErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        public void ValidationErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
             //Arrange
             var property = "fakeValidationProperty";
@@ -562,7 +562,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ValidationError_ImplicitWrapperResult_IsErrorTrue()
+        public void ValidationError_ImplicitValueResult_IsErrorTrue()
         {
             //Arrange
             var property = "fakeValidationProperty";
@@ -638,7 +638,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void UnexpectedErrorWithDefaultCode_ImplicitWrapperResult_IsErrorTrue()
+        public void UnexpectedErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
             //Arrange
             var property = "fakeUnexpectedProperty";
@@ -662,7 +662,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void UnexpectedError_ImplicitWrapperResult_IsErrorTrue()
+        public void UnexpectedError_ImplicitValueResult_IsErrorTrue()
         {
             //Arrange
             var property = "fakeUnexpectedProperty";

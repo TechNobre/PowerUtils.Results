@@ -94,7 +94,7 @@ namespace PowerUtils.Results.Tests
 
 
         [Fact]
-        public void WrapperResultWithoutErrors_IsSuccess_True()
+        public void ValueResultWithoutErrors_IsSuccess_True()
         {
             // Arrange
             var result = Result.Ok(new FakeModel());
@@ -109,7 +109,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperResultWithErrors_IsSuccess_False()
+        public void ValueResultWithErrors_IsSuccess_False()
         {
             // Arrange
             Result<FakeModel> result = _firstError;
@@ -124,7 +124,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperResultWithSpecificCondition_IsSuccess_True()
+        public void ValueResultWithSpecificCondition_IsSuccess_True()
         {
             // Arrange
             var result = Result.Ok(new FakeModel { Id = 5 });
@@ -139,7 +139,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperResultWithSpecificCondition_IsSuccess_False()
+        public void ValueResultWithSpecificCondition_IsSuccess_False()
         {
             // Arrange
             var result = Result.Ok(new FakeModel { Id = 5 });
@@ -155,7 +155,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperWithErrors_IsSuccessWithSpecificCondition_False()
+        public void ValueResultWithErrors_IsSuccessWithSpecificCondition_False()
         {
             // Arrange
             Result<FakeModel> result = _firstError;
@@ -369,7 +369,7 @@ namespace PowerUtils.Results.Tests
 
 
         [Fact]
-        public void WrapperResultWithoutErrors_Switch_ShouldExecuteOnSuccessAction()
+        public void ValueResultWithoutErrors_Switch_ShouldExecuteOnSuccessAction()
         {
             // Arrange
             var act = false;
@@ -392,7 +392,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperResultWithErrors_Switch_ShouldExecuteOnErrorsAction()
+        public void ValueResultWithErrors_Switch_ShouldExecuteOnErrorsAction()
         {
             // Arrange
             var act = false;
@@ -465,7 +465,7 @@ namespace PowerUtils.Results.Tests
 
 
         [Fact]
-        public void WrapperResultWithoutErrors_SwitchFirst_ShouldExecuteOnSuccessAction()
+        public void ValueResultWithoutErrors_SwitchFirst_ShouldExecuteOnSuccessAction()
         {
             // Arrange
             var act = false;
@@ -488,7 +488,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperResultWithErrors_SwitchFirst_ShouldExecuteOnErrorAction()
+        public void ValueResultWithErrors_SwitchFirst_ShouldExecuteOnErrorAction()
         {
             // Arrange
             var act = false;
@@ -560,7 +560,7 @@ namespace PowerUtils.Results.Tests
 
 
         [Fact]
-        public void WrapperResultWithoutErrors_Match_ShouldExecuteOnSuccessAction()
+        public void ValueResultWithoutErrors_Match_ShouldExecuteOnSuccessAction()
         {
             // Arrange
             var expected = "I am here...!!!";
@@ -583,7 +583,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperResultWithErrors_Match_ShouldExecuteOnErrorsAction()
+        public void ValueResultWithErrors_Match_ShouldExecuteOnErrorsAction()
         {
             // Arrange
             var expected = "Wow no, wow no...!!!";
@@ -656,7 +656,7 @@ namespace PowerUtils.Results.Tests
 
 
         [Fact]
-        public void WrapperResultWithoutErrors_MatchFirst_ShouldExecuteOnSuccessAction()
+        public void ValueResultWithoutErrors_MatchFirst_ShouldExecuteOnSuccessAction()
         {
             // Arrange
             var expected = "I am here...!!!";
@@ -679,7 +679,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WrapperResultWithErrors_MatchFirst_ShouldExecuteOnErrorAction()
+        public void ValueResultWithErrors_MatchFirst_ShouldExecuteOnErrorAction()
         {
             // Arrange
             var expected = "Wow no, wow no...!!!";

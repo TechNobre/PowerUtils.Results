@@ -6,13 +6,13 @@ using Xunit;
 
 namespace PowerUtils.Results.Tests
 {
-    public class WrapperResultTests
+    public class VoidResultTests
     {
         [Fact]
         public void WithoutErrors_GetErrors_InvalidOperationException()
         {
             // Arrange
-            var result = Result<FakeModel>.Ok(new());
+            var result = Result.Ok();
 
 
             // Act
@@ -25,30 +25,14 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WithErrors_GetValue_InvalidOperationException()
-        {
-            // Arrange
-            Result<FakeModel> result = Error.Failure("fake", "fake", "fake");
-
-
-            // Act
-            var act = Record.Exception(() => result.Value);
-
-
-            // Assert
-            act.Should()
-                .BeOfType<InvalidOperationException>();
-        }
-
-        [Fact]
-        public void EmptyErrorList_CreateValueResult_IsErrorFalse()
+        public void EmptyErrorList_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             var errors = new List<Error>();
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -57,14 +41,14 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void EmptyIErrorList_CreateValueResult_IsErrorFalse()
+        public void EmptyIErrorList_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             var errors = new List<IError>();
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -73,14 +57,14 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void EmptyErrorArray_CreateValueResult_IsErrorFalse()
+        public void EmptyErrorArray_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             var errors = Array.Empty<Error>();
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -89,14 +73,14 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void EmptyIErrorArray_CreateValueResult_IsErrorFalse()
+        public void EmptyIErrorArray_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             var errors = Array.Empty<IError>();
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -105,14 +89,14 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void NullErrorList_CreateValueResult_IsErrorFalse()
+        public void NullErrorList_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             List<Error> errors = null;
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -121,14 +105,14 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void NullIErrorList_CreateValueResult_IsErrorFalse()
+        public void NullIErrorList_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             List<IError> errors = null;
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -137,14 +121,14 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void NullErrorArray_CreateValueResult_IsErrorFalse()
+        public void NullErrorArray_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             Error[] errors = null;
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -153,61 +137,19 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void NullIErrorArray_CreateValueResult_IsErrorFalse()
+        public void NullIErrorArray_CreateVoidResult_IsErrorFalse()
         {
             // Arrange
             IError[] errors = null;
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
             act.IsError.Should()
                 .BeFalse();
-        }
-
-        [Fact]
-        public void WithValue_GetValue_SameValue()
-        {
-            // Arrange
-            var id = 343;
-            var name = "FakeName";
-
-            var result = Result<FakeModel>.Ok(new(id, name));
-
-
-            // Act
-            var act = result.Value;
-
-
-            // Assert
-            act.Id.Should()
-                .Be(id);
-            act.Name.Should()
-                .Be(name);
-        }
-
-        [Fact]
-        public void Value_ImplicitAssignment_SameValue()
-        {
-            // Arrange
-            var id = 343;
-            var name = "FakeName";
-
-            var model = new FakeModel(id, name);
-
-
-            // Act
-            Result<FakeModel> act = model;
-
-
-            // Assert
-            act.Value.Id.Should()
-                .Be(id);
-            act.Value.Name.Should()
-                .Be(name);
         }
 
         [Fact]
@@ -230,7 +172,7 @@ namespace PowerUtils.Results.Tests
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -276,7 +218,7 @@ namespace PowerUtils.Results.Tests
 
 
             // Act
-            Result<FakeModel> act = errors;
+            Result act = errors;
 
 
             // Assert
@@ -286,7 +228,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s =>
                     s.Property == property1
-                &&
+                    &&
                     s.Code == code1
                     &&
                     s.Description == description1
@@ -295,7 +237,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s =>
                     s.Property == property2
-                &&
+                    &&
                     s.Code == code2
                     &&
                     s.Description == description2
@@ -320,7 +262,7 @@ namespace PowerUtils.Results.Tests
 
 
             // Act
-            Result<FakeModel> act = new Error(property1, code1, description1);
+            Result act = new Error(property1, code1, description1);
             act.AddError(new Error(property2, code2, description2));
             act.AddError(new Error(property3, code3, description3));
 
@@ -371,7 +313,7 @@ namespace PowerUtils.Results.Tests
 
 
             // Act
-            var act = Result<FakeModel>.Ok(null);
+            var act = new Result();
             act.AddError(new Error(property1, code1, description1));
             act.AddError(property2, code2, description2);
 
@@ -400,11 +342,10 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void WithoutError_GetType_TypeOfModel()
+        public void WithoutError_GetType_Success()
         {
             // Arrange
-            var model = new FakeModel();
-            var result = Result<FakeModel>.Ok(model);
+            var result = Result.Ok();
 
 
             // Act
@@ -412,14 +353,14 @@ namespace PowerUtils.Results.Tests
 
 
             // Assert
-            act.Should().Be(typeof(FakeModel));
+            act.Should().Be(typeof(Success));
         }
 
         [Fact]
         public void WithConflictError_GetType_ConflictError()
         {
             // Arrange
-            Result<FakeModel> result = Error.Conflict("prop", "code", "disc");
+            Result result = Error.Conflict("prop", "code", "disc");
 
 
             // Act
@@ -434,7 +375,7 @@ namespace PowerUtils.Results.Tests
         public void WithNotFoundError_GetType_NotFoundError()
         {
             // Arrange
-            Result<FakeModel> result = Error.NotFound("prop", "code", "disc");
+            Result result = Error.NotFound("prop", "code", "disc");
 
 
             // Act
@@ -446,38 +387,44 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ResultWithValue_ImplicitAssignment_Value()
+        public void CustomError_ResultFrom_Result()
         {
             // Arrange
-            var id = 45615;
-            var name = "fake name";
+            var property = "fakeCustomProperty";
+            var code = "fakeCustomCode";
+            var description = "fakeCustomDescription";
 
-            Result<FakeModel> result = new FakeModel { Id = id, Name = name };
+            var error = new CustomError(property, code, description);
 
 
             // Act
-            FakeModel act = result;
+            var act = Result.From(error);
 
 
             // Assert
-            act.Id.Should().Be(id);
-            act.Name.Should().Be(name);
+            act.FirstError().Property.Should()
+                .Be(property);
+            act.FirstError().Code.Should()
+                .Be(code);
+            act.FirstError().Description.Should()
+                .Be(description);
+
+            act.GetType().Should().Be(typeof(CustomError));
         }
 
 
-
         [Fact]
-        public void VoidResultWithErrors_ImplicitAssignment_ValueResult()
+        public void ValueResultWithErrors_ImplicitAssignment_VoidResult()
         {
             // Arrange
             var property = "fakeProperty";
             var code = "fakeCode";
             var description = "fakeDescription";
-            Result result = Error.Conflict(property, code, description);
+            Result<FakeModel> result = Error.Conflict(property, code, description);
 
 
             // Act
-            Result<FakeModel> act = result;
+            Result act = result;
 
 
             // Assert
@@ -492,40 +439,36 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void VoidResultWithoutErrors_ImplicitAssignment_ValueResult()
+        public void ValueResultWithoutErrors_ImplicitAssignment_VoidResult()
         {
             // Arrange
-            Result result = Array.Empty<Error>();
+            Result<FakeModel> result = Array.Empty<Error>();
 
 
             // Act
-            Result<FakeModel> act = result;
+            Result act = result;
 
 
             // Assert
             act.IsError.Should()
                 .BeFalse();
-            act.Value.Should()
-                .BeNull();
         }
 
 #if NET5_0
         [Fact]
-        public void VoidResultNull_ImplicitAssignment_ValueResult()
+        public void ValueResultNull_ImplicitAssignment_VoidResult()
         {
             // Arrange
-            Result result = null;
+            Result<FakeModel> result = null;
 
 
             // Act
-            Result<FakeModel> act = result;
+            Result act = result;
 
 
             // Assert
             act?.IsError.Should()
                 .BeFalse();
-            act.Value.Should()
-                .BeNull();
         }
 #endif
     }
