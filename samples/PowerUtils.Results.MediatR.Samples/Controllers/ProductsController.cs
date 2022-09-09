@@ -20,7 +20,10 @@ public class ProductsController : ApiController
 
 
     [HttpPost]
-    public async Task<IActionResult> Add(ProductRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Add(
+        ProductRequest request,
+        CancellationToken cancellationToken = default
+    )
     {
         var result = await _mediator.Send(request.ToCommand(), cancellationToken);
 
@@ -33,13 +36,16 @@ public class ProductsController : ApiController
     }
 
     [HttpGet("{id:guid}")]
-    public async Task<IActionResult> Get(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> Get(
+        Guid id,
+        CancellationToken cancellationToken = default
+    )
     {
         var result = await _mediator.Send(new GetProductQuery(id), cancellationToken);
 
-        return result.MatchFirst<ProductResponse, IActionResult>(
+        return result.MatchFirst(
             value => Ok(value),
-            error => NotFound(error)
+            error => MapError(error)
         );
     }
 }
