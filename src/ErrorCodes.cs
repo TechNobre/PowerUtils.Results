@@ -40,30 +40,34 @@ namespace PowerUtils.Results
 
         public static string CreateMin(int min)
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min);
-        public static string CreateMax(int max)
-            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max);
-
 
         public static string CreateMin<TValue>(TValue min)
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString().Replace(",", "."));
-        public static string CreateMax<TValue>(TValue max)
-            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString().Replace(",", "."));
-
 
         public static string CreateMin(DateTime min, string format = "yyyy-MM-dd HH:mm:ss")
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString(format));
-        public static string CreateMax(DateTime max, string format = "yyyy-MM-dd HH:mm:ss")
-            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString(format));
-
 
         public static string CreateDateMin(DateTime min)
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString("yyyy-MM-dd"));
-        public static string CreateDateMax(DateTime max)
-            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString("yyyy-MM-dd"));
-
 
         public static string CreateDateTimeMin(DateTime min)
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString("yyyy-MM-dd HH:mm:ss"));
+
+
+
+
+        public static string CreateMax(int max)
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max);
+
+        public static string CreateMax<TValue>(TValue max)
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString().Replace(",", "."));
+
+        public static string CreateMax(DateTime max, string format = "yyyy-MM-dd HH:mm:ss")
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString(format));
+
+        public static string CreateDateMax(DateTime max)
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString("yyyy-MM-dd"));
+
         public static string CreateDateTimeMax(DateTime max)
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString("yyyy-MM-dd HH:mm:ss"));
     }
