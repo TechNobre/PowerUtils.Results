@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.1.0...v1.2.0) (2022-09-11)
+
+
+### Bug Fixes
+
+* Sealed `Result` in .NET5.0 to be equivalent to `record struct Result` .NET6.0 ([8625866](https://github.com/TechNobre/PowerUtils.Results/commit/8625866ce8637aa12cb4f6a281edf9b09f649040))
+
+
+### Features
+
+* Added factory for error codes ([63b4a20](https://github.com/TechNobre/PowerUtils.Results/commit/63b4a2059ae0a8e8cb7563e136a1411baf1e4553))
+
 # [1.1.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.0.0...v1.1.0) (2022-09-08)
 
 
