@@ -7,6 +7,38 @@ namespace PowerUtils.Results.Tests
 {
     public class ErrorCodesTests
     {
+        [Fact]
+        public void CultureInfoPT_CreateMin_CodeWithComma()
+        {
+            // Arrange
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-PT");
+            var value = 1.24;
+
+
+            // Act
+            var act = ErrorCodes.CreateMin(value);
+
+
+            // Assert
+            act.Should().Be("MIN:1.24");
+        }
+
+        [Fact]
+        public void CultureInfoPT_CreateMax_CodeWithComma()
+        {
+            // Arrange
+            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-PT");
+            var value = 21.87;
+
+
+            // Act
+            var act = ErrorCodes.CreateMax(value);
+
+
+            // Assert
+            act.Should().Be("MAX:21.87");
+        }
+
         [Theory]
         [InlineData("0", "MIN:0")]
         [InlineData("10", "MIN:10")]
