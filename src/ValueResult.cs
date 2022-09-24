@@ -43,7 +43,7 @@ namespace PowerUtils.Results
             {
                 if(IsError)
                 {
-                    throw new InvalidOperationException("Value can be retrieved only when the result is not an error.");
+                    throw new InvalidOperationException("Value can be retrieved only when the result is not an error");
                 }
 
                 return _value;

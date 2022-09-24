@@ -20,8 +20,8 @@ namespace PowerUtils.Results.Tests
 
 
             // Assert
-            act.Should()
-                .BeOfType<InvalidOperationException>();
+            act.Should().BeOfType<InvalidOperationException>();
+            act.Message.Should().Be("Errors can be retrieved only when the result is an error");
         }
 
         [Fact]
