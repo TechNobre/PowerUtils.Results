@@ -315,7 +315,27 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ThreeErrors_Add_HasErrors()
+        public void ListOfErrors_AddErrors_ThreeErrors()
+        {
+            // Arrange
+            Result<FakeModel> result = Error.Forbidden("Fake1");
+            var listOfErrors = new List<IError>
+            {
+                Error.Unauthorized("Fake2"),
+                Error.Unexpected("Fake3")
+            };
+
+
+            // Act
+            result.AddErrors(listOfErrors);
+
+
+            // Assert
+            result.Errors.Should().HaveCount(3);
+        }
+
+        [Fact]
+        public void ThreeErrors_AddError_HasErrors()
         {
             // Arrange
             var property1 = "fakeProperty1";

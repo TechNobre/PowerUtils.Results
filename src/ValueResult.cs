@@ -103,6 +103,18 @@ namespace PowerUtils.Results
         }
 
         /// <summary>
+        /// Add errors in result
+        /// </summary>
+        public void AddErrors(IEnumerable<IError> errors)
+        {
+            IsError = true;
+
+            _errors ??= new List<IError>();
+
+            _errors.AddRange(errors);
+        }
+
+        /// <summary>
         /// Gets the type of the value or type of the first error
         /// </summary>
         public new Type GetType()
