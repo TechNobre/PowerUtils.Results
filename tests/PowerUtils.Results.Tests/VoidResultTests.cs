@@ -269,7 +269,7 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
-        public void ThreeErrors_Add_HasErrors()
+        public void ThreeErrors_AddError_HasErrors()
         {
             // Arrange
             var property1 = "fakeProperty1";
@@ -321,6 +321,27 @@ namespace PowerUtils.Results.Tests
                     &&
                     s.Description == description3
                 );
+        }
+
+        [Fact]
+        public void ListOfErrors_AddErrors_FourErrors()
+        {
+            // Arrange
+            Result result = Error.Forbidden("Fake1");
+            var listOfErrors = new IError[]
+            {
+                Error.Failure("Fake2", "Failed"),
+                Error.NotFound("Fake3"),
+                Error.Validation("Fake4")
+            };
+
+
+            // Act
+            result.AddErrors(listOfErrors);
+
+
+            // Assert
+            result.Errors.Should().HaveCount(4);
         }
 
         [Fact]
