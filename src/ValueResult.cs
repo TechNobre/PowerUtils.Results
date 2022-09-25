@@ -80,51 +80,20 @@ namespace PowerUtils.Results
             _value = default;
 
             _errors = errors;
-            _errors?.RemoveAll(r => r is null);
-
-            if(_errors is null || _errors.Count == 0)
-            {
-                IsError = false;
-            }
-            else
-            {
-                IsError = true;
-            }
+            IsError = CommonUtils.RemoveNulls(ref _errors);
         }
 
         /// <summary>
         /// Add error in result
         /// </summary>
         public void AddError(IError error)
-        {
-            if(error is null)
-            {
-                return;
-            }
-
-            IsError = true;
-
-            _errors ??= new List<IError>();
-
-            _errors.Add(error);
-        }
+            => IsError = CommonUtils.AddError(ref _errors, ref error);
 
         /// <summary>
         /// Add errors in result
         /// </summary>
         public void AddErrors(IEnumerable<IError> errors)
-        {
-            _errors ??= new List<IError>();
-            _errors.AddRange(errors);
-
-            _errors.RemoveAll(r => r is null);
-            if(_errors.Count == 0)
-            {
-                return;
-            }
-
-            IsError = true;
-        }
+            => IsError = CommonUtils.AddErrors(ref _errors, ref errors);
 
         /// <summary>
         /// Gets the type of the value or type of the first error
