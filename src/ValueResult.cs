@@ -80,6 +80,8 @@ namespace PowerUtils.Results
             _value = default;
 
             _errors = errors;
+            _errors?.RemoveAll(r => r is null);
+
             if(_errors is null || _errors.Count == 0)
             {
                 IsError = false;
@@ -95,6 +97,11 @@ namespace PowerUtils.Results
         /// </summary>
         public void AddError(IError error)
         {
+            if(error is null)
+            {
+                return;
+            }
+
             IsError = true;
 
             _errors ??= new List<IError>();
@@ -107,11 +114,16 @@ namespace PowerUtils.Results
         /// </summary>
         public void AddErrors(IEnumerable<IError> errors)
         {
-            IsError = true;
-
             _errors ??= new List<IError>();
-
             _errors.AddRange(errors);
+
+            _errors.RemoveAll(r => r is null);
+            if(_errors.Count == 0)
+            {
+                return;
+            }
+
+            IsError = true;
         }
 
         /// <summary>
