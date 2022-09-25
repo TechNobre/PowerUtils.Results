@@ -9,6 +9,18 @@ namespace PowerUtils.Results.Tests
     public class ValueResultTests
     {
         [Fact]
+        public void SuccessMethod_CreateResult_IsErrorFalse()
+        {
+            // Arrange && Act
+            var act = Result.Success(new FakeModel());
+
+
+            // Assert
+            act.GetType().Should()
+                .Be<FakeModel>();
+        }
+
+        [Fact]
         public void WithoutErrors_GetErrors_InvalidOperationException()
         {
             // Arrange

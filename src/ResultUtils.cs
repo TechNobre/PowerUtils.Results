@@ -21,6 +21,16 @@ namespace PowerUtils.Results
         public static Result<TValue> Ok<TValue>(TValue value) => Result<TValue>.Ok(value);
 
         /// <summary>
+        /// Creates a success result
+        /// </summary>
+        public static Result Success() => new();
+
+        /// <summary>
+        /// Creates a success result
+        /// </summary>
+        public static Result<TValue> Success<TValue>(TValue value) => Result<TValue>.Ok(value);
+
+        /// <summary>
         /// Creates an <see cref="Result"/> from an <see cref="IError"/>
         /// </summary>
         public static Result From(IError error) => new(error);

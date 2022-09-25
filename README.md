@@ -71,15 +71,18 @@ dotnet add package PowerUtils.Results
 ```csharp
 // Void result
 var result = Result.Ok();
+var result = Result.Success();
 
 // Result with typed value
 var model = new Model();
 var result = Result<Model>.Ok(model);
 var result = Result.Ok<Model>(model);
 var result = Result.Ok(model);
+var result = Result.Success(model);
 
 // Implicit assignment
 Result<Model> result = model;
+Result result = new Success();
 ```
 
 #### Errors <a name="doc-creating-result-errors"></a>
