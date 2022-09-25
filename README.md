@@ -120,8 +120,15 @@ Result result = errors;
 
 ```csharp
 Result result = new Error("property", "code", "description");
+
 result.AddError(new Error("property", "code", "description"));
 result.AddError("property", "code", "description");
+
+result.AddErrors(new List<Error>
+{
+    new Error("property", "code", "description2"),
+    new Error("property", "code", "description2")
+});
 ```
 
 ##### Built-in error types <a name="doc-creating-result-errors-types"></a>
