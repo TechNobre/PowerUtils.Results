@@ -94,6 +94,11 @@ namespace PowerUtils.Results
         }
 
         /// <summary>
+        /// Creates a success result
+        /// </summary>
+        public static implicit operator Result(Success _) => new();
+
+        /// <summary>
         /// Creates an <see cref="Result"/> from a list of errors
         /// </summary>
         public static implicit operator Result(List<Error> errors)
