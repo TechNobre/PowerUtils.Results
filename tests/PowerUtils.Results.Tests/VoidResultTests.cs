@@ -9,6 +9,21 @@ namespace PowerUtils.Results.Tests
     public class VoidResultTests
     {
         [Fact]
+        public void Success_ImplicitCreation_IsErrorFalse()
+        {
+            // Arrange
+
+
+            // Act
+            Result act = new Success();
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
         public void WithoutErrors_GetErrors_InvalidOperationException()
         {
             // Arrange
