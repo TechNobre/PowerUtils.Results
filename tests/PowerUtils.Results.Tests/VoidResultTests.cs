@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
@@ -46,6 +47,22 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().BeOfType<InvalidOperationException>();
             act.Message.Should().Be("Errors can be retrieved only when the result is an error");
+        }
+
+        [Fact]
+        public void ErrorListWithNull_InplicitCreation_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<IError> { null };
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
         }
 
         [Fact]
@@ -266,6 +283,39 @@ namespace PowerUtils.Results.Tests
                     &&
                     s.Description == description2
                 );
+        }
+
+        [Fact]
+        public void Null_AddError_OneError()
+        {
+            // Arrange
+            Result result = Error.Unauthorized("Fake1");
+
+
+            // Act
+            result.AddError(null);
+
+
+            // Assert
+            result.Errors.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void ListOfErrorsWithNull_AddErrors_ZeroErrors()
+        {
+            // Arrange
+            var result = Result.Ok();
+            var listOfErrors = new IError[] { null };
+
+
+            // Act
+            result.AddErrors(listOfErrors);
+            var act = Record.Exception(() => result.Errors.Count());
+
+
+            // Assert
+            act.Should().BeOfType<InvalidOperationException>();
+            result.IsError.Should().BeFalse();
         }
 
         [Fact]

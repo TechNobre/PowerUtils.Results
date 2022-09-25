@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
@@ -57,6 +58,22 @@ namespace PowerUtils.Results.Tests
         {
             // Arrange
             var errors = new List<Error>();
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should()
+                .BeFalse();
+        }
+
+        [Fact]
+        public void ErrorListWithNull_InplicitCreation_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<IError> { null };
 
 
             // Act
@@ -312,6 +329,39 @@ namespace PowerUtils.Results.Tests
                     &&
                     s.Description == description2
                 );
+        }
+
+        [Fact]
+        public void Null_AddError_OneError()
+        {
+            // Arrange
+            Result<FakeModel> result = Error.Forbidden("Fake1");
+
+
+            // Act
+            result.AddError(null);
+
+
+            // Assert
+            result.Errors.Should().HaveCount(1);
+        }
+
+        [Fact]
+        public void ListOfErrorsWithNull_AddErrors_TwoErrors()
+        {
+            // Arrange
+            Result<FakeModel> result = new FakeModel();
+            var listOfErrors = new List<IError> { null };
+
+
+            // Act
+            result.AddErrors(listOfErrors);
+            var act = Record.Exception(() => result.Errors.Count());
+
+
+            // Assert
+            act.Should().BeOfType<InvalidOperationException>();
+            result.IsError.Should().BeFalse();
         }
 
         [Fact]
