@@ -15,5 +15,6 @@ namespace PowerUtils.Results
         IEnumerable<IError> Errors { get; }
 
         void AddError(IError error);
+        void AddErrors(IEnumerable<IError> errors);
     }
 }
