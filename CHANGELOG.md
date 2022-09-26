@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.2.0...v1.3.0) (2022-09-26)
+
+
+### Bug Fixes
+
+* When added error list with nulls ([53c5770](https://github.com/TechNobre/PowerUtils.Results/commit/53c5770397b507ae19b54fb4ade09b293070b369))
+
+
+### Features
+
+* Added method Success to create a result ([10a88b2](https://github.com/TechNobre/PowerUtils.Results/commit/10a88b22005f427914b475b6b79ea4ab6382cca9))
+* Added method to add multi errors ([475e4e8](https://github.com/TechNobre/PowerUtils.Results/commit/475e4e889c5e2e295c70b55906d56d4292ab8802))
+* Inplicit operator to create a result from Success type ([ee78ef1](https://github.com/TechNobre/PowerUtils.Results/commit/ee78ef14c3f01cfff1c4ad97dd724452c7a521ee))
+
 # [1.2.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.1.0...v1.2.0) (2022-09-11)
 
 
