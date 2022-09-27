@@ -77,7 +77,7 @@ jobs:
           const message = `🚀 **Stryker report generated** 🚀
             [![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2F${{ env.GIT_ORGANIZATION }}%2F${{ env.PROJECT_NAME }}%2F${{ steps.branch-name.outputs.current_branch }}-${{ github.run_number }})](https://dashboard.stryker-mutator.io/reports/github.com/${{ env.GIT_ORGANIZATION }}/${{ env.PROJECT_NAME }}/${{ steps.branch-name.outputs.current_branch }}-${{ github.run_number }})
             To more details: https://dashboard.stryker-mutator.io/reports/github.com/${{ env.GIT_ORGANIZATION }}/${{ env.PROJECT_NAME }}/${{ steps.branch-name.outputs.current_branch }}-${{ github.run_number }}`;
-            github.issues.createComment({
+            github.rest.issues.createComment({
               issue_number,
               owner,
               repo,
