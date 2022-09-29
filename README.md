@@ -253,6 +253,17 @@ result.SwitchFirst(
     value => onSuccess(value),
     error => onError(error)
 );
+
+await result.SwitchAsync(
+    value => onSuccess(value),
+    errors => onErrors(errors)
+);
+
+// Only return the value or first erro
+await result.SwitchFirstAsync(
+    value => onSuccess(value),
+    error => onError(error)
+);
 ```
 
 #### Match <a name="doc-extensions-Match"></a>
@@ -265,6 +276,18 @@ TOutput response = result.Match<TValue, TOutput>(
 
 // Only return the value or first erro
 TOutput response = result.MatchFirst<TValue, TOutput>(
+    value => onSuccess(value),
+    error => onError(error)
+);
+
+
+Task<TOutput> response = result.MatchAsync<TValue, TOutput>(
+    value => onSuccess(value),
+    errors => onErrors(errors)
+);
+
+// Only return the value or first erro
+Task<TOutput> response = result.MatchFirstAsync<TValue, TOutput>(
     value => onSuccess(value),
     error => onError(error)
 );

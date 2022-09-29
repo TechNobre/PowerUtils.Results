@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace PowerUtils.Results
 {
@@ -142,6 +143,64 @@ namespace PowerUtils.Results
 
 
         /// <summary>
+        /// Run the onError action with error list if there are errors otherwise run the onSuccess action
+        /// </summary>
+        public static async Task SwitchAsync(this Result result, Func<Task> onSuccess, Func<IEnumerable<IError>, Task> onErrors)
+        {
+            if(result.IsError)
+            {
+                await onErrors(result.Errors);
+                return;
+            }
+
+            await onSuccess();
+        }
+
+        /// <summary>
+        /// Run the onError action with error list if there are errors otherwise run the onSuccess action with value
+        /// </summary>
+        public static async Task SwitchAsync<TValue>(this Result<TValue> result, Func<TValue, Task> onSuccess, Func<IEnumerable<IError>, Task> onErrors)
+        {
+            if(result.IsError)
+            {
+                await onErrors(result.Errors);
+                return;
+            }
+
+            await onSuccess(result.Value);
+        }
+
+        /// <summary>
+        /// Run the onError action with first error if there are errors otherwise run the onSuccess action
+        /// </summary>
+        public static async Task SwitchFirstAsync(this Result result, Func<Task> onSuccess, Func<IError, Task> onError)
+        {
+            if(result.IsError)
+            {
+                await onError(result.Errors.First());
+                return;
+            }
+
+            await onSuccess();
+        }
+
+        /// <summary>
+        /// Run the onError action with first error if there are errors otherwise run the OnSuccess action with value
+        /// </summary>
+        public static async Task SwitchFirstAsync<TValue>(this Result<TValue> result, Func<TValue, Task> onSuccess, Func<IError, Task> onError)
+        {
+            if(result.IsError)
+            {
+                await onError(result.Errors.First());
+                return;
+            }
+
+            await onSuccess(result.Value);
+        }
+
+
+
+        /// <summary>
         /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onErrors"/> function
         /// </summary>
         public static TOutput Match<TOutput>(this Result result, Func<TOutput> onSuccess, Func<IEnumerable<IError>, TOutput> onErrors)
@@ -191,6 +250,60 @@ namespace PowerUtils.Results
             }
 
             return onSuccess(result.Value);
+        }
+
+
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onErrors"/> function
+        /// </summary>
+        public static async Task<TOutput> MatchAsync<TOutput>(this Result result, Func<Task<TOutput>> onSuccess, Func<IEnumerable<IError>, Task<TOutput>> onErrors)
+        {
+            if(result.IsError)
+            {
+                return await onErrors(result.Errors);
+            }
+
+            return await onSuccess();
+        }
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onErrors"/> function
+        /// </summary>
+        public static async Task<TOutput> MatchAsync<TValue, TOutput>(this Result<TValue> result, Func<TValue, Task<TOutput>> onSuccess, Func<IEnumerable<IError>, Task<TOutput>> onErrors)
+        {
+            if(result.IsError)
+            {
+                return await onErrors(result.Errors);
+            }
+
+            return await onSuccess(result.Value);
+        }
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onError"/> function
+        /// </summary>
+        public static async Task<TOutput> MatchFirstAsync<TOutput>(this Result result, Func<Task<TOutput>> onSuccess, Func<IError, Task<TOutput>> onError)
+        {
+            if(result.IsError)
+            {
+                return await onError(result.Errors.First());
+            }
+
+            return await onSuccess();
+        }
+
+        /// <summary>
+        /// Returns the result of the given <paramref name="onSuccess"/> function if the calling Result is a success. Otherwise, it returns the result of the given <paramref name="onError"/> function
+        /// </summary>
+        public static async Task<TOutput> MatchFirstAsync<TValue, TOutput>(this Result<TValue> result, Func<TValue, Task<TOutput>> onSuccess, Func<IError, Task<TOutput>> onError)
+        {
+            if(result.IsError)
+            {
+                return await onError(result.Errors.First());
+            }
+
+            return await onSuccess(result.Value);
         }
     }
 }
