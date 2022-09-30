@@ -25,6 +25,10 @@ env:
   TEST_PROJECT_PATH: 'tests/PowerUtils.Results.Tests/PowerUtils.Results.Tests.csproj'
 
 
+permissions:
+  pull-requests: write # To can create a comment with the results
+
+
 jobs:
 
   test-project:
