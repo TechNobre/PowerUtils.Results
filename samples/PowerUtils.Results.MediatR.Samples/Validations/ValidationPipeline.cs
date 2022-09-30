@@ -23,7 +23,7 @@ internal sealed class ValidationPipeline<TRequest, TResponse> : IPipelineBehavio
     where TRequest : IRequest<TResponse>, IValidation
     where TResponse : IResult
 {
-    public async Task<TResponse> Handle(TRequest command, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    public async Task<TResponse> Handle(TRequest command, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
         // Fast validations
         var errors = command.Validate();
