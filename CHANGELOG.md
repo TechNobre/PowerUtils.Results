@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.3.0...v1.4.0) (2022-10-01)
+
+
+### Features
+
+* Added new async extensions to `Switch` and `Match` ([8e56117](https://github.com/TechNobre/PowerUtils.Results/commit/8e561173ed48ebc946f27f4bfe0a555f51fc6f5c))
+
 # [1.3.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.2.0...v1.3.0) (2022-09-26)
 
 
