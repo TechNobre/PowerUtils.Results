@@ -133,7 +133,7 @@ namespace PowerUtils.Results.Tests
         {
             // Arrange
             var result = Result.Ok();
-            static bool fakePredicate(IError x) => x.Code == ErrorCodes.VALIDATION;
+            static bool fakePredicate(IError x) => x.Code == Errors.Codes.VALIDATION;
 
             //Act
             var act = result.FirstOrDefaultError(fakePredicate);
