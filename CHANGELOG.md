@@ -1,3 +1,11 @@
+# [1.5.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.4.0...v1.5.0) (2022-10-09)
+
+
+### Features
+
+* Added new extensions for async methos ([303cdbe](https://github.com/TechNobre/PowerUtils.Results/commit/303cdbe3f216ae27825e3d361ea53a4cc810e53f))
+* Added new factories to Create ErrorCodes based in `DateOnly` and `TimeOnly`; ([f1ed19b](https://github.com/TechNobre/PowerUtils.Results/commit/f1ed19b75d7e1b269fa319d3ab82f7448dff3dab))
+
 # [1.4.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.3.0...v1.4.0) (2022-10-01)
 
 
