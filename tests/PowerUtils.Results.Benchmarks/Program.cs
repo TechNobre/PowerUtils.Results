@@ -9,4 +9,7 @@ using PowerUtils.Results.Benchmarks.Tests;
 //BenchmarkRunner.Run<FactoryResultFromErrorOrValueBenchmarks>();
 
 
-BenchmarkRunner.Run<TupleVsResultBenchmarks>();
+//BenchmarkRunner.Run<TupleVsResultBenchmarks>();
+
+
+BenchmarkRunner.Run<CreatingVoidSuccessResultBenchmarks>();
