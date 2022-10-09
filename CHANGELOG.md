@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.5.0...v2.0.0) (2022-10-09)
+
+
+### Code Refactoring
+
+* Rename `ErrorCodes`  to `Errors.Codes` to prevent conflits with other nugets ([f773e12](https://github.com/TechNobre/PowerUtils.Results/commit/f773e12e3b849f5d5db3c719bd5e774a9647601f))
+
+
+### BREAKING CHANGES
+
+* Moved ErrorCode factories to `PowerUtils.Results.Validations` nuget
+
 # [1.5.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.4.0...v1.5.0) (2022-10-09)
 
 
