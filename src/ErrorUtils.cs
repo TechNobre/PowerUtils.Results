@@ -24,7 +24,7 @@
         /// Creates an 'Unauthorized:401' error result with the given error and code: 'UNAUTHORIZED'
         /// </summary>
         public static UnauthorizedError Unauthorized(string property, string description = null)
-            => new(property, ErrorCodes.UNAUTHORIZED, description);
+            => new(property, Errors.Codes.UNAUTHORIZED, description);
 
 
 
@@ -38,7 +38,7 @@
         /// Creates an 'Forbidden:403' error result with the given error and code: 'FORBIDDEN'
         /// </summary>
         public static ForbiddenError Forbidden(string property, string description = null)
-            => new(property, ErrorCodes.FORBIDDEN, description);
+            => new(property, Errors.Codes.FORBIDDEN, description);
 
 
 
@@ -52,7 +52,7 @@
         /// Creates an 'NotFound:404' error result with the given error and code: 'NOT_FOUND'
         /// </summary>
         public static NotFoundError NotFound(string property, string description = null)
-            => new(property, ErrorCodes.NOT_FOUND, description);
+            => new(property, Errors.Codes.NOT_FOUND, description);
 
 
 
@@ -66,7 +66,7 @@
         /// Creates an 'Conflict:409' error result with the given error and code: 'CONFLICT'
         /// </summary>
         public static ConflictError Conflict(string property, string description = null)
-            => new(property, ErrorCodes.CONFLICT, description);
+            => new(property, Errors.Codes.CONFLICT, description);
 
 
 
@@ -80,7 +80,7 @@
         /// Create an 'Validation:400' error result with the given error and code: 'UNEXPECTED'
         /// </summary>
         public static ValidationError Validation(string property, string description = null)
-            => new(property, ErrorCodes.VALIDATION, description);
+            => new(property, Errors.Codes.VALIDATION, description);
 
 
 
@@ -94,7 +94,7 @@
         /// Create an 'Unexpected:500' error result with the given error and code: 'UNEXPECTED'
         /// </summary>
         public static UnexpectedError Unexpected(string property, string description = null)
-            => new(property, ErrorCodes.UNEXPECTED, description);
+            => new(property, Errors.Codes.UNEXPECTED, description);
 
 
 
