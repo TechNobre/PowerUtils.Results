@@ -47,6 +47,14 @@ namespace PowerUtils.Results
         public static string CreateMin(DateTime min, string format = "yyyy-MM-dd HH:mm:ss")
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString(format));
 
+#if NET6_0_OR_GREATER
+        public static string CreateMin(DateOnly min, string format = "yyyy-MM-dd")
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString(format));
+
+        public static string CreateMin(TimeOnly min, string format = "HH:mm:ss")
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString(format));
+#endif
+
         public static string CreateDateMin(DateTime min)
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MIN, min.ToString("yyyy-MM-dd"));
 
@@ -64,6 +72,14 @@ namespace PowerUtils.Results
 
         public static string CreateMax(DateTime max, string format = "yyyy-MM-dd HH:mm:ss")
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString(format));
+
+#if NET6_0_OR_GREATER
+        public static string CreateMax(DateOnly max, string format = "yyyy-MM-dd")
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString(format));
+
+        public static string CreateMax(TimeOnly max, string format = "HH:mm:ss")
+            => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString(format));
+#endif
 
         public static string CreateDateMax(DateTime max)
             => string.Format(PATTERN_ERROR_CODE_WITH_LIMIT, MAX, max.ToString("yyyy-MM-dd"));

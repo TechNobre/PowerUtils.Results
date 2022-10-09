@@ -417,5 +417,83 @@ namespace PowerUtils.Results.Tests
             act.Should()
                 .Be(expected);
         }
+
+#if NET6_0_OR_GREATER
+        [Theory]
+        [InlineData("01-12-2010", "MIN:01-12-2010", "dd-MM-yyyy")]
+        [InlineData("11-1987-01", "MIN:11-1987-01", "MM-yyyy-dd")]
+        [InlineData("1987/05/02", "MIN:1987/05/02", "yyyy/MM/dd")]
+        public void DateOnly_CreateMin_Code(string input, string expected, string format)
+        {
+            // Arrange
+            var date = DateOnly.ParseExact(input, format, CultureInfo.InvariantCulture);
+
+
+            // Act
+            var act = ErrorCodes.CreateMin(date, format);
+
+
+            // Assert
+            act.Should()
+                .Be(expected);
+        }
+
+        [Theory]
+        [InlineData("01-12-1810", "MAX:01-12-1810", "dd-MM-yyyy")]
+        [InlineData("11-1999-01", "MAX:11-1999-01", "MM-yyyy-dd")]
+        [InlineData("1900/05/02", "MAX:1900/05/02", "yyyy/MM/dd")]
+        public void DateOnly_CreateMax_Code(string input, string expected, string format)
+        {
+            // Arrange
+            var date = DateOnly.ParseExact(input, format, CultureInfo.InvariantCulture);
+
+
+            // Act
+            var act = ErrorCodes.CreateMax(date, format);
+
+
+            // Assert
+            act.Should()
+                .Be(expected);
+        }
+
+        [Theory]
+        [InlineData("23:12:38", "MIN:23:12:38", "HH:mm:ss")]
+        [InlineData("13:22", "MIN:13:22", "HH:mm")]
+        [InlineData("01:22", "MIN:01:22", "hh:mm")]
+        public void TimeOnly_CreateMin_Code(string input, string expected, string format)
+        {
+            // Arrange
+            var time = TimeOnly.ParseExact(input, format, CultureInfo.InvariantCulture);
+
+
+            // Act
+            var act = ErrorCodes.CreateMin(time, format);
+
+
+            // Assert
+            act.Should()
+                .Be(expected);
+        }
+
+        [Theory]
+        [InlineData("23:12:38", "MAX:23:12:38", "HH:mm:ss")]
+        [InlineData("13:22", "MAX:13:22", "HH:mm")]
+        [InlineData("01:22", "MAX:01:22", "hh:mm")]
+        public void TimeOnly_CreateMax_Code(string input, string expected, string format)
+        {
+            // Arrange
+            var time = TimeOnly.ParseExact(input, format, CultureInfo.InvariantCulture);
+
+
+            // Act
+            var act = ErrorCodes.CreateMax(time, format);
+
+
+            // Assert
+            act.Should()
+                .Be(expected);
+        }
+#endif
     }
 }
