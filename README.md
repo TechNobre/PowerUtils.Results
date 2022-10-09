@@ -139,7 +139,6 @@ result.AddErrors(new List<Error>
 - `Error.NotFound()`
 - `Error.Conflict()`
 - `Error.Validation()`
-- `Error.Validation()`
 - `Error.Unexpected()`
 
 ##### Custom error <a name="doc-creating-custom-error"></a>
