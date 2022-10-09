@@ -204,11 +204,6 @@ namespace PowerUtils.Results.Tests
             act.Should().BeTrue();
         }
 
-
-
-
-
-
         [Fact]
         public void ResultWithoutErrors_ContainsSpecificErrorType_False()
         {
@@ -364,6 +359,31 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public async Task VoidResultWithoutErrors_SwitchExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            void onSuccessAction() => act = true;
+            void onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            await Method().Switch(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
         public void VoidResultWithErrors_Switch_ShouldExecuteOnErrorsAction()
         {
             // Arrange
@@ -385,8 +405,6 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().BeTrue();
         }
-
-
 
         [Fact]
         public void ValueResultWithoutErrors_Switch_ShouldExecuteOnSuccessAction()
@@ -410,6 +428,31 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().BeTrue();
         }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_SwitchExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            void onSuccessAction(FakeModel _) => act = true;
+            void onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            await Method().Switch(
+               onSuccessAction,
+               onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
 
         [Fact]
         public void ValueResultWithErrors_Switch_ShouldExecuteOnErrorsAction()
@@ -460,6 +503,31 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public async Task VoidResultWithoutErrors_SwitchFirstExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            void onSuccessAction() => act = true;
+            void onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            await Method().SwitchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
         public void VoidResultWithErrors_SwitchFirst_ShouldExecuteOnErrorAction()
         {
             // Arrange
@@ -506,6 +574,31 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().BeTrue();
         }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_SwitchFirstExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            void onSuccessAction(FakeModel _) => act = true;
+            void onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            await Method().SwitchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
 
         [Fact]
         public void ValueResultWithErrors_SwitchFirst_ShouldExecuteOnErrorAction()
@@ -556,6 +649,29 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public async Task VoidResultWithoutErrors_MatchExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            string onSuccessAction() => expected;
+            string onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().Match(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
         public void VoidResultWithErrors_Match_ShouldExecuteOnErrorsAction()
         {
             // Arrange
@@ -593,6 +709,29 @@ namespace PowerUtils.Results.Tests
 
             // Act
             var act = result.Match(
+               onSuccessAction,
+               onErrorsAction
+           );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_MatchExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            string onSuccessAction(FakeModel _) => expected;
+            string onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().Match(
                onSuccessAction,
                onErrorsAction
            );
@@ -651,6 +790,29 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public async Task VoidResultWithoutErrors_MatchFirstExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            string onSuccessAction() => expected;
+            string onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().MatchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
         public void VoidResultWithErrors_MatchFirst_ShouldExecuteOnErrorAction()
         {
             // Arrange
@@ -689,6 +851,29 @@ namespace PowerUtils.Results.Tests
 
             // Act
             var act = result.MatchFirst(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_MatchFirstExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            string onSuccessAction(FakeModel _) => expected;
+            string onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().MatchFirst(
                 onSuccessAction,
                 onErrorAction
             );
@@ -751,6 +936,35 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public async Task VoidResultWithoutErrors_SwitchAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            async Task onSuccessAction()
+            {
+                await Task.Delay(20);
+                act = true;
+            }
+            Task onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            await Method().SwitchAsync(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
         public async Task VoidResultWithErrors_SwitchAsync_ShouldExecuteOnErrorsAction()
         {
             // Arrange
@@ -805,6 +1019,36 @@ namespace PowerUtils.Results.Tests
             // Assert
             act.Should().BeTrue();
         }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_SwitchAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            async Task onSuccessAction(FakeModel _)
+            {
+                await Task.Delay(20);
+                act = true;
+            }
+            Task onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            await Method().SwitchAsync(
+               onSuccessAction,
+               onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
 
         [Fact]
         public async Task ValueResultWithErrors_SwitchAsync_ShouldExecuteOnErrorsAction()
@@ -862,6 +1106,35 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public async Task VoidResultWithoutErrors_SwitchFirstAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            async Task onSuccessAction()
+            {
+                await Task.Delay(20);
+                act = true;
+            }
+            Task onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            await Method().SwitchFirstAsync(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+
+
+        [Fact]
         public async Task VoidResultWithErrors_SwitchFirstAsync_ShouldExecuteOnErrorAction()
         {
             // Arrange
@@ -907,6 +1180,33 @@ namespace PowerUtils.Results.Tests
 
             // Act
             await result.SwitchFirstAsync(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_SwitchFirstAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var act = false;
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            async Task onSuccessAction(FakeModel _)
+            {
+                await Task.Delay(20);
+                act = true;
+            }
+            Task onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            await Method().SwitchFirstAsync(
                 onSuccessAction,
                 onErrorAction
             );
@@ -972,6 +1272,37 @@ namespace PowerUtils.Results.Tests
             act.Should().Be(expected);
         }
 
+
+
+        [Fact]
+        public async Task VoidResultWithoutErrors_MatchAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            async Task<string> onSuccessAction()
+            {
+                await Task.Delay(20);
+                return expected;
+            }
+            Task<string> onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().MatchAsync(
+                onSuccessAction,
+                onErrorsAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+
+
         [Fact]
         public async Task VoidResultWithErrors_MatchAsync_ShouldExecuteOnErrorsAction()
         {
@@ -1018,6 +1349,33 @@ namespace PowerUtils.Results.Tests
 
             // Act
             var act = await result.MatchAsync(
+               onSuccessAction,
+               onErrorsAction
+           );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_MatchAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            async Task<string> onSuccessAction(FakeModel _)
+            {
+                await Task.Delay(20);
+                return expected;
+            }
+            Task<string> onErrorsAction(IEnumerable<IError> _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().MatchAsync(
                onSuccessAction,
                onErrorsAction
            );
@@ -1084,6 +1442,33 @@ namespace PowerUtils.Results.Tests
         }
 
         [Fact]
+        public async Task VoidResultWithoutErrors_MatchFirstAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result> Method() => Task.FromResult(Result.Ok());
+
+            async Task<string> onSuccessAction()
+            {
+                await Task.Delay(20);
+                return expected;
+            }
+            Task<string> onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().MatchFirstAsync(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
         public async Task VoidResultWithErrors_MatchFirstAsync_ShouldExecuteOnErrorAction()
         {
             // Arrange
@@ -1130,6 +1515,33 @@ namespace PowerUtils.Results.Tests
 
             // Act
             var act = await result.MatchFirstAsync(
+                onSuccessAction,
+                onErrorAction
+            );
+
+
+            // Assert
+            act.Should().Be(expected);
+        }
+
+        [Fact]
+        public async Task ValueResultWithoutErrors_MatchFirstAsyncExtensions_ShouldExecuteOnSuccessAction()
+        {
+            // Arrange
+            var expected = "I am here...!!!";
+
+            Task<Result<FakeModel>> Method() => Task.FromResult(Result.Ok(new FakeModel()));
+
+            async Task<string> onSuccessAction(FakeModel _)
+            {
+                await Task.Delay(20);
+                return expected;
+            }
+            Task<string> onErrorAction(IError _) => throw new FakeException();
+
+
+            // Act
+            var act = await Method().MatchFirstAsync(
                 onSuccessAction,
                 onErrorAction
             );
