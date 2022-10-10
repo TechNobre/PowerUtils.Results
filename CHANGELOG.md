@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/TechNobre/PowerUtils.Results/compare/v2.0.0...v2.0.1) (2022-10-10)
+
+
+### Bug Fixes
+
+* Rename ErrorCodes to ResultErrorCodes to prevent conflits ([64dc111](https://github.com/TechNobre/PowerUtils.Results/commit/64dc11185c8933c9b85cd04b613e16bab78446b6))
+
 # [2.0.0](https://github.com/TechNobre/PowerUtils.Results/compare/v1.5.0...v2.0.0) (2022-10-09)
 
 
