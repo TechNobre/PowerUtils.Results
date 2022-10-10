@@ -80,7 +80,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.UNAUTHORIZED);
+                .ContainSingle(s => s.Code == ResultErrorCodes.UNAUTHORIZED);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -133,7 +133,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.FORBIDDEN);
+                .ContainSingle(s => s.Code == ResultErrorCodes.FORBIDDEN);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -186,7 +186,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.NOT_FOUND);
+                .ContainSingle(s => s.Code == ResultErrorCodes.NOT_FOUND);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -239,7 +239,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.CONFLICT);
+                .ContainSingle(s => s.Code == ResultErrorCodes.CONFLICT);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -320,7 +320,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.UNAUTHORIZED);
+                .ContainSingle(s => s.Code == ResultErrorCodes.UNAUTHORIZED);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -373,7 +373,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.FORBIDDEN);
+                .ContainSingle(s => s.Code == ResultErrorCodes.FORBIDDEN);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -426,7 +426,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.NOT_FOUND);
+                .ContainSingle(s => s.Code == ResultErrorCodes.NOT_FOUND);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -479,7 +479,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                 .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-                .ContainSingle(s => s.Code == Errors.Codes.CONFLICT);
+                .ContainSingle(s => s.Code == ResultErrorCodes.CONFLICT);
             act.Errors.Should()
                 .ContainSingle(s => s.Description == description);
 
@@ -504,7 +504,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-               .ContainSingle(s => s.Code == Errors.Codes.VALIDATION);
+               .ContainSingle(s => s.Code == ResultErrorCodes.VALIDATION);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
 
@@ -554,7 +554,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-               .ContainSingle(s => s.Code == Errors.Codes.VALIDATION);
+               .ContainSingle(s => s.Code == ResultErrorCodes.VALIDATION);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
 
@@ -605,7 +605,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-               .ContainSingle(s => s.Code == Errors.Codes.UNEXPECTED);
+               .ContainSingle(s => s.Code == ResultErrorCodes.UNEXPECTED);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
 
@@ -654,7 +654,7 @@ namespace PowerUtils.Results.Tests
             act.Errors.Should()
                .ContainSingle(s => s.Property == property);
             act.Errors.Should()
-               .ContainSingle(s => s.Code == Errors.Codes.UNEXPECTED);
+               .ContainSingle(s => s.Code == ResultErrorCodes.UNEXPECTED);
             act.Errors.Should()
                .ContainSingle(s => s.Description == description);
 
