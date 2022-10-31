@@ -18,7 +18,7 @@ on:
 
 
 env:
-  SDK_VERSION: '6.0.401'
+  SDK_VERSION: '6.0.402'
 
   GIT_ORGANIZATION: 'TechNobre'
   PROJECT_NAME: 'PowerUtils.Results'
