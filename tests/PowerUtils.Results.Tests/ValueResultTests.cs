@@ -642,5 +642,50 @@ namespace PowerUtils.Results.Tests
             act.Should()
                 .BeFalse();
         }
+
+        [Fact]
+        public void ResultWithErrors_ImplicitAssignmentIEnumerableError_IEnumerableError()
+        {
+            // Arrange
+            var property1 = "fakeProperty1";
+            var code1 = "fakeCode1";
+            var description1 = "fakeDescription1";
+
+            var property2 = "fakeProperty2";
+            var code2 = "fakeCode2";
+            var description2 = "fakeDescription2";
+
+            var errors = new List<Error>()
+            {
+                new(property1, code1, description1),
+                new(property2, code2, description2)
+            };
+
+            Result<FakeModel> result = errors;
+
+
+            // Act
+            List<IError> act = result;
+
+
+            // Assert
+            act.Should()
+                .ContainSingle(s =>
+                    s.Property == property1
+                    &&
+                    s.Code == code1
+                    &&
+                    s.Description == description1
+                );
+
+            act.Should()
+                .ContainSingle(s =>
+                    s.Property == property2
+                    &&
+                    s.Code == code2
+                    &&
+                    s.Description == description2
+                );
+        }
     }
 }
