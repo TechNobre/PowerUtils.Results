@@ -87,6 +87,11 @@ namespace PowerUtils.Results
         }
 
         /// <summary>
+        /// Create boolean status with result status (Valid or not valid)
+        /// </summary>
+        public static implicit operator bool(Result result) => !result.IsError;
+
+        /// <summary>
         /// Creates a success result
         /// </summary>
         public static implicit operator Result(Success _) => new();

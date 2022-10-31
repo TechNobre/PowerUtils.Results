@@ -610,5 +610,37 @@ namespace PowerUtils.Results.Tests
                 .BeNull();
         }
 #endif
+
+        [Fact]
+        public void ResultWithoutErrors_ImplicitAssignmentBool_ShouldBeFalse()
+        {
+            // Arrange
+            Result<FakeModel> result = new FakeModel();
+
+
+            // Act
+            var act = (bool)result;
+
+
+            // Assert
+            act.Should()
+                .BeTrue();
+        }
+
+        [Fact]
+        public void ResultWithErrors_ImplicitAssignmentBool_ShouldBeTrue()
+        {
+            // Arrange
+            Result<FakeModel> result = Error.Forbidden("prop");
+
+
+            // Act
+            var act = (bool)result;
+
+
+            // Assert
+            act.Should()
+                .BeFalse();
+        }
     }
 }

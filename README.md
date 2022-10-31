@@ -35,6 +35,7 @@
     - [Match](#doc-extensions-Match)
   - [Deconstruct operators](#doc-deconstruct-operators)
   - [Implicit conversion](#doc-implicit-conversion)
+  - [Check validity](#doc-check-validity)
 - [How is this different from error-of?](#how-is-different)
 - [Contribution](#contribution)
 - [License](./LICENSE)
@@ -303,6 +304,42 @@ var (property, code, description) = Error.Unauthorized("property", "code", "desc
 ```csharp
 Result<Model> result = new Model { Id = id, Name = name };
 Model model = result;
+```
+
+### Check validity <a name="doc-check-validity"></a>
+
+**Valid example**
+```csharp
+Result<Model> result = new Model { Id = id, Name = name };
+
+// result = implicit conversion "true"
+if(result)
+{
+    // Do something
+}
+
+// Equivalent to
+if(result.IsError == false)
+{
+    // Do something
+}
+```
+
+**Invalid example**
+```csharp
+Result result = Error.Conflict("property", "code", "description");
+
+// result = implicit conversion "false"
+if(result)
+{
+    // Do something
+}
+
+// Equivalent to
+if(result.IsError == true)
+{
+    // Do something
+}
 ```
 
 
