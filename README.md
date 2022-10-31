@@ -304,6 +304,10 @@ var (property, code, description) = Error.Unauthorized("property", "code", "desc
 ```csharp
 Result<Model> result = new Model { Id = id, Name = name };
 Model model = result;
+
+// Result with errors
+Result result = Error.Conflict("property", "code", "description");
+List<IError> errors = result;
 ```
 
 ### Check validity <a name="doc-check-validity"></a>

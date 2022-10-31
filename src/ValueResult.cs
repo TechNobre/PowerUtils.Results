@@ -114,6 +114,11 @@ namespace PowerUtils.Results
         public static implicit operator bool(Result<TValue> result) => !result.IsError;
 
         /// <summary>
+        /// Create an <see cref="List{IError}"/> from a result
+        /// </summary>
+        public static implicit operator List<IError>(Result<TValue> result) => result._errors;
+
+        /// <summary>
         /// Creates a success result
         /// </summary>
         public static Result<TValue> Ok(TValue value) => new(value);
