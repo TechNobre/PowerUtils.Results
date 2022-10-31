@@ -15,7 +15,7 @@ on:
 
 
 env:
-  SDK_VERSION: '6.0.401'
+  SDK_VERSION: '6.0.402'
 
 
 jobs:
