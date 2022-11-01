@@ -1,3 +1,11 @@
+# [2.1.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.0.1...v2.1.0) (2022-11-01)
+
+
+### Features
+
+* Added implicit conversion from result to error list ([e4b4e2c](https://github.com/TechNobre/PowerUtils.Results/commit/e4b4e2c4a75b72c5d33bab58edfb67d668b91bfb))
+* Added implicit conversion to boolean ([73dfc8f](https://github.com/TechNobre/PowerUtils.Results/commit/73dfc8fd92d9cf49b83523dfe3fa70ddff889639))
+
 ## [2.0.1](https://github.com/TechNobre/PowerUtils.Results/compare/v2.0.0...v2.0.1) (2022-10-10)
 
 
