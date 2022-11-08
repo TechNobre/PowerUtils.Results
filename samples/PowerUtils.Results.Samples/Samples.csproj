@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net7.0</TargetFrameworks>
 
     <RootNamespace>PowerUtils.Results.Samples</RootNamespace>
     <AssemblyName>PowerUtils.Results.Samples</AssemblyName>
