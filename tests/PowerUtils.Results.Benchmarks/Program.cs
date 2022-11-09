@@ -1,7 +1,7 @@
 ﻿using BenchmarkDotNet.Running;
 using PowerUtils.Results.Benchmarks.Tests;
 
-//BenchmarkRunner.Run<CreatingValueResultBenchmarks>();
+BenchmarkRunner.Run<CreatingValueResultBenchmarks>();
 
 //BenchmarkRunner.Run<CreatingErrorVoidResultBenchmarks>();
 //BenchmarkRunner.Run<CreatingErrorValueResultBenchmarks>();
@@ -12,4 +12,4 @@ using PowerUtils.Results.Benchmarks.Tests;
 //BenchmarkRunner.Run<TupleVsResultBenchmarks>();
 
 
-BenchmarkRunner.Run<CreatingVoidSuccessResultBenchmarks>();
+//BenchmarkRunner.Run<CreatingVoidSuccessResultBenchmarks>();
