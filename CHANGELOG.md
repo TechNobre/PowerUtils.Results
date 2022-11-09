@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.1.0...v2.2.0) (2022-11-09)
+
+
+### Features
+
+* Added support to .NET 7.0 ([1e825e4](https://github.com/TechNobre/PowerUtils.Results/commit/1e825e4020777b216e8c26f1cd2c5f1076644d86))
+
 # [2.1.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.0.1...v2.1.0) (2022-11-01)
 
 
