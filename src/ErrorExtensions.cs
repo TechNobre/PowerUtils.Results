@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PowerUtils.Results
 {
     public static class ErrorExtensions
     {
+        /// <summary>
+        /// Get Errors as a list
+        /// </summary>
+        public static List<IError> AsList(this IEnumerable<IError> errors) => errors as List<IError>;
+
+
         /// <summary>
         /// Gets the first error
         /// </summary>
