@@ -62,6 +62,15 @@ namespace PowerUtils.Results
             IsError = CommonUtils.RemoveNulls(ref _errors);
         }
 
+        /// <summary>
+        /// Check if the result object is success and deconstruct <see cref="List{IError}"/>
+        /// </summary>
+        public bool IsSuccess(out List<IError> errors)
+        {
+            errors = _errors ?? new();
+            return !IsError;
+        }
+
 
 
         /// <summary>

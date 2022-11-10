@@ -690,36 +690,6 @@ namespace PowerUtils.Results.Tests
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [Fact]
         public void ResultWithErrors_Deconstruct_ValueNullAndErrors()
         {
@@ -762,18 +732,6 @@ namespace PowerUtils.Results.Tests
             value.Should().NotBeNull();
             errors.Should().BeEmpty();
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
         [Fact]
         public void ResultWithErrors_If_ValueNullAndErrors()
@@ -842,6 +800,43 @@ namespace PowerUtils.Results.Tests
             errors.Should().BeEmpty();
 
             condition.Should().Be(1);
+        }
+
+        [Fact]
+        public void ResultWithErrors_IsSuccess_IsSuccessFalseValueNullAndErrors()
+        {
+            // Arrange
+            var property = "Fake";
+            Result<FakeModel> result = Error.Forbidden(property);
+
+
+            // Act
+            var act = result.IsSuccess(out var value, out var errors);
+
+
+            // Assert
+            value.Should().BeNull();
+            errors.Should().ContainSingle(s => s.Property == property);
+
+            act.Should().BeFalse();
+        }
+
+        [Fact]
+        public void ResultWithoutErrors_IsSuccess_IsSuccessTrueValueNullAndErrors()
+        {
+            // Arrange
+            Result<FakeModel> result = new FakeModel();
+
+
+            // Act
+            var act = result.IsSuccess(out var value, out var errors);
+
+
+            // Assert
+            value.Should().NotBeNull();
+            errors.Should().BeEmpty();
+
+            act.Should().BeTrue();
         }
     }
 }

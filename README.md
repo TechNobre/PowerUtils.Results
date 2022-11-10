@@ -332,6 +332,11 @@ if(result.IsError == false)
 {
     // Do something
 }
+
+if(result.IsSuccess(out var value, out var errors))
+{
+    // Do something
+}
 ```
 
 **Invalid example**
