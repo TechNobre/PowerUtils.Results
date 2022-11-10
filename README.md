@@ -24,7 +24,7 @@
     - [Success](#doc-creating-result-success)
     - [Errors](#doc-creating-result-errors)
       - [Add more errors](#doc-creating-result-errors-add)
-	  - [Built-in error types](#doc-creating-result-errors-types)
+      - [Built-in error types](#doc-creating-result-errors-types)
       - [Custom error](#doc-creating-custom-error)
     - [Result factory](#doc-creating-result-factory)
   - [Extensions](#doc-extensions)
@@ -298,6 +298,10 @@ Task<TOutput> response = result.MatchFirstAsync<TValue, TOutput>(
 
 ```csharp
 var (property, code, description) = Error.Unauthorized("property", "code", "description");
+
+Result<Model> result = new Model { Id = id, Name = name };
+// Deconstruct -> value is not null and errors is empty
+(var value, var errors) = result;
 ```
 
 ### Implicit conversion <a name="doc-implicit-conversion"></a>

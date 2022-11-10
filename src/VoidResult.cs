@@ -34,6 +34,7 @@ namespace PowerUtils.Results
         }
 
 
+
         /// <summary>
         /// Creates a success result
         /// </summary>
@@ -60,6 +61,8 @@ namespace PowerUtils.Results
             _errors = errors;
             IsError = CommonUtils.RemoveNulls(ref _errors);
         }
+
+
 
         /// <summary>
         /// Add error in result
