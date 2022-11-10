@@ -50,6 +50,8 @@ namespace PowerUtils.Results
             }
         }
 
+
+
         /// <summary>
         /// Creates a success result
         /// </summary>
@@ -82,6 +84,21 @@ namespace PowerUtils.Results
             _errors = errors;
             IsError = CommonUtils.RemoveNulls(ref _errors);
         }
+
+
+
+        /// <summary>
+        /// Deconstruct <see cref="Result{TValue}"/> to value and <see cref="List{IError}"/>
+        /// </summary>
+        /// <param name="value">Value in result</param>
+        /// <param name="errors">Error list</param>
+        public void Deconstruct(out TValue value, out List<IError> errors)
+        {
+            value = _value;
+            errors = _errors ?? new();
+        }
+
+
 
         /// <summary>
         /// Add error in result

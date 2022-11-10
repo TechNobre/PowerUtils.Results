@@ -687,5 +687,161 @@ namespace PowerUtils.Results.Tests
                     s.Description == description2
                 );
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [Fact]
+        public void ResultWithErrors_Deconstruct_ValueNullAndErrors()
+        {
+            // Arrange
+            var property = "fakeProperty";
+            var code = "fakeCode";
+            var description = "fakeDescription";
+
+            Result<FakeModel> result = Error.Conflict(property, code, description);
+
+
+            // Act
+            (var value, var errors) = result;
+
+
+            // Assert
+            value.Should().BeNull();
+            errors.Should()
+                .ContainSingle(s =>
+                    s.Property == property
+                    &&
+                    s.Code == code
+                    &&
+                    s.Description == description
+                );
+        }
+
+        [Fact]
+        public void ResultWithoutErrors_Deconstruct_WithValueAndEmptyErrors()
+        {
+            // Arrange
+            Result<FakeModel> result = new FakeModel();
+
+
+            // Act
+            (var value, var errors) = result;
+
+
+            // Assert
+            value.Should().NotBeNull();
+            errors.Should().BeEmpty();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [Fact]
+        public void ResultWithErrors_If_ValueNullAndErrors()
+        {
+            // Arrange
+            var property = "Fake";
+            Result<FakeModel> result = Error.Forbidden(property);
+
+
+            // Act
+            FakeModel value = null;
+            List<IError> errors = null;
+            var condition = 0;
+
+            if(result is (var value1, var errors1) && errors1.Count == 0)
+            {
+                value = value1;
+                errors = errors1;
+                condition = 1;
+            }
+
+            if(result is (var value2, var errors2) && errors2.Count == 1)
+            {
+                value = value2;
+                errors = errors2;
+                condition = 2;
+            }
+
+
+            // Assert
+            value.Should().BeNull();
+            errors.Should().ContainSingle(s => s.Property == property);
+
+            condition.Should().Be(2);
+        }
+
+        [Fact]
+        public void ResultWithoutErrors_If_ValueNullAndErrors()
+        {
+            // Arrange
+            Result<FakeModel> result = new FakeModel();
+
+
+            // Act
+            FakeModel value = null;
+            List<IError> errors = null;
+            var condition = 0;
+
+            if(result is (var value1, var errors1) && errors1.Count == 0)
+            {
+                value = value1;
+                errors = errors1;
+                condition = 1;
+            }
+
+            if(result is (var value2, var errors2) && errors2.Count == 1)
+            {
+                value = value2;
+                errors = errors2;
+                condition = 2;
+            }
+
+
+            // Assert
+            value.Should().NotBeNull();
+            errors.Should().BeEmpty();
+
+            condition.Should().Be(1);
+        }
     }
 }
