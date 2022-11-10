@@ -33,6 +33,7 @@
     - [Handling success](#doc-extensions-handling-success)
     - [Switch](#doc-extensions-Switch)
     - [Match](#doc-extensions-Match)
+    - [Conversions](#doc-extensions-conversions)
   - [Deconstruct operators](#doc-deconstruct-operators)
   - [Implicit conversion](#doc-implicit-conversion)
   - [Check validity](#doc-check-validity)
@@ -292,6 +293,12 @@ Task<TOutput> response = result.MatchFirstAsync<TValue, TOutput>(
     value => onSuccess(value),
     error => onError(error)
 );
+```
+
+#### Conversions <a name="doc-extensions-conversions"></a>
+
+```csharp
+var errorList = result.Errors.AsList();
 ```
 
 ### Deconstruct operators <a name="doc-deconstruct-operators"></a>
