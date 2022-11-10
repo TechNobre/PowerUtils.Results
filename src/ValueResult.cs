@@ -98,6 +98,15 @@ namespace PowerUtils.Results
             errors = _errors ?? new();
         }
 
+        /// <summary>
+        /// Check if the result object is success and deconstruct <see cref="Result{TValue}"/> to value and <see cref="List{IError}"/>
+        /// </summary>
+        public bool IsSuccess(out TValue value, out List<IError> errors)
+        {
+            (value, errors) = this;
+            return !IsError;
+        }
+
 
 
         /// <summary>
