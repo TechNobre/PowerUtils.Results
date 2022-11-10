@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.2.0...v2.3.0) (2022-11-10)
+
+
+### Features
+
+* Added `Deconstruct` to `ValueResult` ([d3fec73](https://github.com/TechNobre/PowerUtils.Results/commit/d3fec73b90a1fdbb93321dc6960c9975de6b5cbe))
+* Added `IsSuccess` with `Deconstruct` ([1df1040](https://github.com/TechNobre/PowerUtils.Results/commit/1df1040a174474d07a208e665b96b0d09c4b1212))
+* Added extension `AsList()` ([046ecf3](https://github.com/TechNobre/PowerUtils.Results/commit/046ecf37cd50ae6b3381dcec9151987dc4f23fe9))
+
 # [2.2.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.1.0...v2.2.0) (2022-11-09)
 
 
