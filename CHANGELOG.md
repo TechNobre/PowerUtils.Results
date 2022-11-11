@@ -1,3 +1,10 @@
+# [2.4.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.3.0...v2.4.0) (2022-11-11)
+
+
+### Features
+
+* Added extensions `IsError()` ([09f792e](https://github.com/TechNobre/PowerUtils.Results/commit/09f792ee1972321a83aa88a08823bcb37ae3c6e7))
+
 # [2.3.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.2.0...v2.3.0) (2022-11-10)
 
 
