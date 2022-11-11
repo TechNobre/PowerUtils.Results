@@ -63,7 +63,7 @@ namespace PowerUtils.Results
         }
 
         /// <summary>
-        /// Check if the result object is success and deconstruct <see cref="List{IError}"/>
+        /// Checks if it is a successful result and deconstructs <see cref="List{IError}"/>
         /// </summary>
         public bool IsSuccess(out List<IError> errors)
         {
