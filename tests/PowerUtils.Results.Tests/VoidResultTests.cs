@@ -644,6 +644,8 @@ namespace PowerUtils.Results.Tests
                 );
         }
 
+
+
         [Fact]
         public void ResultWithErrors_IsSuccess_IsSuccessFalseAndErrors()
         {

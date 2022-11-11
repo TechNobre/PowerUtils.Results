@@ -38,6 +38,17 @@ namespace PowerUtils.Results
             return predicate(result.Value);
         }
 
+        /// <summary>
+        /// Checks if it is an error result and deconstructs <see cref="List{IError}"/>
+        /// </summary>
+        public static bool IsError(this Result result, out List<IError> errors)
+            => !result.IsSuccess(out errors);
+
+        /// <summary>
+        /// Checks if it is an error result and deconstructs <see cref="Result{TValue}"/> to value and <see cref="List{IError}"/>
+        /// </summary>
+        public static bool IsError<TValue>(this Result<TValue> result, out TValue value, out List<IError> errors)
+            => !result.IsSuccess(out value, out errors);
 
 
         /// <summary>

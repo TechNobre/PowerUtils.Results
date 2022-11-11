@@ -802,6 +802,8 @@ namespace PowerUtils.Results.Tests
             condition.Should().Be(1);
         }
 
+
+
         [Fact]
         public void ResultWithErrors_IsSuccess_IsSuccessFalseValueNullAndErrors()
         {
