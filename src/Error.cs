@@ -29,20 +29,17 @@ namespace PowerUtils.Results
     }
 
 
-    public interface IError<TSelf> : IError
-#if NET7_0_OR_GREATER
-        , IEqualityOperators<TSelf, TSelf, bool> where TSelf : IEqualityOperators<TSelf, TSelf, bool>
-#endif
-    { }
-
-
     /// <summary>
     /// Generic error
     /// </summary>
 #if NET6_0_OR_GREATER
-    public readonly partial record struct Error : IError<Error>
+    public readonly partial record struct Error : IError
 #else
     public readonly partial struct Error : IError
+#endif
+
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<Error, Error, bool>
 #endif
     {
         /// <summary>
@@ -106,9 +103,13 @@ namespace PowerUtils.Results
     /// Error type similar to a Unauthorized:401
     /// </summary>
 #if NET6_0_OR_GREATER
-    public readonly record struct UnauthorizedError : IError<UnauthorizedError>
+    public readonly record struct UnauthorizedError : IError
 #else
     public readonly struct UnauthorizedError : IError
+#endif
+
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<UnauthorizedError, UnauthorizedError, bool>
 #endif
     {
         /// <summary>
@@ -172,9 +173,13 @@ namespace PowerUtils.Results
     /// Error type similar to a Forbidden:403
     /// </summary>
 #if NET6_0_OR_GREATER
-    public readonly record struct ForbiddenError : IError<ForbiddenError>
+    public readonly record struct ForbiddenError : IError
 #else
     public readonly struct ForbiddenError : IError
+#endif
+
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<ForbiddenError, ForbiddenError, bool>
 #endif
     {
         /// <summary>
@@ -238,9 +243,13 @@ namespace PowerUtils.Results
     /// Error type similar to a NotFound:404
     /// </summary>
 #if NET6_0_OR_GREATER
-    public readonly record struct NotFoundError : IError<NotFoundError>
+    public readonly record struct NotFoundError : IError
 #else
     public readonly struct NotFoundError : IError
+#endif
+
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<NotFoundError, NotFoundError, bool>
 #endif
     {
         /// <summary>
@@ -304,9 +313,13 @@ namespace PowerUtils.Results
     /// Error type similar to a Conflict:409
     /// </summary>
 #if NET6_0_OR_GREATER
-    public readonly record struct ConflictError : IError<ConflictError>
+    public readonly record struct ConflictError : IError
 #else
     public readonly struct ConflictError : IError
+#endif
+
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<ConflictError, ConflictError, bool>
 #endif
     {
         /// <summary>
@@ -370,9 +383,13 @@ namespace PowerUtils.Results
     /// Error type similar to a Validation:400
     /// </summary>
 #if NET6_0_OR_GREATER
-    public readonly record struct ValidationError : IError<ValidationError>
+    public readonly record struct ValidationError : IError
 #else
     public readonly struct ValidationError : IError
+#endif
+
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<ValidationError, ValidationError, bool>
 #endif
     {
         /// <summary>
@@ -436,9 +453,13 @@ namespace PowerUtils.Results
     /// Error type similar to a Unexpected:500
     /// </summary>
 #if NET6_0_OR_GREATER
-    public readonly record struct UnexpectedError : IError<UnexpectedError>
+    public readonly record struct UnexpectedError : IError
 #else
     public readonly struct UnexpectedError : IError
+#endif
+
+#if NET7_0_OR_GREATER
+        , IEqualityOperators<UnexpectedError, UnexpectedError, bool>
 #endif
     {
         /// <summary>
