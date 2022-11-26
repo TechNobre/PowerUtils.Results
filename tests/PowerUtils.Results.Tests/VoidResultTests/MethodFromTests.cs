@@ -2,7 +2,7 @@
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
-namespace PowerUtils.Results.Tests
+namespace PowerUtils.Results.Tests.VoidResultTests
 {
     public class MethodFromTests
     {
