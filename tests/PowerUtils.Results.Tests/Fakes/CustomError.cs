@@ -12,5 +12,7 @@
             Code = code;
             Description = description;
         }
+
+        public bool Equals(IError other) => throw new System.NotImplementedException();
     }
 }

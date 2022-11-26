@@ -4,10 +4,35 @@ namespace PowerUtils.Results
 {
     internal static class CommonUtils
     {
+        internal static bool Equals<TError>(TError error, ref IError other) where TError : IError
+        {
+            if(other is not TError)
+            {
+                return false;
+            }
+
+            if(error.Property != other.Property)
+            {
+                return false;
+            }
+
+            if(error.Code != other.Code)
+            {
+                return false;
+            }
+
+            if(error.Description != other.Description)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Returns true if contains error, false is not
         /// </summary>
-        public static bool RemoveNulls(ref List<IError> list)
+        internal static bool RemoveNulls(ref List<IError> list)
         {
             list?.RemoveAll(r => r is null);
 
