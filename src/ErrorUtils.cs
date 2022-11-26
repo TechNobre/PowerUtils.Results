@@ -77,7 +77,7 @@
             => new(property, code, description);
 
         /// <summary>
-        /// Create an 'Validation:400' error result with the given error and code: 'UNEXPECTED'
+        /// Create an 'Validation:400' error result with the given error and code: 'VALIDATION'
         /// </summary>
         public static ValidationError Validation(string property, string description = null)
             => new(property, ResultErrorCodes.VALIDATION, description);

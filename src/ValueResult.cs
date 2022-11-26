@@ -29,7 +29,7 @@ namespace PowerUtils.Results
         {
             get
             {
-                if(!IsError)
+                if(IsSuccess)
                 {
                     throw new InvalidOperationException("Errors can be retrieved only when the result is an error");
                 }
