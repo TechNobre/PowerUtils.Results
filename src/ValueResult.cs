@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PowerUtils.Results
 {
 #if NET6_0_OR_GREATER
+    [DebuggerDisplay("IsSuccess {IsSuccess} | Errors{_errors}")]
     public record struct Result<TValue> : IResult
 #else
     public sealed record Result<TValue> : IResult

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PowerUtils.Results
 {
+    [DebuggerDisplay("IsSuccess {IsSuccess} | Errors{_errors}")]
 #if NET6_0_OR_GREATER
     public partial record struct Result : IResult
 #else
