@@ -1,9 +1,13 @@
-﻿namespace PowerUtils.Results
+﻿using System;
+
+namespace PowerUtils.Results
 {
     /// <summary>
-    /// Basic structure of an error
+    /// Defines a error type
     /// </summary>
-    public interface IError : IType
+    public interface IError :
+        IType,
+        IEquatable<IError>
     {
         /// <summary>
         /// Property with error
@@ -64,6 +68,11 @@
             code = Code;
             description = Description;
         }
+
+        /// <summary>
+        /// Returns TRUE if the both errors is equals
+        /// </summary>
+        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
     }
 
 
@@ -109,6 +118,11 @@
             code = Code;
             description = Description;
         }
+
+        /// <summary>
+        /// Returns TRUE if the both errors is equals
+        /// </summary>
+        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
     }
 
 
@@ -154,6 +168,11 @@
             code = Code;
             description = Description;
         }
+
+        /// <summary>
+        /// Returns TRUE if the both errors is equals
+        /// </summary>
+        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
     }
 
 
@@ -199,6 +218,11 @@
             code = Code;
             description = Description;
         }
+
+        /// <summary>
+        /// Returns TRUE if the both errors is equals
+        /// </summary>
+        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
     }
 
 
@@ -244,6 +268,11 @@
             code = Code;
             description = Description;
         }
+
+        /// <summary>
+        /// Returns TRUE if the both errors is equals
+        /// </summary>
+        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
     }
 
 
@@ -289,6 +318,11 @@
             code = Code;
             description = Description;
         }
+
+        /// <summary>
+        /// Returns TRUE if the both errors is equals
+        /// </summary>
+        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
     }
 
 
@@ -334,5 +368,10 @@
             code = Code;
             description = Description;
         }
+
+        /// <summary>
+        /// Returns TRUE if the both errors is equals
+        /// </summary>
+        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
     }
 }
