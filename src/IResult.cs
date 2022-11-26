@@ -5,6 +5,11 @@ namespace PowerUtils.Results
     public interface IResult
     {
         /// <summary>
+        /// Gets a value indicating whether the state is success
+        /// </summary>
+        bool IsSuccess { get; }
+
+        /// <summary>
         /// Gets a value indicating whether the state is error
         /// </summary>
         bool IsError { get; }

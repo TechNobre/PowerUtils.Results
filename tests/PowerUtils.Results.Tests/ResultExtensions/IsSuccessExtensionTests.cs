@@ -118,5 +118,77 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Assert
             act.Should().BeFalse();
         }
+
+        [Fact]
+        public void ResultWithErrors_IsSuccess_IsSuccessFalseValueNullAndErrors()
+        {
+            // Arrange
+            var property = "Fake";
+            Result<FakeModel> result = Error.Forbidden(property);
+
+
+            // Act
+            var act = result.IsSuccess(out var value, out var errors);
+
+
+            // Assert
+            value.Should().BeNull();
+            errors.Should().ContainSingle(s => s.Property == property);
+
+            act.Should().BeFalse();
+        }
+
+        [Fact]
+        public void ResultWithoutErrors_IsSuccess_IsSuccessTrueValueNullAndErrors()
+        {
+            // Arrange
+            Result<FakeModel> result = new FakeModel();
+
+
+            // Act
+            var act = result.IsSuccess(out var value, out var errors);
+
+
+            // Assert
+            value.Should().NotBeNull();
+            errors.Should().BeEmpty();
+
+            act.Should().BeTrue();
+        }
+
+        [Fact]
+        public void ResultWithErrors_IsSuccess_IsSuccessFalseAndErrors()
+        {
+            // Arrange
+            var property = "Fake";
+            Result result = Error.Forbidden(property);
+
+
+            // Act
+            var act = result.IsSuccess(out var errors);
+
+
+            // Assert
+            errors.Should().ContainSingle(s => s.Property == property);
+
+            act.Should().BeFalse();
+        }
+
+        [Fact]
+        public void ResultWithoutErrors_IsSuccess_IsSuccessTrueAndErrors()
+        {
+            // Arrange
+            Result result = new Success();
+
+
+            // Act
+            var act = result.IsSuccess(out var errors);
+
+
+            // Assert
+            errors.Should().BeEmpty();
+
+            act.Should().BeTrue();
+        }
     }
 }

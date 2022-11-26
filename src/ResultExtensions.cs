@@ -23,7 +23,23 @@ namespace PowerUtils.Results
         /// <summary>
         /// Check if the result object is success
         /// </summary>
-        public static bool IsSuccess(this IResult result) => !result.IsError;
+        public static bool IsSuccess(this IResult result) => result.IsSuccess;
+
+
+        /// <summary>
+        /// Checks if it is a successful result and deconstructs <see cref="List{IError}"/>
+        /// </summary>
+        public static bool IsSuccess(this Result result, out List<IError> errors)
+        {
+            if(result.IsSuccess)
+            {
+                errors = new();
+                return true;
+            }
+
+            errors = result.Errors.AsList();
+            return false;
+        }
 
         /// <summary>
         /// Check if the result object is success and contains a value from a specific type with a specific condition
@@ -37,6 +53,16 @@ namespace PowerUtils.Results
 
             return predicate(result.Value);
         }
+
+        /// <summary>
+        /// Checks if it is a successful result and deconstructs <see cref="Result{TValue}"/> to value and <see cref="List{IError}"/>
+        /// </summary>
+        public static bool IsSuccess<TValue>(this Result<TValue> result, out TValue value, out List<IError> errors)
+        {
+            (value, errors) = result;
+            return result.IsSuccess;
+        }
+
 
         /// <summary>
         /// Checks if it is an error result and deconstructs <see cref="List{IError}"/>
@@ -62,7 +88,7 @@ namespace PowerUtils.Results
         public static bool ContainsError<TError>(this IResult result)
             where TError : IError
         {
-            if(!result.IsError)
+            if(result.IsSuccess)
             {
                 return false;
             }
@@ -76,7 +102,7 @@ namespace PowerUtils.Results
         public static bool ContainsError<TError>(this IResult result, Func<IError, bool> predicate)
             where TError : IError
         {
-            if(!result.IsError)
+            if(result.IsSuccess)
             {
                 return false;
             }

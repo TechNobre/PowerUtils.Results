@@ -29,8 +29,7 @@ namespace PowerUtils.Results
     }
 
 
-    public interface IError<TSelf> :
-        IError
+    public interface IError<TSelf> : IError
 #if NET7_0_OR_GREATER
         , IEqualityOperators<TSelf, TSelf, bool> where TSelf : IEqualityOperators<TSelf, TSelf, bool>
 #endif

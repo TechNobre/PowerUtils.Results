@@ -11,6 +11,11 @@ namespace PowerUtils.Results
 #endif
     {
         /// <summary>
+        /// Gets a value indicating whether the state is success
+        /// </summary>
+        public bool IsSuccess => !IsError;
+
+        /// <summary>
         /// Gets a value indicating whether the state is error
         /// </summary>
         public bool IsError { get; private set; }
@@ -97,16 +102,6 @@ namespace PowerUtils.Results
             value = _value;
             errors = _errors ?? new();
         }
-
-        /// <summary>
-        /// Checks if it is a successful result and deconstructs <see cref="Result{TValue}"/> to value and <see cref="List{IError}"/>
-        /// </summary>
-        public bool IsSuccess(out TValue value, out List<IError> errors)
-        {
-            (value, errors) = this;
-            return !IsError;
-        }
-
 
 
         /// <summary>
