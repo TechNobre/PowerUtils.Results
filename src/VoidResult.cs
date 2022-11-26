@@ -11,6 +11,11 @@ namespace PowerUtils.Results
 #endif
     {
         /// <summary>
+        /// Gets a value indicating whether the state is success
+        /// </summary>
+        public bool IsSuccess => !IsError;
+
+        /// <summary>
         /// Gets a value indicating whether the state is error
         /// </summary>
         public bool IsError { get; private set; }
@@ -60,15 +65,6 @@ namespace PowerUtils.Results
         {
             _errors = errors;
             IsError = CommonUtils.RemoveNulls(ref _errors);
-        }
-
-        /// <summary>
-        /// Checks if it is a successful result and deconstructs <see cref="List{IError}"/>
-        /// </summary>
-        public bool IsSuccess(out List<IError> errors)
-        {
-            errors = _errors ?? new();
-            return !IsError;
         }
 
 
