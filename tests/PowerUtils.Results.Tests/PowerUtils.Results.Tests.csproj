@@ -52,4 +52,9 @@
   </ItemGroup>
 
 
+  <ItemGroup>
+    <Folder Include="VoidResultTests\" />
+  </ItemGroup>
+
+
 </Project>
