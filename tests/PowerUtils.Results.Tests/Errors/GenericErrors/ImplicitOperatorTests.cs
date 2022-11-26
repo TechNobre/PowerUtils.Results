@@ -3,7 +3,7 @@ using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
-namespace PowerUtils.Results.Tests.Errors.FailureErrors
+namespace PowerUtils.Results.Tests.Errors.GenericErrors
 {
     public class ImplicitOperatorTests
     {

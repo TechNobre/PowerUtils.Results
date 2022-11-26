@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace PowerUtils.Results.Tests.Errors.FailureErrors
+namespace PowerUtils.Results.Tests.Errors.GenericErrors
 {
     public class DeconstructOperatorTests
     {

@@ -143,5 +143,47 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
             // Assert
             act.Should().BeTrue();
         }
+
+
+
+        [Fact]
+        public void Object_Equals_False()
+        {
+            // Arrange
+            var property = "fakeProperty";
+            var code = "fakeCode";
+            var description = "fakeDescription";
+
+            var error = Error.Conflict(property, code, description);
+            object other = new();
+
+
+            // Act
+            var act = error.Equals(other);
+
+
+            // Assert
+            act.Should().BeFalse();
+        }
+
+        [Fact]
+        public void BothObjectsFromError_Equals_True()
+        {
+            // Arrange
+            var property = "fakeProperty";
+            var code = "fakeCode";
+            var description = "fakeDescription";
+
+            object error = Error.Conflict(property, code, description);
+            object other = Error.Conflict(property, code, description);
+
+
+            // Act
+            var act = error.Equals(other);
+
+
+            // Assert
+            act.Should().BeTrue();
+        }
     }
 }
