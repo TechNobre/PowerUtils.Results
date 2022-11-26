@@ -191,11 +191,11 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                await onErrors(result.Errors);
+                await onErrors(result.Errors).ConfigureAwait(false);
                 return;
             }
 
-            await onSuccess();
+            await onSuccess().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -213,11 +213,11 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                await onErrors(result.Errors);
+                await onErrors(result.Errors).ConfigureAwait(false);
                 return;
             }
 
-            await onSuccess(result.Value);
+            await onSuccess(result.Value).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -235,11 +235,11 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                await onError(result.Errors.First());
+                await onError(result.Errors.First()).ConfigureAwait(false);
                 return;
             }
 
-            await onSuccess();
+            await onSuccess().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -257,11 +257,11 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                await onError(result.Errors.First());
+                await onError(result.Errors.First()).ConfigureAwait(false);
                 return;
             }
 
-            await onSuccess(result.Value);
+            await onSuccess(result.Value).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -363,10 +363,10 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                return await onErrors(result.Errors);
+                return await onErrors(result.Errors).ConfigureAwait(false);
             }
 
-            return await onSuccess();
+            return await onSuccess().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -384,10 +384,10 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                return await onErrors(result.Errors);
+                return await onErrors(result.Errors).ConfigureAwait(false);
             }
 
-            return await onSuccess(result.Value);
+            return await onSuccess(result.Value).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -405,10 +405,10 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                return await onError(result.Errors.First());
+                return await onError(result.Errors.First()).ConfigureAwait(false);
             }
 
-            return await onSuccess();
+            return await onSuccess().ConfigureAwait(false);
         }
 
 
@@ -427,10 +427,10 @@ namespace PowerUtils.Results
         {
             if(result.IsError)
             {
-                return await onError(result.Errors.First());
+                return await onError(result.Errors.First()).ConfigureAwait(false);
             }
 
-            return await onSuccess(result.Value);
+            return await onSuccess(result.Value).ConfigureAwait(false);
         }
 
         /// <summary>
