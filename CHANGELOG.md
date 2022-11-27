@@ -1,3 +1,17 @@
+# [2.5.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.4.0...v2.5.0) (2022-11-27)
+
+
+### Bug Fixes
+
+* Added ConfigureAwait(false) ([9433286](https://github.com/TechNobre/PowerUtils.Results/commit/94332861bea839957b8bf755963fa8e466fdab9f))
+
+
+### Features
+
+* Added equality operators in Errors ([a37dff1](https://github.com/TechNobre/PowerUtils.Results/commit/a37dff15b4f427caa284e457d730688a5c39dc74))
+* Added property IsSuccess in Results ([b08a9b6](https://github.com/TechNobre/PowerUtils.Results/commit/b08a9b6caaa425cae0680ed37b9b778ff38d9fbc))
+* Extended IEquatable in errors ([f1f1cd9](https://github.com/TechNobre/PowerUtils.Results/commit/f1f1cd9d4c5b1e0150b8e1ba99d104d0b519ad02))
+
 # [2.4.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.3.0...v2.4.0) (2022-11-11)
 
 
