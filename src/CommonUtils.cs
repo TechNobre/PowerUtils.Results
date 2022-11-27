@@ -11,17 +11,17 @@ namespace PowerUtils.Results
                 return false;
             }
 
-            if(error.Property != other.Property)
+            if(!error.Property.Equals(other.Property))
             {
                 return false;
             }
 
-            if(error.Code != other.Code)
+            if(!error.Code.Equals(other.Code))
             {
                 return false;
             }
 
-            if(error.Description != other.Description)
+            if(!error.Description.Equals(other.Description))
             {
                 return false;
             }
