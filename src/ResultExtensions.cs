@@ -464,5 +464,12 @@ namespace PowerUtils.Results
         /// </summary>
         public static async Task<TOutput> MatchFirstAsync<TValue, TOutput>(this Task<Result<TValue>> result, Func<TValue, Task<TOutput>> onSuccess, Func<IError, Task<TOutput>> onError)
             => await (await result).MatchFirstAsync(onSuccess, onError);
+
+
+        /// <summary>
+        /// Returns distinct errors from the calling Result
+        /// </summary>
+        public static IEnumerable<IError> DistinctErrors(this IResult result)
+            => result.Errors.Distinct();
     }
 }

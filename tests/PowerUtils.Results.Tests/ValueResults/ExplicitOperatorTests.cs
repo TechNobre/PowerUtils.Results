@@ -18,8 +18,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Should()
-                .BeTrue();
+            act.Should().BeTrue();
         }
 
         [Fact]
@@ -34,8 +33,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Should()
-                .BeFalse();
+            act.Should().BeFalse();
         }
     }
 }
