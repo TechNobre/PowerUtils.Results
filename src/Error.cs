@@ -96,7 +96,7 @@ namespace PowerUtils.Results
         public static bool operator !=(Error? left, Error? right)
             => !(left == right);
 
-        public override int GetHashCode() => base.GetHashCode();
+        public override int GetHashCode() => HashCode.Combine(Property, Code, Description);
     }
 
 
