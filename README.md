@@ -34,6 +34,7 @@
     - [Switch](#doc-extensions-Switch)
     - [Match](#doc-extensions-Match)
     - [Conversions](#doc-extensions-conversions)
+    - [DistinctErrors](#doc-extensions-DistinctErrors)
   - [Deconstruct operators](#doc-deconstruct-operators)
   - [Implicit conversion](#doc-implicit-conversion)
   - [Check validity](#doc-check-validity)
@@ -299,6 +300,19 @@ Task<TOutput> response = result.MatchFirstAsync<TValue, TOutput>(
 
 ```csharp
 var errorList = result.Errors.AsList();
+```
+
+#### DistinctErrors <a name="doc-extensions-DistinctErrors"></a>
+
+```csharp
+Result result = new IError[]
+{
+    Error.Conflict("FakeProperty", "FakeCode", "FakeDescription"),
+    Error.Conflict("FakeProperty", "FakeCode", "FakeDescription")
+};
+
+// Only returns one error
+var errors = result.DistinctErrors();
 ```
 
 ### Deconstruct operators <a name="doc-deconstruct-operators"></a>
