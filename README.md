@@ -38,7 +38,6 @@
   - [Deconstruct operators](#doc-deconstruct-operators)
   - [Implicit conversion](#doc-implicit-conversion)
   - [Check validity](#doc-check-validity)
-- [How is this different from error-of?](#how-is-different)
 - [Contribution](#contribution)
 - [License](./LICENSE)
 - [Changelog](./CHANGELOG.md)
@@ -385,20 +384,6 @@ if(result.IsError == true)
 
 
 
-## How is this different from error-of? <a name="how-is-different"></a>
-
-- Support to `.NET 5.0` using only `record` instead of `record struct` available only `.NET 6.0` or greater;
-  - But in projects `.NET 6.0` or greater also uses `record struct`because it is faster;
-- The base wrapper named `Result` instead of _`ErrorOf`_ like a _`FluentResults`_;
-- Support for using the `Result` wrapper without an encapsulated type to be able to pass a success state like _NoContent 204_ or error;
-- The error list in `Result` is based in a interface `IError` to be able to create custom error types;
-- The erro structure contains:
-  - __`Property`__ - For error source;
-  - __`Code`__ - For an error identification code;
-  - __`Description`__ - For a description of the error;
-
-
-
 ## Contribution <a name="contribution"></a>
 
 If you have any questions, comments, or suggestions, please open an [issue](https://github.com/TechNobre/PowerUtils.Results/issues/new/choose) or create a [pull request](https://github.com/TechNobre/PowerUtils.Results/compare)
@@ -407,12 +392,11 @@ If you have any questions, comments, or suggestions, please open an [issue](http
 
 ## Credits <a name="Credits"></a>
 
-This project is totally inspired by [error-or](https://github.com/amantinband/error-or) that are excellent libraries.
-
-Other excellent libraries used as inspiration
+Other excellent libraries you should check out:
+- [error-or](https://github.com/amantinband/error-or)
+- [CSharpFunctionalExtensions](https://github.com/vkhorikov/CSharpFunctionalExtensions)
 - [Ardalis.Result](https://github.com/ardalis/result)
 - [FluentResults](https://github.com/altmann/FluentResults)
 - [OneOf](https://github.com/mcintyre321/OneOf)
-- [CSharpFunctionalExtensions](https://github.com/vkhorikov/CSharpFunctionalExtensions)
 
 _Give your support to the projects mentioned above by giving a star, to encourage the creators to continue the work._
