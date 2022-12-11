@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.5.0...v2.6.0) (2022-12-11)
+
+
+### Features
+
+* Added extension `Result.DistinctErrors()` ([d6b1fac](https://github.com/TechNobre/PowerUtils.Results/commit/d6b1fac933840dcc244bc90b0b1e5ca6a78dbdb4))
+
 # [2.5.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.4.0...v2.5.0) (2022-11-27)
 
 
