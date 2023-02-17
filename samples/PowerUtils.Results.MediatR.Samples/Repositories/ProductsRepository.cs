@@ -41,8 +41,8 @@ public class ProductsRepository : IProductsRepository
     public Task<bool> Any(string name, CancellationToken cancellationToken = default)
     {
         var result = _database
-                .Values
-                .Any(a => a.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            .Values
+            .Any(a => a.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
 
         return Task.FromResult(result);
     }
@@ -50,12 +50,11 @@ public class ProductsRepository : IProductsRepository
     public Task<bool> Any(Guid id, string name, CancellationToken cancellationToken = default)
     {
         var result = _database
-                .Values
-                .Any(a =>
-                    a.Id == id
-                    &&
-                    a.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-                );
+            .Values
+            .Any(a =>
+                a.Id == id
+                &&
+                a.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
 
         return Task.FromResult(result);
     }

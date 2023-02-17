@@ -20,8 +20,7 @@ public record AddProductCommand(string Name, uint Quantity) : IRequest<Result<Pr
             errors.Add(Error.Validation(
                nameof(Name),
                "REQUIRED",
-               "The name is required"
-            ));
+               "The name is required"));
         }
 
         if(Quantity < 1)
@@ -29,8 +28,7 @@ public record AddProductCommand(string Name, uint Quantity) : IRequest<Result<Pr
             errors.Add(Error.Validation(
                nameof(Name),
                "MIN:1",
-               "The minimum quantity is 1"
-            ));
+               "The minimum quantity is 1"));
         }
 
         return errors;
@@ -51,8 +49,7 @@ public record AddProductCommand(string Name, uint Quantity) : IRequest<Result<Pr
                 return Error.Conflict(
                     nameof(command.Name),
                     "DUPLICATED",
-                    $"Already exists a product with name '{command.Name}'"
-                );
+                    $"Already exists a product with name '{command.Name}'");
             }
 
 
