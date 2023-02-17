@@ -24,8 +24,7 @@ public record GetProductQuery(Guid Id) : IRequest<Result<ProductResponse>>
                 return Error.NotFound(
                     nameof(query.Id),
                     "NOT_FOUND",
-                    $"The product with Id: '{query.Id}' was not found"
-                );
+                    $"The product with Id: '{query.Id}' was not found");
             }
 
             return new ProductResponse
