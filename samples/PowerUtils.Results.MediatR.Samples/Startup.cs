@@ -14,7 +14,7 @@ public class Startup
         services.AddControllers();
         services.AddSwaggerGen();
 
-        services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddMediatR(o => o.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipeline<,>));
 
         services.AddSingleton<IProductsRepository, ProductsRepository>();
