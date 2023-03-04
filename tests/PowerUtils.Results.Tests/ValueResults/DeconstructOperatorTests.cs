@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -22,15 +23,14 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            value.Should().BeNull();
-            errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property
-                    &&
-                    s.Code == code
-                    &&
-                    s.Description == description
-                );
+            using(new AssertionScope())
+            {
+                value.Should().BeNull();
+                errors.Should().ContainsError<ConflictError>(
+                    property,
+                    code,
+                    description);
+            }
         }
 
         [Fact]
@@ -45,8 +45,11 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            value.Should().NotBeNull();
-            errors.Should().BeEmpty();
+            using(new AssertionScope())
+            {
+                value.Should().NotBeNull();
+                errors.Should().BeEmpty();
+            }
         }
     }
 }

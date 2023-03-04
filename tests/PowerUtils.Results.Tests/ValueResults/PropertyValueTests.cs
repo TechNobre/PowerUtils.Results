@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -19,8 +20,11 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Should().BeOfType<InvalidOperationException>();
-            act.Message.Should().Be("Value can be retrieved only when the result is not an error");
+            using(new AssertionScope())
+            {
+                act.Should().BeOfType<InvalidOperationException>();
+                act.Message.Should().Be("Value can be retrieved only when the result is not an error");
+            }
         }
     }
 }

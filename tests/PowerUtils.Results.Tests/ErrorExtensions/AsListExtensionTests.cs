@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.ErrorExtensions
@@ -30,26 +31,20 @@ namespace PowerUtils.Results.Tests.ErrorExtensions
 
 
             // Assert
-            act.Should()
-                .HaveCount(2);
+            using(new AssertionScope())
+            {
+                act.Should().HaveCount(2);
 
-            act.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
     }
 }

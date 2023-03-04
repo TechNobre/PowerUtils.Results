@@ -26,8 +26,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             result.SwitchFirst(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -49,8 +48,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await Method().SwitchFirst(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -74,8 +72,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             result.SwitchFirst(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -99,8 +96,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             result.SwitchFirst(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -122,8 +118,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await Method().SwitchFirst(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -147,8 +142,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             result.SwitchFirst(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert

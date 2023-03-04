@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentAssertions.Execution;
 using Xunit;
 
@@ -29,15 +28,15 @@ namespace PowerUtils.Results.Tests.VoidResults
             {
                 act.Should().HaveCount(2);
 
-                act.First().Property.Should().Be("FakeProperty");
-                act.First().Code.Should().Be("FakeCode");
-                act.First().Description.Should().Be("FakeDescription");
-                act.First().Should().BeOfType<Error>();
+                act.Should().ContainsError<Error>(
+                    "FakeProperty",
+                    "FakeCode",
+                    "FakeDescription");
 
-                act.Last().Property.Should().Be("FakeProperty");
-                act.Last().Code.Should().Be("FakeCode");
-                act.Last().Description.Should().Be("FakeDescription");
-                act.Last().Should().BeOfType<ConflictError>();
+                act.Should().ContainsError<ConflictError>(
+                    "FakeProperty",
+                    "FakeCode",
+                    "FakeDescription");
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.ErrorExtensions
@@ -20,7 +21,7 @@ namespace PowerUtils.Results.Tests.ErrorExtensions
         public void TwoErrors_SingleError_InvalidOperationException()
         {
             // Arrange && Act
-            var act = Record.Exception(() => _result.SingleError());
+            var act = Record.Exception(_result.SingleError);
 
 
             // Assert
@@ -51,12 +52,15 @@ namespace PowerUtils.Results.Tests.ErrorExtensions
 
 
             // Act
-            var act = Record.Exception(() => result.SingleError());
+            var act = Record.Exception(result.SingleError);
 
 
             // Assert
-            act.Should().BeOfType<InvalidOperationException>();
-            act.Message.Should().Be("Errors can be retrieved only when the result is an error");
+            using(new AssertionScope())
+            {
+                act.Should().BeOfType<InvalidOperationException>();
+                act.Message.Should().Be("Errors can be retrieved only when the result is an error");
+            }
         }
     }
 }

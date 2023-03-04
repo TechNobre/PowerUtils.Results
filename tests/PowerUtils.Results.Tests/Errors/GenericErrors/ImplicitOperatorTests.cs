@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -21,17 +20,10 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<Error>();
+            act.Should().ContainsError<Error>(
+                property,
+                code,
+                description);
         }
 
 
@@ -50,17 +42,10 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<Error>();
+            act.Should().ContainsError<Error>(
+                property,
+                code,
+                description);
         }
     }
 }

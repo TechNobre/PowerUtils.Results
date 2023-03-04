@@ -13,8 +13,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
     }
 }

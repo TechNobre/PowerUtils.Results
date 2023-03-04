@@ -36,8 +36,7 @@ namespace PowerUtils.Results.Tests.ValueResults
             // Act
             var act = Result.Create(
                 errors,
-                () => new FakeModel()
-            );
+                () => new FakeModel());
 
 
             // Assert
@@ -54,8 +53,7 @@ namespace PowerUtils.Results.Tests.ValueResults
             // Act
             var act = Result.Create(
                 errors,
-                () => new FakeModel()
-            );
+                () => new FakeModel());
 
 
             // Assert
@@ -72,8 +70,7 @@ namespace PowerUtils.Results.Tests.ValueResults
             // Act
             var act = Result.Create(
                 errors,
-                () => new FakeModel()
-            );
+                () => new FakeModel());
 
 
             // Assert

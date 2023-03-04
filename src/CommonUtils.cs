@@ -72,7 +72,7 @@ namespace PowerUtils.Results
                 return false;
             }
 
-            return list.Count != 0;
+            return list.Count is not 0;
         }
     }
 }

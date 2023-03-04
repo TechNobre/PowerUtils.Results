@@ -15,13 +15,14 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
 
 
             // Act
-            var (actProperty, actCode, actDescription) = Error.Conflict(property, code, description);
+            var act = Error.Conflict(property, code, description);
 
 
             // Assert
-            actProperty.Should().Be(property);
-            actCode.Should().Be(code);
-            actDescription.Should().Be(description);
+            act.Should().IsError<ConflictError>(
+                property,
+                code,
+                description);
         }
     }
 }

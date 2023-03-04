@@ -30,8 +30,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchFirstAsync(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -57,8 +56,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await Method().SwitchFirstAsync(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -86,8 +84,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchFirstAsync(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -114,8 +111,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchFirstAsync(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -141,8 +137,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await Method().SwitchFirstAsync(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert
@@ -168,8 +163,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchFirstAsync(
                 onSuccessAction,
-                onErrorAction
-            );
+                onErrorAction);
 
 
             // Assert

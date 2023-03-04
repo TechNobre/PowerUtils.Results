@@ -15,13 +15,14 @@ namespace PowerUtils.Results.Tests.Errors.ForbiddenErrors
 
 
             // Act
-            var (actProperty, actCode, actDescription) = Error.Forbidden(property, code, description);
+            var act = Error.Forbidden(property, code, description);
 
 
             // Assert
-            actProperty.Should().Be(property);
-            actCode.Should().Be(code);
-            actDescription.Should().Be(description);
+            act.Should().IsError<ForbiddenError>(
+                property,
+                code,
+                description);
         }
     }
 }

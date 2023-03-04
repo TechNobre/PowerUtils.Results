@@ -15,13 +15,14 @@ namespace PowerUtils.Results.Tests.Errors.ValidationErrors
 
 
             // Act
-            var (actProperty, actCode, actDescription) = Error.Validation(property, code, description);
+            var act = Error.Validation(property, code, description);
 
 
             // Assert
-            actProperty.Should().Be(property);
-            actCode.Should().Be(code);
-            actDescription.Should().Be(description);
+            act.Should().IsError<ValidationError>(
+                property,
+                code,
+                description);
         }
     }
 }

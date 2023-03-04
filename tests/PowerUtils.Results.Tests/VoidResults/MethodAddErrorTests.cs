@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.VoidResults
@@ -36,8 +37,11 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.Should().BeOfType<InvalidOperationException>();
-            result.IsError.Should().BeFalse();
+            using(new AssertionScope())
+            {
+                act.Should().BeOfType<InvalidOperationException>();
+                result.IsError.Should().BeFalse();
+            }
         }
 
         [Fact]
@@ -64,35 +68,23 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
+            using(new AssertionScope())
+            {
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
-
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property3
-                    &&
-                    s.Code == code3
-                    &&
-                    s.Description == description3
-                );
+                act.Should().ContainsError<Error>(
+                    property3,
+                    code3,
+                    description3);
+            }
         }
 
         [Fact]
@@ -136,26 +128,18 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
+            using(new AssertionScope())
+            {
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
-
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
     }
 }
