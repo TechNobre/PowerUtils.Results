@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.Errors.ForbiddenErrors
@@ -15,14 +16,16 @@ namespace PowerUtils.Results.Tests.Errors.ForbiddenErrors
 
 
             // Act
-            var act = Error.Forbidden(property, code, description);
+            var (actProperty, actCode, actDescription) = Error.Forbidden(property, code, description);
 
 
             // Assert
-            act.Should().IsError<ForbiddenError>(
-                property,
-                code,
-                description);
+            using(new AssertionScope())
+            {
+                actProperty.Should().Be(property);
+                actCode.Should().Be(code);
+                actDescription.Should().Be(description);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.Errors.ValidationErrors
@@ -15,14 +16,16 @@ namespace PowerUtils.Results.Tests.Errors.ValidationErrors
 
 
             // Act
-            var act = Error.Validation(property, code, description);
+            var (actProperty, actCode, actDescription) = Error.Validation(property, code, description);
 
 
             // Assert
-            act.Should().IsError<ValidationError>(
-                property,
-                code,
-                description);
+            using(new AssertionScope())
+            {
+                actProperty.Should().Be(property);
+                actCode.Should().Be(code);
+                actDescription.Should().Be(description);
+            }
         }
     }
 }

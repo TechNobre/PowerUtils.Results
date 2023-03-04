@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
@@ -15,14 +16,16 @@ namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
 
 
             // Act
-            var act = Error.Unauthorized(property, code, description);
+            var (actProperty, actCode, actDescription) = Error.Unauthorized(property, code, description);
 
 
             // Assert
-            act.Should().IsError<UnauthorizedError>(
-                property,
-                code,
-                description);
+            using(new AssertionScope())
+            {
+                actProperty.Should().Be(property);
+                actCode.Should().Be(code);
+                actDescription.Should().Be(description);
+            }
         }
     }
 }
