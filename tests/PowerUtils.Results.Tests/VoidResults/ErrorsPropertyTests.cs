@@ -5,10 +5,10 @@ using Xunit;
 
 namespace PowerUtils.Results.Tests.VoidResults
 {
-    public class MethodOkTests
+    public class ErrorsPropertyTests
     {
         [Fact]
-        public void WithoutErrors_GetErrors_InvalidOperationException()
+        public void WithoutErrors_ErrorsProperty_InvalidOperationException()
         {
             // Arrange
             var result = Result.Ok();

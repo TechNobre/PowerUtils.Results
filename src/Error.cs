@@ -33,7 +33,7 @@ namespace PowerUtils.Results
     /// <summary>
     /// Generic error
     /// </summary>
-    [DebuggerDisplay("{Property} | {Code} | {Description}")]
+    [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
 #if NET6_0_OR_GREATER
     public readonly partial record struct Error : IError
 #else
@@ -104,7 +104,7 @@ namespace PowerUtils.Results
     /// <summary>
     /// Error type similar to a Unauthorized:401
     /// </summary>
-    [DebuggerDisplay("{Property} | {Code} | {Description}")]
+    [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
 #if NET6_0_OR_GREATER
     public readonly record struct UnauthorizedError : IError
 #else
@@ -175,7 +175,7 @@ namespace PowerUtils.Results
     /// <summary>
     /// Error type similar to a Forbidden:403
     /// </summary>
-    [DebuggerDisplay("{Property} | {Code} | {Description}")]
+    [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
 #if NET6_0_OR_GREATER
     public readonly record struct ForbiddenError : IError
 #else
@@ -246,7 +246,7 @@ namespace PowerUtils.Results
     /// <summary>
     /// Error type similar to a NotFound:404
     /// </summary>
-    [DebuggerDisplay("{Property} | {Code} | {Description}")]
+    [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
 #if NET6_0_OR_GREATER
     public readonly record struct NotFoundError : IError
 #else
@@ -317,7 +317,7 @@ namespace PowerUtils.Results
     /// <summary>
     /// Error type similar to a Conflict:409
     /// </summary>
-    [DebuggerDisplay("{Property} | {Code} | {Description}")]
+    [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
 #if NET6_0_OR_GREATER
     public readonly record struct ConflictError : IError
 #else
@@ -388,7 +388,7 @@ namespace PowerUtils.Results
     /// <summary>
     /// Error type similar to a Validation:400
     /// </summary>
-    [DebuggerDisplay("{Property} | {Code} | {Description}")]
+    [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
 #if NET6_0_OR_GREATER
     public readonly record struct ValidationError : IError
 #else
@@ -459,7 +459,7 @@ namespace PowerUtils.Results
     /// <summary>
     /// Error type similar to a Unexpected:500
     /// </summary>
-    [DebuggerDisplay("{Property} | {Code} | {Description}")]
+    [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
 #if NET6_0_OR_GREATER
     public readonly record struct UnexpectedError : IError
 #else
