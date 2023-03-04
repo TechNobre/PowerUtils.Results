@@ -6,7 +6,7 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
     public class DifferentsEqualityOperatorsTests
     {
         [Fact]
-        public void LeftNullRightNull_Equals_False()
+        public void LeftNullRightNull_Differents_False()
         {
             // Arrange
             UnexpectedError? left = null;
@@ -22,7 +22,7 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
         }
 
         [Fact]
-        public void LeftNotNullRightNull_Equals_True()
+        public void LeftNotNullRightNull_Differents_True()
         {
             // Arrange
             UnexpectedError? left = Error.Unexpected("fake", "fake", "fake");
@@ -38,7 +38,7 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
         }
 
         [Fact]
-        public void LeftNullRightNotNull_Equals_True()
+        public void LeftNullRightNotNull_Differents_True()
         {
             // Arrange
             UnexpectedError? left = null;
@@ -54,7 +54,7 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
         }
 
         [Fact]
-        public void BothDifferents_Equals_True()
+        public void BothDifferents_Differents_True()
         {
             // Arrange
             UnexpectedError? left = Error.Unexpected("fake1", "fake", "fake");
@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
         }
 
         [Fact]
-        public void BothEquals_Equals_False()
+        public void BothEquals_Differents_False()
         {
             // Arrange
             UnexpectedError? left = Error.Unexpected("fake", "fake", "fake");

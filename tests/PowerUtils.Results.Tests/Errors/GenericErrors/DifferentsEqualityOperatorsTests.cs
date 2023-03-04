@@ -6,7 +6,7 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
     public class DifferentsEqualityOperatorsTests
     {
         [Fact]
-        public void LeftNullRightNull_Equals_False()
+        public void LeftNullRightNull_Differents_False()
         {
             // Arrange
             Error? left = null;
@@ -22,7 +22,7 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
         }
 
         [Fact]
-        public void LeftNotNullRightNull_Equals_True()
+        public void LeftNotNullRightNull_Differents_True()
         {
             // Arrange
             Error? left = Error.Failure("fake", "fake", "fake");
@@ -38,7 +38,7 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
         }
 
         [Fact]
-        public void LeftNullRightNotNull_Equals_True()
+        public void LeftNullRightNotNull_Differents_True()
         {
             // Arrange
             Error? left = null;
@@ -54,7 +54,7 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
         }
 
         [Fact]
-        public void BothDifferents_Equals_True()
+        public void BothDifferents_Differents_True()
         {
             // Arrange
             Error? left = Error.Failure("fake1", "fake", "fake");
@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
         }
 
         [Fact]
-        public void BothEquals_Equals_False()
+        public void BothEquals_Differents_False()
         {
             // Arrange
             Error? left = Error.Failure("fake", "fake", "fake");
