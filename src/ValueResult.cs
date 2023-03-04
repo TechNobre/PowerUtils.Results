@@ -175,69 +175,42 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result<TValue>(Error error) => new(error);
-#else
-        public static implicit operator Result<TValue>(Error error) => new(error as IError);
-#endif
+        public static implicit operator Result<TValue>(Error error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an unauthorized error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result<TValue>(UnauthorizedError error) => new(error);
-#else
-        public static implicit operator Result<TValue>(UnauthorizedError error) => new(error as IError);
-#endif
+        public static implicit operator Result<TValue>(UnauthorizedError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an forbidden error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result<TValue>(ForbiddenError error) => new(error);
-#else
-        public static implicit operator Result<TValue>(ForbiddenError error) => new(error as IError);
-#endif
+        public static implicit operator Result<TValue>(ForbiddenError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an not found error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result<TValue>(NotFoundError error) => new(error);
-#else
-        public static implicit operator Result<TValue>(NotFoundError error) => new(error as IError);
-#endif
+        public static implicit operator Result<TValue>(NotFoundError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an conflict error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result<TValue>(ConflictError error) => new(error);
-#else
-        public static implicit operator Result<TValue>(ConflictError error) => new(error as IError);
-#endif
+        public static implicit operator Result<TValue>(ConflictError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an validation error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result<TValue>(ValidationError error) => new(error);
-#else
-        public static implicit operator Result<TValue>(ValidationError error) => new(error as IError);
-#endif
+        public static implicit operator Result<TValue>(ValidationError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an unexpected error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result<TValue>(UnexpectedError error) => new(error);
-#else
-        public static implicit operator Result<TValue>(UnexpectedError error) => new(error as IError);
-#endif
+        public static implicit operator Result<TValue>(UnexpectedError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a <see cref="Result"/>
         /// </summary>
+
 #if NET6_0_OR_GREATER
         public static implicit operator Result<TValue>(Result result)
         {
