@@ -3,10 +3,10 @@ using Xunit;
 
 namespace PowerUtils.Results.Tests.VoidResults
 {
-    public class MethodSuccessTests
+    public class FactorySuccessTests
     {
         [Fact]
-        public void SuccessMethod_CreateResult_IsErrorFalse()
+        public void SuccessFactory_CreateResult_IsErrorFalse()
         {
             // Arrange && Act
             var act = Result.Success();

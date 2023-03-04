@@ -28,13 +28,13 @@ namespace PowerUtils.Results.Benchmarks.Tests
         }
 
         [Benchmark]
-        public void Method_ResultTypeFrom()
+        public void Factory_ResultTypeFrom()
         {
             var result = Result<FakeModel>.From(_error);
         }
 
         [Benchmark]
-        public void Method_ResultFromType()
+        public void Factory_ResultFromType()
         {
             var result = Result.From<FakeModel>(_error);
         }

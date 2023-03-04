@@ -4,12 +4,12 @@ using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
-namespace PowerUtils.Results.Tests.VoidResults
+namespace PowerUtils.Results.Tests.ValueResults
 {
-    public class MethodFromTests
+    public class FactoryFromTests
     {
         [Fact]
-        public void CustomError_ResultFrom_ResultWithError()
+        public void CustomError_ResultFrom_ResultModel()
         {
             // Arrange
             var property = "fakeCustomProperty";
@@ -20,7 +20,30 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Act
-            var act = Result.From(error);
+            var act = Result<FakeModel>.From(error);
+
+
+            // Assert
+            act.Should().ContainsError<CustomError>(
+                property,
+                code,
+                description);
+        }
+
+
+        [Fact]
+        public void CustomError_ResultFromWithType_ResultModel()
+        {
+            // Arrange
+            var property = "fakeCustom1Property";
+            var code = "fakeCustom1Code";
+            var description = "fakeCustom1Description";
+
+            var error = new CustomError(property, code, description);
+
+
+            // Act
+            var act = Result.From<FakeModel>(error);
 
 
             // Assert
@@ -31,7 +54,7 @@ namespace PowerUtils.Results.Tests.VoidResults
         }
 
         [Fact]
-        public void ErrorList_ResultFrom_ResultWithError()
+        public void ErrorList_ResultFrom_ResultModelWithError()
         {
             // Arrange
             var property1 = "fakeProperty1";
@@ -50,7 +73,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Act
-            var act = Result.From(errors);
+            var act = Result.From<FakeModel>(errors);
 
 
             // Assert

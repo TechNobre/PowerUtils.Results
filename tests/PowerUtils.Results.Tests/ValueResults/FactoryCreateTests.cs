@@ -6,7 +6,7 @@ using Xunit;
 
 namespace PowerUtils.Results.Tests.ValueResults
 {
-    public class MethodCreateTests
+    public class FactoryCreateTests
     {
         [Fact]
         public void EmptyErrorList_Create_ValueResult()
@@ -18,8 +18,7 @@ namespace PowerUtils.Results.Tests.ValueResults
             // Act
             var act = Result.Create(
                 errors,
-                () => new FakeModel()
-            );
+                () => new FakeModel());
 
 
             // Assert

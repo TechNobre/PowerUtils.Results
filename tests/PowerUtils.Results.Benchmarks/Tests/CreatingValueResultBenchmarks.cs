@@ -28,19 +28,19 @@ namespace PowerUtils.Results.Benchmarks.Tests
         }
 
         [Benchmark]
-        public void Method_ResultTypeOk()
+        public void Factory_ResultTypeOk()
         {
             var result = Result<FakeModel>.Ok(_model);
         }
 
         [Benchmark]
-        public void Method_ResultOkType()
+        public void Factory_ResultOkType()
         {
             var result = Result.Ok<FakeModel>(_model);
         }
 
         [Benchmark]
-        public void Method_ResultOk()
+        public void Factory_ResultOk()
         {
             var result = Result.Ok(_model);
         }
