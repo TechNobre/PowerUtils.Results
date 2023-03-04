@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
@@ -15,14 +16,16 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
 
 
             // Act
-            var act = Error.Unexpected(property, code, description);
+            var (actProperty, actCode, actDescription) = Error.Unexpected(property, code, description);
 
 
             // Assert
-            act.Should().IsError<UnexpectedError>(
-                property,
-                code,
-                description);
+            using(new AssertionScope())
+            {
+                actProperty.Should().Be(property);
+                actCode.Should().Be(code);
+                actDescription.Should().Be(description);
+            }
         }
     }
 }

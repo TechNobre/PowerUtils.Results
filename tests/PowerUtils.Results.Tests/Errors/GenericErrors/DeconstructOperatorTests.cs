@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.Errors.GenericErrors
@@ -15,14 +16,16 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
 
 
             // Act
-            var act = Error.Failure(property, code, description);
+            var (actProperty, actCode, actDescription) = Error.Failure(property, code, description);
 
 
             // Assert
-            act.Should().IsError<Error>(
-                property,
-                code,
-                description);
+            using(new AssertionScope())
+            {
+                actProperty.Should().Be(property);
+                actCode.Should().Be(code);
+                actDescription.Should().Be(description);
+            }
         }
     }
 }

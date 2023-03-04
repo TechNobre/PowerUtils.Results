@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.Errors.NotFoundErrors
@@ -15,14 +16,16 @@ namespace PowerUtils.Results.Tests.Errors.NotFoundErrors
 
 
             // Act
-            var act = Error.NotFound(property, code, description);
+            var (actProperty, actCode, actDescription) = Error.NotFound(property, code, description);
 
 
             // Assert
-            act.Should().IsError<NotFoundError>(
-                property,
-                code,
-                description);
+            using(new AssertionScope())
+            {
+                actProperty.Should().Be(property);
+                actCode.Should().Be(code);
+                actDescription.Should().Be(description);
+            }
         }
     }
 }

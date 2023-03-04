@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.Errors.ConflictErrors
@@ -15,14 +16,16 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
 
 
             // Act
-            var act = Error.Conflict(property, code, description);
+            var (actProperty, actCode, actDescription) = Error.Conflict(property, code, description);
 
 
             // Assert
-            act.Should().IsError<ConflictError>(
-                property,
-                code,
-                description);
+            using(new AssertionScope())
+            {
+                actProperty.Should().Be(property);
+                actCode.Should().Be(code);
+                actDescription.Should().Be(description);
+            }
         }
     }
 }
