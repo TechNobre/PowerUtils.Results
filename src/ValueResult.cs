@@ -267,5 +267,10 @@ namespace PowerUtils.Results
         /// Creates an <see cref="Result{TValue}"/> from an <see cref="IError"/>
         /// </summary>
         public static Result<TValue> From(IError error) => new(error);
+
+        /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from an <see cref="List{IError}"/>
+        /// </summary>
+        public static Result<TValue> From(List<IError> errors) => new(errors);
     }
 }

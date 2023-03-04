@@ -36,9 +36,19 @@ namespace PowerUtils.Results
         public static Result From(IError error) => new(error);
 
         /// <summary>
+        /// Creates an <see cref="Result"/> from an <see cref="List{IError}"/>
+        /// </summary>
+        public static Result From(List<IError> errors) => new(errors);
+
+        /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an <see cref="IError"/>
         /// </summary>
         public static Result<TValue> From<TValue>(IError error) => Result<TValue>.From(error);
+
+        /// <summary>
+        /// Creates an <see cref="Result{TValue}"/> from an <see cref="List{IError}"/>
+        /// </summary>
+        public static Result<TValue> From<TValue>(List<IError> errors) => Result<TValue>.From(errors);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> if <see cref="IEnumerable{IError}"/> is empty or null. If not create an error result
