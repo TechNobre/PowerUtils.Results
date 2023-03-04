@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.VoidResults
@@ -18,8 +19,11 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.Should().BeOfType<InvalidOperationException>();
-            act.Message.Should().Be("Errors can be retrieved only when the result is an error");
+            using(new AssertionScope())
+            {
+                act.Should().BeOfType<InvalidOperationException>();
+                act.Message.Should().Be("Errors can be retrieved only when the result is an error");
+            }
         }
     }
 }

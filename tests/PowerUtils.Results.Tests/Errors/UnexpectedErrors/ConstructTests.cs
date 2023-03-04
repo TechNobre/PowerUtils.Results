@@ -19,12 +19,10 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
 
 
             // Assert
-            act.Property.Should()
-                .Be(property);
-            act.Code.Should()
-                .Be(code);
-            act.Description.Should()
-                .Be(description);
+            act.Should().IsError<UnexpectedError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
@@ -40,12 +38,10 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
 
 
             // Assert
-            act.Property.Should()
-                .Be(property);
-            act.Code.Should()
-                .Be(code);
-            act.Description.Should()
-                .Be($"An error has occurred with code '{code}'");
+            act.Should().IsError<UnexpectedError>(
+                property,
+                code,
+                $"An error has occurred with code '{code}'");
         }
     }
 }

@@ -15,13 +15,14 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
 
 
             // Act
-            var (actProperty, actCode, actDescription) = Error.Failure(property, code, description);
+            var act = Error.Failure(property, code, description);
 
 
             // Assert
-            actProperty.Should().Be(property);
-            actCode.Should().Be(code);
-            actDescription.Should().Be(description);
+            act.Should().IsError<Error>(
+                property,
+                code,
+                description);
         }
     }
 }

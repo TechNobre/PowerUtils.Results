@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using Xunit;
 
 namespace PowerUtils.Results.Tests.ResultExtensions
@@ -50,12 +51,15 @@ namespace PowerUtils.Results.Tests.ResultExtensions
 
 
             // Act
-            var act = Record.Exception(() => result.OfTypeFirstError());
+            var act = Record.Exception(result.OfTypeFirstError);
 
 
             // Assert
-            act.Should().BeOfType<InvalidOperationException>();
-            act.Message.Should().Be("Errors can be retrieved only when the result is an error");
+            using(new AssertionScope())
+            {
+                act.Should().BeOfType<InvalidOperationException>();
+                act.Message.Should().Be("Errors can be retrieved only when the result is an error");
+            }
         }
     }
 }

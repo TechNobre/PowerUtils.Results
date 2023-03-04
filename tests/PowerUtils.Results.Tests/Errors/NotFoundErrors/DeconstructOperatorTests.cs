@@ -15,13 +15,14 @@ namespace PowerUtils.Results.Tests.Errors.NotFoundErrors
 
 
             // Act
-            var (actProperty, actCode, actDescription) = Error.NotFound(property, code, description);
+            var act = Error.NotFound(property, code, description);
 
 
             // Assert
-            actProperty.Should().Be(property);
-            actCode.Should().Be(code);
-            actDescription.Should().Be(description);
+            act.Should().IsError<NotFoundError>(
+                property,
+                code,
+                description);
         }
     }
 }

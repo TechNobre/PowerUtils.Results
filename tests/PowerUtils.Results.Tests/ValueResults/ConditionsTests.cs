@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -36,10 +37,13 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            value.Should().BeNull();
-            errors.Should().ContainSingle(s => s.Property == property);
+            using(new AssertionScope())
+            {
+                value.Should().BeNull();
+                errors.Should().ContainSingle(s => s.Property == property);
 
-            condition.Should().Be(2);
+                condition.Should().Be(2);
+            }
         }
 
         [Fact]
@@ -70,10 +74,13 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            value.Should().NotBeNull();
-            errors.Should().BeEmpty();
+            using(new AssertionScope())
+            {
+                value.Should().NotBeNull();
+                errors.Should().BeEmpty();
 
-            condition.Should().Be(1);
+                condition.Should().Be(1);
+            }
         }
     }
 }

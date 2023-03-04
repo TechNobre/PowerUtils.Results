@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -21,17 +20,10 @@ namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnauthorizedError>();
+            act.Should().ContainsError<UnauthorizedError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
@@ -47,17 +39,10 @@ namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == ResultErrorCodes.UNAUTHORIZED);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnauthorizedError>();
+            act.Should().ContainsError<UnauthorizedError>(
+                property,
+                ResultErrorCodes.UNAUTHORIZED,
+                description);
         }
 
         [Fact]
@@ -74,17 +59,10 @@ namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnauthorizedError>();
+            act.Should().ContainsError<UnauthorizedError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
@@ -100,17 +78,10 @@ namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == ResultErrorCodes.UNAUTHORIZED);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnauthorizedError>();
+            act.Should().ContainsError<UnauthorizedError>(
+                property,
+                ResultErrorCodes.UNAUTHORIZED,
+                description);
         }
     }
 }

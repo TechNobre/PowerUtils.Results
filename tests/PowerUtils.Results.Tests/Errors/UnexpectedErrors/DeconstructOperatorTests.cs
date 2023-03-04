@@ -15,13 +15,14 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
 
 
             // Act
-            var (actProperty, actCode, actDescription) = Error.Unexpected(property, code, description);
+            var act = Error.Unexpected(property, code, description);
 
 
             // Assert
-            actProperty.Should().Be(property);
-            actCode.Should().Be(code);
-            actDescription.Should().Be(description);
+            act.Should().IsError<UnexpectedError>(
+                property,
+                code,
+                description);
         }
     }
 }

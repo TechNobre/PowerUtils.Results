@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -23,10 +24,11 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Value.Id.Should()
-                .Be(id);
-            act.Value.Name.Should()
-                .Be(name);
+            using(new AssertionScope())
+            {
+                act.Value.Id.Should().Be(id);
+                act.Value.Name.Should().Be(name);
+            }
         }
 
         [Fact]
@@ -41,8 +43,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -57,8 +58,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -73,8 +73,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -89,8 +88,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -105,8 +103,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -121,8 +118,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -137,8 +133,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -153,8 +148,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -169,8 +163,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -188,10 +181,11 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Id.Should()
-                .Be(id);
-            act.Name.Should()
-                .Be(name);
+            using(new AssertionScope())
+            {
+                act.Id.Should().Be(id);
+                act.Name.Should().Be(name);
+            }
         }
 
         [Fact]
@@ -218,26 +212,18 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
+            using(new AssertionScope())
+            {
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
-
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
 
         [Fact]
@@ -264,26 +250,18 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
+            using(new AssertionScope())
+            {
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
-
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
 
         [Fact]
@@ -301,8 +279,11 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Id.Should().Be(id);
-            act.Name.Should().Be(name);
+            using(new AssertionScope())
+            {
+                act.Id.Should().Be(id);
+                act.Name.Should().Be(name);
+            }
         }
 
 
@@ -322,14 +303,10 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.FirstError().Property.Should()
-                .Be(property);
-            act.FirstError().Code.Should()
-                .Be(code);
-            act.FirstError().Description.Should()
-                .Be(description);
-
-            act.GetType().Should().Be(typeof(ConflictError));
+            act.Should().ContainsError<ConflictError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
@@ -344,10 +321,11 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
-            act.Value.Should()
-                .BeNull();
+            using(new AssertionScope())
+            {
+                act.IsError.Should().BeFalse();
+                act.Value.Should().BeNull();
+            }
         }
 
 #if NET5_0
@@ -363,10 +341,11 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act?.IsError.Should()
-                .BeFalse();
-            act.Value.Should()
-                .BeNull();
+            using(new AssertionScope())
+            {
+                act?.IsError.Should().BeFalse();
+                act.Value.Should().BeNull();
+            }
         }
 #endif
 
@@ -396,23 +375,18 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
+            using(new AssertionScope())
+            {
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using FluentAssertions;
+using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -20,8 +21,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -36,8 +36,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -52,8 +51,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -84,8 +82,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -100,8 +97,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -116,8 +112,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -132,8 +127,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -148,8 +142,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -176,26 +169,20 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
+            using(new AssertionScope())
+            {
+                act.Errors.Should().HaveCount(2);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
 
         [Fact]
@@ -222,26 +209,20 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
+            using(new AssertionScope())
+            {
+                act.Errors.Should().HaveCount(2);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
 
-            act.Errors.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
 
         [Fact]
@@ -252,8 +233,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
         [Fact]
@@ -271,14 +251,10 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.FirstError().Property.Should()
-                .Be(property);
-            act.FirstError().Code.Should()
-                .Be(code);
-            act.FirstError().Description.Should()
-                .Be(description);
-
-            act.GetType().Should().Be(typeof(ConflictError));
+            act.Should().ContainsError<ConflictError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
@@ -293,8 +269,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.IsError.Should()
-                .BeFalse();
+            act.IsError.Should().BeFalse();
         }
 
 #if NET5_0
@@ -310,8 +285,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act?.IsError.Should()
-                .BeFalse();
+            act?.IsError.Should().BeFalse();
         }
 #endif
 
@@ -341,24 +315,20 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.Should()
-                .ContainSingle(s =>
-                    s.Property == property1
-                    &&
-                    s.Code == code1
-                    &&
-                    s.Description == description1
-                );
+            using(new AssertionScope())
+            {
+                act.Should().HaveCount(2);
 
-            act.Should()
-                .ContainSingle(s =>
-                    s.Property == property2
-                    &&
-                    s.Code == code2
-                    &&
-                    s.Description == description2
-                );
+                act.Should().ContainsError<Error>(
+                    property1,
+                    code1,
+                    description1);
+
+                act.Should().ContainsError<Error>(
+                    property2,
+                    code2,
+                    description2);
+            }
         }
     }
-
 }

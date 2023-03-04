@@ -14,8 +14,7 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.GetType().Should()
-                .Be<FakeModel>();
+            act.GetType().Should().Be<FakeModel>();
         }
     }
 }

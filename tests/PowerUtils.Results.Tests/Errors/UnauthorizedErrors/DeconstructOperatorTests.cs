@@ -15,13 +15,14 @@ namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
 
 
             // Act
-            var (actProperty, actCode, actDescription) = Error.Unauthorized(property, code, description);
+            var act = Error.Unauthorized(property, code, description);
 
 
             // Assert
-            actProperty.Should().Be(property);
-            actCode.Should().Be(code);
-            actDescription.Should().Be(description);
+            act.Should().IsError<UnauthorizedError>(
+                property,
+                code,
+                description);
         }
     }
 }

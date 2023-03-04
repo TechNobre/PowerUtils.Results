@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -10,106 +9,79 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
         [Fact]
         public void Error_ImplicitResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeUnexpectedProperty";
             var description = "fakeUnexpectedDescription";
             var code = "fakeUnexpectedCode";
 
 
-            //Act
+            // Act
             Result act = Error.Unexpected(property, code, description);
 
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
-
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnexpectedError>();
+            // Assert
+            act.Should().ContainsError<UnexpectedError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
         public void ErrorWithDefaultCode_ImplicitResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeUnexpectedProperty";
             var description = "fakeUnexpectedDescription";
 
 
-            //Act
+            // Act
             Result act = Error.Unexpected(property, description);
 
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
-
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == ResultErrorCodes.UNEXPECTED);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnexpectedError>();
+            // Assert
+            act.Should().ContainsError<UnexpectedError>(
+                property,
+                ResultErrorCodes.UNEXPECTED,
+                description);
         }
 
         [Fact]
         public void Error_ImplicitValueResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeUnexpectedProperty";
             var description = "fakeUnexpectedDescription";
             var code = "fakeUnexpectedCode";
 
 
-            //Act
+            // Act
             Result<FakeModel> act = Error.Unexpected(property, code, description);
 
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
-
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnexpectedError>();
+            // Assert
+            act.Should().ContainsError<UnexpectedError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
         public void ErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeUnexpectedProperty";
             var description = "fakeUnexpectedDescription";
 
 
-            //Act
+            // Act
             Result<FakeModel> act = Error.Unexpected(property, description);
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
 
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == ResultErrorCodes.UNEXPECTED);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<UnexpectedError>();
+            // Assert
+            act.Should().ContainsError<UnexpectedError>(
+                property,
+                ResultErrorCodes.UNEXPECTED,
+                description);
         }
     }
 

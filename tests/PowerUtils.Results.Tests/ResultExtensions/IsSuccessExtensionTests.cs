@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -132,10 +133,13 @@ namespace PowerUtils.Results.Tests.ResultExtensions
 
 
             // Assert
-            value.Should().BeNull();
-            errors.Should().ContainSingle(s => s.Property == property);
+            using(new AssertionScope())
+            {
+                value.Should().BeNull();
+                errors.Should().ContainSingle(s => s.Property == property);
 
-            act.Should().BeFalse();
+                act.Should().BeFalse();
+            }
         }
 
         [Fact]
@@ -150,10 +154,13 @@ namespace PowerUtils.Results.Tests.ResultExtensions
 
 
             // Assert
-            value.Should().NotBeNull();
-            errors.Should().BeEmpty();
+            using(new AssertionScope())
+            {
+                value.Should().NotBeNull();
+                errors.Should().BeEmpty();
 
-            act.Should().BeTrue();
+                act.Should().BeTrue();
+            }
         }
 
         [Fact]
@@ -169,9 +176,12 @@ namespace PowerUtils.Results.Tests.ResultExtensions
 
 
             // Assert
-            errors.Should().ContainSingle(s => s.Property == property);
+            using(new AssertionScope())
+            {
+                errors.Should().ContainSingle(s => s.Property == property);
 
-            act.Should().BeFalse();
+                act.Should().BeFalse();
+            }
         }
 
         [Fact]
@@ -186,9 +196,12 @@ namespace PowerUtils.Results.Tests.ResultExtensions
 
 
             // Assert
-            errors.Should().BeEmpty();
+            using(new AssertionScope())
+            {
+                errors.Should().BeEmpty();
 
-            act.Should().BeTrue();
+                act.Should().BeTrue();
+            }
         }
     }
 }

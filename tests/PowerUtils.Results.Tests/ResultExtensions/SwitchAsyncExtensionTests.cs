@@ -31,8 +31,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert
@@ -58,8 +57,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await Method().SwitchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert
@@ -87,8 +85,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert
@@ -116,8 +113,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchAsync(
                onSuccessAction,
-               onErrorsAction
-            );
+               onErrorsAction);
 
 
             // Assert
@@ -143,8 +139,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await Method().SwitchAsync(
                onSuccessAction,
-               onErrorsAction
-            );
+               onErrorsAction);
 
 
             // Assert
@@ -173,8 +168,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             await result.SwitchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert

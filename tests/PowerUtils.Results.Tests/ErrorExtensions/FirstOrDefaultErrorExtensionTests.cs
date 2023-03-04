@@ -48,8 +48,10 @@ namespace PowerUtils.Results.Tests.ErrorExtensions
             var result = Result.Ok();
             static bool fakePredicate(IError x) => x.Code == ResultErrorCodes.VALIDATION;
 
-            //Act
+
+            // Act
             var act = result.FirstOrDefaultError(fakePredicate);
+
 
             // Assert
             act.Should().BeNull();
@@ -62,13 +64,12 @@ namespace PowerUtils.Results.Tests.ErrorExtensions
             bool fakePredicate(IError x) => x.Code == _firstError.Code;
 
 
-            //Act
+            // Act
             var act = _result.FirstOrDefaultError(fakePredicate);
 
 
             // Assert
-            act.Should()
-               .Be(_firstError);
+            act.Should().Be(_firstError);
         }
 
         [Fact]
@@ -78,7 +79,7 @@ namespace PowerUtils.Results.Tests.ErrorExtensions
             static bool fakePredicate(IError x) => x.Code == "fakeErrorCodeToFail";
 
 
-            //Act
+            // Act
             var act = _result.FirstOrDefaultError(fakePredicate);
 
 

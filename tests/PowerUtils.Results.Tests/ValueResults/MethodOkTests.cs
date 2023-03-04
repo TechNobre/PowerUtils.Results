@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -20,10 +21,13 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Value.Id.Should().Be(id);
-            act.Value.Name.Should().Be(name);
+            using(new AssertionScope())
+            {
+                act.Value.Id.Should().Be(id);
+                act.Value.Name.Should().Be(name);
 
-            act.GetType().Should().Be(typeof(FakeModel));
+                act.GetType().Should().Be(typeof(FakeModel));
+            }
         }
 
         [Fact]
@@ -40,10 +44,13 @@ namespace PowerUtils.Results.Tests.ValueResults
 
 
             // Assert
-            act.Value.Id.Should().Be(id);
-            act.Value.Name.Should().Be(name);
+            using(new AssertionScope())
+            {
+                act.Value.Id.Should().Be(id);
+                act.Value.Name.Should().Be(name);
 
-            act.GetType().Should().Be(typeof(FakeModel));
+                act.GetType().Should().Be(typeof(FakeModel));
+            }
         }
     }
 }

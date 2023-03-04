@@ -22,14 +22,10 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Assert
-            act.FirstError().Property.Should()
-                .Be(property);
-            act.FirstError().Code.Should()
-                .Be(code);
-            act.FirstError().Description.Should()
-                .Be(description);
-
-            act.GetType().Should().Be(typeof(CustomError));
+            act.Should().ContainsError<CustomError>(
+                property,
+                code,
+                description);
         }
     }
 }

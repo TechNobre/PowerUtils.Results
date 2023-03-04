@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -21,17 +20,10 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ConflictError>();
+            act.Should().ContainsError<ConflictError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
@@ -47,17 +39,10 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == ResultErrorCodes.CONFLICT);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ConflictError>();
+            act.Should().ContainsError<ConflictError>(
+                property,
+                ResultErrorCodes.CONFLICT,
+                description);
         }
 
 
@@ -76,17 +61,10 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ConflictError>();
+            act.Should().ContainsError<ConflictError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
@@ -102,17 +80,10 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
 
 
             // Assert
-            act.IsError.Should()
-                .BeTrue();
-
-            act.Errors.Should()
-                .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-                .ContainSingle(s => s.Code == ResultErrorCodes.CONFLICT);
-            act.Errors.Should()
-                .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ConflictError>();
+            act.Should().ContainsError<ConflictError>(
+                property,
+                ResultErrorCodes.CONFLICT,
+                description);
         }
     }
 }

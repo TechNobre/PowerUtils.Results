@@ -31,8 +31,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             var act = await result.MatchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert
@@ -60,8 +59,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             var act = await Method().MatchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert
@@ -89,8 +87,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             var act = await result.MatchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert
@@ -117,8 +114,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             var act = await result.MatchAsync(
                onSuccessAction,
-               onErrorsAction
-           );
+               onErrorsAction);
 
 
             // Assert
@@ -144,8 +140,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             var act = await Method().MatchAsync(
                onSuccessAction,
-               onErrorsAction
-           );
+               onErrorsAction);
 
 
             // Assert
@@ -171,8 +166,7 @@ namespace PowerUtils.Results.Tests.ResultExtensions
             // Act
             var act = await result.MatchAsync(
                 onSuccessAction,
-                onErrorsAction
-            );
+                onErrorsAction);
 
 
             // Assert

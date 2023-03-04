@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using FluentAssertions;
+﻿using FluentAssertions;
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
@@ -10,107 +9,79 @@ namespace PowerUtils.Results.Tests.Errors.ValidationErrors
         [Fact]
         public void ErrorWithDefaultCode_ImplicitResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeValidationProperty";
             var description = "fakeValidationDescription";
 
 
-            //Act
+            // Act
             Result act = Error.Validation(property, description);
 
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
-
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == ResultErrorCodes.VALIDATION);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ValidationError>();
+            // Assert
+            act.Should().ContainsError<ValidationError>(
+                property,
+                ResultErrorCodes.VALIDATION,
+                description);
         }
 
         [Fact]
         public void Error_ImplicitResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeValidationProperty";
             var description = "fakeValidationDescription";
             var code = "fakeValidationCode";
 
 
-            //Act
+            // Act
             Result act = Error.Validation(property, code, description);
 
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
-
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ValidationError>();
+            // Assert
+            act.Should().ContainsError<ValidationError>(
+                property,
+                code,
+                description);
         }
 
         [Fact]
         public void ErrorWithDefaultCode_ImplicitValueResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeValidationProperty";
             var description = "fakeValidationDescription";
 
 
-            //Act
+            // Act
             Result<FakeModel> act = Error.Validation(property, description);
 
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
-
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == ResultErrorCodes.VALIDATION);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ValidationError>();
+            // Assert
+            act.Should().ContainsError<ValidationError>(
+                property,
+                ResultErrorCodes.VALIDATION,
+                description);
         }
 
         [Fact]
         public void Error_ImplicitValueResult_IsErrorTrue()
         {
-            //Arrange
+            // Arrange
             var property = "fakeValidationProperty";
             var description = "fakeValidationDescription";
             var code = "fakeValidationCode";
 
 
-            //Act
+            // Act
             Result<FakeModel> act = Error.Validation(property, code, description);
 
 
-            //Assert
-            act.IsError.Should()
-               .BeTrue();
-
-            act.Errors.Should()
-               .ContainSingle(s => s.Property == property);
-            act.Errors.Should()
-               .ContainSingle(s => s.Code == code);
-            act.Errors.Should()
-               .ContainSingle(s => s.Description == description);
-
-            act.Errors.First().Should().BeOfType<ValidationError>();
+            // Assert
+            act.Should().ContainsError<ValidationError>(
+                property,
+                code,
+                description);
         }
     }
 }
