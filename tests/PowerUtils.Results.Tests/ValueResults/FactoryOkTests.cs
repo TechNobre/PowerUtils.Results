@@ -5,7 +5,7 @@ using Xunit;
 
 namespace PowerUtils.Results.Tests.ValueResults
 {
-    public class MethodOkTests
+    public class FactoryOkTests
     {
         [Fact]
         public void Value_Ok_ResultModel()

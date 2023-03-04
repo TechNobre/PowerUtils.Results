@@ -27,7 +27,7 @@ namespace PowerUtils.Results.Benchmarks.Tests
         }
 
         [Benchmark]
-        public void Method_ResultFrom()
+        public void Factory_ResultFrom()
         {
             var result = Result.From(_error);
         }
