@@ -5,8 +5,9 @@ using System.Linq;
 
 namespace PowerUtils.Results
 {
+    // The '\"\"' before '_value' is used to avoid the following error: "error CS0173: Type of conditional expression cannot be determined because there is no implicit conversion between 'TValue' and 'string'"
+    [DebuggerDisplay("{IsSuccess ? \"\" + _value : \"Errors: \" + _errors.Count}")]
 #if NET6_0_OR_GREATER
-    [DebuggerDisplay("IsSuccess {IsSuccess} | Errors{_errors}")]
     public record struct Result<TValue> : IResult
 #else
     public sealed record Result<TValue> : IResult

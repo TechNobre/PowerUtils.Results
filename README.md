@@ -177,14 +177,12 @@ Delegate is used to instantiate the value only when there are no errors
 // Returns `Result` with value
 var result = Result.Create(
     Array.Empty<Error>(),
-    () => new Model()
-);
+    () => new Model());
 
 // Returns `Result` with errors
 var result = Result.Create(
     new List<Error> { Error.Failure("property", "code", "description") },
-    () => new Model()
-);
+    () => new Model());
 ```
 
 
@@ -247,25 +245,21 @@ bool IResult.IsSuccess(Func<TValue, bool> predicate);
 ```csharp
 result.Switch(
     value => onSuccess(value),
-    errors => onErrors(errors)
-);
+    errors => onErrors(errors));
 
 // Only return the value or first erro
 result.SwitchFirst(
     value => onSuccess(value),
-    error => onError(error)
-);
+    error => onError(error));
 
 await result.SwitchAsync(
     value => onSuccess(value),
-    errors => onErrors(errors)
-);
+    errors => onErrors(errors));
 
 // Only return the value or first erro
 await result.SwitchFirstAsync(
     value => onSuccess(value),
-    error => onError(error)
-);
+    error => onError(error));
 ```
 
 #### Match <a name="doc-extensions-Match"></a>
@@ -273,26 +267,22 @@ await result.SwitchFirstAsync(
 ```csharp
 TOutput response = result.Match<TValue, TOutput>(
     value => onSuccess(value),
-    errors => onErrors(errors)
-);
+    errors => onErrors(errors));
 
 // Only return the value or first erro
 TOutput response = result.MatchFirst<TValue, TOutput>(
     value => onSuccess(value),
-    error => onError(error)
-);
+    error => onError(error));
 
 
 Task<TOutput> response = result.MatchAsync<TValue, TOutput>(
     value => onSuccess(value),
-    errors => onErrors(errors)
-);
+    errors => onErrors(errors));
 
 // Only return the value or first erro
 Task<TOutput> response = result.MatchFirstAsync<TValue, TOutput>(
     value => onSuccess(value),
-    error => onError(error)
-);
+    error => onError(error));
 ```
 
 #### Conversions <a name="doc-extensions-conversions"></a>
@@ -307,8 +297,7 @@ var errorList = result.Errors.AsList();
 Result result = new IError[]
 {
     Error.Conflict("FakeProperty", "FakeCode", "FakeDescription"),
-    Error.Conflict("FakeProperty", "FakeCode", "FakeDescription")
-};
+    Error.Conflict("FakeProperty", "FakeCode", "FakeDescription")};
 
 // Only returns one error
 var errors = result.DistinctErrors();

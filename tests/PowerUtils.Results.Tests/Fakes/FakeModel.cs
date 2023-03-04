@@ -1,5 +1,8 @@
-﻿namespace PowerUtils.Results.Tests.Fakes
+﻿using System.Diagnostics;
+
+namespace PowerUtils.Results.Tests.Fakes
 {
+    [DebuggerDisplay("Name = {Name}")]
     public class FakeModel
     {
         public int Id { get; set; }
@@ -18,5 +21,7 @@
             Id = id;
             Name = name;
         }
+
+        //public override string ToString() => $"{Id}, {Name}";
     }
 }

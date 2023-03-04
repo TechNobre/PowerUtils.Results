@@ -4,6 +4,9 @@ namespace PowerUtils.Results
 {
     internal static class CommonUtils
     {
+        internal const string ERROR_DEBUG_TEMPLATE = "{GetType().Name} > P: {Property}, C: {Code}, D: {Description}";
+
+
         internal static bool Equals<TError>(TError error, ref IError other) where TError : IError
         {
             if(other is not TError)

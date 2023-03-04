@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PowerUtils.Results
 {
-    [DebuggerDisplay("IsSuccess {IsSuccess} | Errors{_errors}")]
+    [DebuggerDisplay("Errors: {IsSuccess ? 0 : _errors.Count}")]
 #if NET6_0_OR_GREATER
     public partial record struct Result : IResult
 #else
