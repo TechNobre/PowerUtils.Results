@@ -74,12 +74,7 @@ namespace PowerUtils.Results
         /// Creates an error result with the given error
         /// </summary>
         private Result(IError error)
-        {
-            _value = default;
-
-            IsError = true;
-            _errors = new List<IError> { error };
-        }
+            : this(new List<IError> { error }) { }
 
         /// <summary>
         /// Creates an error result with the given errors
@@ -211,52 +206,36 @@ namespace PowerUtils.Results
         /// Creates an <see cref="Result{TValue}"/> from a <see cref="Result"/>
         /// </summary>
 
-#if NET6_0_OR_GREATER
         public static implicit operator Result<TValue>(Result result)
         {
+#if NET6_0_OR_GREATER
             if(result.IsError)
+#else
+            if(result?.IsError is true)
+#endif
             {
                 return new(result.Errors.ToList());
             }
 
-            return new();
-        }
-#else
-        public static implicit operator Result<TValue>(Result result)
-        {
-            if(result?.IsError == true)
-            {
-                return result.Errors.ToList();
-            }
-
             return new List<IError>();
         }
-#endif
 
         /// <summary>
         /// Creates an <see cref="Result"/> from a <see cref="Result{TValue}"/>
         /// </summary>
-#if NET6_0_OR_GREATER
         public static implicit operator Result(Result<TValue> result)
         {
+#if NET6_0_OR_GREATER
             if(result.IsError)
+#else
+            if(result?.IsError is true)
+#endif
             {
                 return result.Errors.ToList();
             }
 
             return new();
         }
-#else
-        public static implicit operator Result(Result<TValue> result)
-        {
-            if(result?.IsError == true)
-            {
-                return result.Errors.ToList();
-            }
-
-            return new List<IError>();
-        }
-#endif
 
         /// <summary>
         /// Creates an value from a <see cref="Result{TValue}"/>
@@ -271,6 +250,6 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an <see cref="List{IError}"/>
         /// </summary>
-        public static Result<TValue> From(List<IError> errors) => new(errors);
+        internal static Result<TValue> From(List<IError> errors) => new(errors);
     }
 }
