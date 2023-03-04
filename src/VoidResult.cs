@@ -55,10 +55,7 @@ namespace PowerUtils.Results
         /// Creates an error result with the given error
         /// </summary>
         private Result(IError error)
-        {
-            IsError = true;
-            _errors = new List<IError> { error };
-        }
+            : this(new List<IError> { error }) { }
 
         /// <summary>
         /// Creates an error result with the given errors
