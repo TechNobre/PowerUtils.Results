@@ -135,64 +135,36 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates an <see cref="Result"/> from an error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result(Error error) => new(error);
-#else
-        public static implicit operator Result(Error error) => new(error as IError);
-#endif
+        public static implicit operator Result(Error error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an unauthorized error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result(UnauthorizedError error) => new(error);
-#else
-        public static implicit operator Result(UnauthorizedError error) => new(error as IError);
-#endif
+        public static implicit operator Result(UnauthorizedError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an forbidden error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result(ForbiddenError error) => new(error);
-#else
-        public static implicit operator Result(ForbiddenError error) => new(error as IError);
-#endif
+        public static implicit operator Result(ForbiddenError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an not found error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result(NotFoundError error) => new(error);
-#else
-        public static implicit operator Result(NotFoundError error) => new(error as IError);
-#endif
+        public static implicit operator Result(NotFoundError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an conflict error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result(ConflictError error) => new(error);
-#else
-        public static implicit operator Result(ConflictError error) => new(error as IError);
-#endif
+        public static implicit operator Result(ConflictError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an validation error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result(ValidationError error) => new(error);
-#else
-        public static implicit operator Result(ValidationError error) => new(error as IError);
-#endif
+        public static implicit operator Result(ValidationError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an unexpected error
         /// </summary>
-#if NET6_0_OR_GREATER
-        public static implicit operator Result(UnexpectedError error) => new(error);
-#else
-        public static implicit operator Result(UnexpectedError error) => new(error as IError);
-#endif
+        public static implicit operator Result(UnexpectedError error) => From(error);
     }
 }
