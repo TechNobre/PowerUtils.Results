@@ -1,3 +1,11 @@
+# [2.7.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.6.0...v2.7.0) (2023-03-09)
+
+
+### Features
+
+* Added new factory `Result.From(List<IError> errors)` ([10140de](https://github.com/TechNobre/PowerUtils.Results/commit/10140de94b9ae900422f57b49b060e195de2311c))
+* Created factory `Success.Create();` ([44e6145](https://github.com/TechNobre/PowerUtils.Results/commit/44e61454dab522e930e37e6f5844f425103dc876))
+
 # [2.6.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.5.0...v2.6.0) (2022-12-11)
 
 
