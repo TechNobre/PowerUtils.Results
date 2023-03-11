@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Text.Json.Serialization;
+using PowerUtils.Results.Serializers;
 #if NET7_0_OR_GREATER
 using System.Numerics;
 #endif
@@ -9,6 +11,9 @@ namespace PowerUtils.Results
     /// <summary>
     /// Defines a error type
     /// </summary>
+#if NET6_0_OR_GREATER
+    [JsonConverter(typeof(ErrorJsonConverter<IError>))]
+#endif
     public interface IError :
         IType,
         IEquatable<IError>
@@ -34,6 +39,7 @@ namespace PowerUtils.Results
     /// Generic error
     /// </summary>
     [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
+    [JsonConverter(typeof(ErrorJsonConverter<Error>))]
 #if NET6_0_OR_GREATER
     public readonly partial record struct Error : IError
 #else
@@ -105,6 +111,7 @@ namespace PowerUtils.Results
     /// Error type similar to a Unauthorized:401
     /// </summary>
     [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
+    [JsonConverter(typeof(ErrorJsonConverter<UnauthorizedError>))]
 #if NET6_0_OR_GREATER
     public readonly record struct UnauthorizedError : IError
 #else
@@ -176,6 +183,7 @@ namespace PowerUtils.Results
     /// Error type similar to a Forbidden:403
     /// </summary>
     [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
+    [JsonConverter(typeof(ErrorJsonConverter<ForbiddenError>))]
 #if NET6_0_OR_GREATER
     public readonly record struct ForbiddenError : IError
 #else
@@ -247,6 +255,7 @@ namespace PowerUtils.Results
     /// Error type similar to a NotFound:404
     /// </summary>
     [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
+    [JsonConverter(typeof(ErrorJsonConverter<NotFoundError>))]
 #if NET6_0_OR_GREATER
     public readonly record struct NotFoundError : IError
 #else
@@ -318,6 +327,7 @@ namespace PowerUtils.Results
     /// Error type similar to a Conflict:409
     /// </summary>
     [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
+    [JsonConverter(typeof(ErrorJsonConverter<ConflictError>))]
 #if NET6_0_OR_GREATER
     public readonly record struct ConflictError : IError
 #else
@@ -389,6 +399,7 @@ namespace PowerUtils.Results
     /// Error type similar to a Validation:400
     /// </summary>
     [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
+    [JsonConverter(typeof(ErrorJsonConverter<ValidationError>))]
 #if NET6_0_OR_GREATER
     public readonly record struct ValidationError : IError
 #else
@@ -460,6 +471,7 @@ namespace PowerUtils.Results
     /// Error type similar to a Unexpected:500
     /// </summary>
     [DebuggerDisplay(CommonUtils.ERROR_DEBUG_TEMPLATE)]
+    [JsonConverter(typeof(ErrorJsonConverter<UnexpectedError>))]
 #if NET6_0_OR_GREATER
     public readonly record struct UnexpectedError : IError
 #else
