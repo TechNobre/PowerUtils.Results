@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.Json;
 using FluentAssertions;
 using FluentAssertions.Execution;
@@ -43,6 +44,30 @@ namespace PowerUtils.Results.Tests.Errors
             {
                 act.Should().BeEmpty();
                 act.Should().BeOfType<IError[]>();
+            }
+        }
+
+
+        [Fact]
+        public void StringWithoutType_Deserialize_TypeLoadException()
+        {
+            // Arrange
+            var json = @"{
+                ""Property"": ""prop"",
+                ""Code"": ""CODE"",
+                ""Description"": ""Disc""
+            }";
+
+
+            // Act
+            var act = Record.Exception(() => JsonSerializer.Deserialize<Error>(json));
+
+
+            // Assert
+            using(new AssertionScope())
+            {
+                act.Should().BeOfType<TypeLoadException>();
+                act.Message.Should().Be($"Could not load type '{typeof(Error).FullName}'.");
             }
         }
 
