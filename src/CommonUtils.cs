@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PowerUtils.Results
 {
@@ -76,6 +78,22 @@ namespace PowerUtils.Results
             }
 
             return list.Count is not 0;
+        }
+
+        internal static Type GetErrorType(string fullName)
+        {
+            var type = Type.GetType(fullName, false, true);
+
+            type ??= AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .SingleOrDefault(s => s.FullName.Equals(fullName, StringComparison.InvariantCultureIgnoreCase));
+
+            if(type.GetInterfaces().Contains(typeof(IError)))
+            {
+                return type;
+            }
+
+            throw new TypeLoadException($"Could not load type '{fullName}'.");
         }
     }
 }
