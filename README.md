@@ -38,6 +38,8 @@
   - [Deconstruct operators](#doc-deconstruct-operators)
   - [Implicit conversion](#doc-implicit-conversion)
   - [Check validity](#doc-check-validity)
+  - [Serialization/Deserialization](#doc-serialization-deserialization)
+    - [Errors](#doc-serialization-deserialization-errors)
 - [Contribution](#contribution)
 - [License](./LICENSE)
 - [Changelog](./CHANGELOG.md)
@@ -370,6 +372,45 @@ if(result.IsError == true)
 }
 ```
 
+### Serialization/Deserialization <a name="doc-serialization-deserialization"></a>
+
+#### Errors <a name="doc-serialization-deserialization-errors"></a>
+
+**Serialization example**
+```csharp
+var error = Error.NotFound("client", "NOT_FOUND", "Client not found");
+
+var json = JsonSerializer.Serialize(error);
+/*
+json = {
+    "_type": "PowerUtils.Results.NotFoundError",
+    "Property": "client",
+    "Code": "NOT_FOUND",
+    "Description": "Client not found"
+}
+*/
+```
+
+**Deserialization example**
+```csharp
+var json = """
+    {
+        "_type": "PowerUtils.Results.NotFoundError",
+        "Property": "client",
+        "Code": "NOT_FOUND",
+        "Description": "Client not found"
+    }
+    """;
+
+var error = JsonSerializer.Deserialize<NotFoundError>(json);
+```
+
+For .NET 6.0 or greater, you can use the `IError` interface as the type to be deserialized.
+To versions .NET 5.0 or lower, the deserialization using interface is not supported. You will get an exception `System.NotSupportedException`.
+
+```csharp
+var error = JsonSerializer.Deserialize<IError>(json);
+```
 
 
 
