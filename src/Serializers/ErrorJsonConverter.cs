@@ -36,7 +36,7 @@ namespace PowerUtils.Results.Serializers
 
                     if(TYPE_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        type = CommonUtils.GetErrorType(reader.GetString());
+                        type = CommonUtils.TryGetErrorType(reader.GetString());
                     }
 
                     else if(nameof(IError.Property).Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
@@ -61,6 +61,11 @@ namespace PowerUtils.Results.Serializers
                 throw new JsonException("Unexpected end when reading JSON");
             }
 
+
+            if(type is null)
+            {
+                throw new TypeLoadException($"Could not load type '{typeof(TError).FullName}'.");
+            }
 
             try
             {

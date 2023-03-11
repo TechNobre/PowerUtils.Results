@@ -80,7 +80,7 @@ namespace PowerUtils.Results
             return list.Count is not 0;
         }
 
-        internal static Type GetErrorType(string fullName)
+        internal static Type TryGetErrorType(string fullName)
         {
             var type = Type.GetType(fullName, false, true);
 
@@ -88,12 +88,12 @@ namespace PowerUtils.Results
                 .SelectMany(assembly => assembly.GetTypes())
                 .SingleOrDefault(s => s.FullName.Equals(fullName, StringComparison.InvariantCultureIgnoreCase));
 
-            if(type.GetInterfaces().Contains(typeof(IError)))
+            if(type?.GetInterfaces().Contains(typeof(IError)) == true)
             {
                 return type;
             }
 
-            throw new TypeLoadException($"Could not load type '{fullName}'.");
+            return null;
         }
     }
 }
