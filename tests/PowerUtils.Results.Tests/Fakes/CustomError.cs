@@ -1,5 +1,9 @@
-﻿namespace PowerUtils.Results.Tests.Fakes
+﻿using System.Text.Json.Serialization;
+using PowerUtils.Results.Serializers;
+
+namespace PowerUtils.Results.Tests.Fakes
 {
+    [JsonConverter(typeof(ErrorJsonConverter<CustomError>))]
     public class CustomError : IError
     {
         public string Property { get; init; }

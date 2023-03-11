@@ -5,7 +5,7 @@ using System.Text.Json.Serialization;
 
 namespace PowerUtils.Results.Serializers
 {
-    internal sealed class ErrorJsonConverter<TError> : JsonConverter<TError>
+    public sealed class ErrorJsonConverter<TError> : JsonConverter<TError>
         where TError : IError
     {
         private const string TYPE_NAME = "_type";
@@ -36,7 +36,7 @@ namespace PowerUtils.Results.Serializers
 
                     if(TYPE_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        type = Type.GetType(reader.GetString());
+                        type = CommonUtils.GetErrorType(reader.GetString());
                     }
 
                     else if(nameof(IError.Property).Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))

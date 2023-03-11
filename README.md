@@ -406,7 +406,7 @@ var error = JsonSerializer.Deserialize<NotFoundError>(json);
 ```
 
 For .NET 6.0 or greater, you can use the `IError` interface as the type to be deserialized.
-To versions .NET 5.0 or lower, the deserialization using interface is not supported. You will get an exception `System.NotSupportedException`.
+To versions .NET 5.0 or lower, the deserialization using interface is not supported by `System.Text.Json`. You will get an exception `System.NotSupportedException`.
 
 ```csharp
 var error = JsonSerializer.Deserialize<IError>(json);
