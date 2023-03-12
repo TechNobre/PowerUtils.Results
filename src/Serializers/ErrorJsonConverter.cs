@@ -14,39 +14,7 @@ namespace PowerUtils.Results.Serializers
                 throw new JsonException("Unexpected start when reading JSON");
             }
 
-            Type type = null;
-            string property = null;
-            string code = null;
-            string description = null;
-
-            while(reader.Read() && reader.TokenType is not JsonTokenType.EndObject)
-            {
-                if(reader.TokenType == JsonTokenType.PropertyName)
-                {
-                    var propertyName = reader.GetString();
-                    reader.Read();
-
-                    if(SerializerConstants.TYPE_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        type = ResultReflection.TryGetErrorType(reader.GetString());
-                    }
-
-                    else if(nameof(IError.Property).Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        property = reader.GetString();
-                    }
-
-                    else if(nameof(IError.Code).Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        code = reader.GetString();
-                    }
-
-                    else if(nameof(IError.Description).Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        description = reader.GetString();
-                    }
-                }
-            }
+            (var type, var property, var code, var description) = JsonSerializerUtils.ReadError(ref reader);
 
             if(reader.TokenType is not JsonTokenType.EndObject)
             {
@@ -60,12 +28,12 @@ namespace PowerUtils.Results.Serializers
         {
             writer.WriteStartObject();
 
-            writer.WritePropertyName(SerializerConstants.TYPE_NAME);
+            writer.WritePropertyName(JsonSerializerUtils.TYPE_NAME);
             writer.WriteStringValue(value.GetType().FullName);
 
-            writer.WriteString(SerializerConstants.PROPERTY_NAME, value.Property);
-            writer.WriteString(SerializerConstants.CODE_NAME, value.Code);
-            writer.WriteString(SerializerConstants.DESCRIPTION_NAME, value.Description);
+            writer.WriteString(JsonSerializerUtils.JSON_PROPERTY_NAME, value.Property);
+            writer.WriteString(JsonSerializerUtils.JSON_CODE_NAME, value.Code);
+            writer.WriteString(JsonSerializerUtils.JSON_DESCRIPTION_NAME, value.Description);
 
             writer.WriteEndObject();
         }

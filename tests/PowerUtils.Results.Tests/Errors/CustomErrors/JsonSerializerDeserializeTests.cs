@@ -71,7 +71,7 @@ namespace PowerUtils.Results.Tests.Errors.CustomErrors
         }
 
         [Fact]
-        public void CustomError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void CustomError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";

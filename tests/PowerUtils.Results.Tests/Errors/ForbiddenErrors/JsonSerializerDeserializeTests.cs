@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.ForbiddenErrors
         }
 
         [Fact]
-        public void ForbiddenError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void ForbiddenError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";

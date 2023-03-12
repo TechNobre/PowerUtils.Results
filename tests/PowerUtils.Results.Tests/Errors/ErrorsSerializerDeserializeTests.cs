@@ -10,14 +10,14 @@ namespace PowerUtils.Results.Tests.Errors
     public class ErrorsSerializerDeserializeTests
     {
         [Fact]
-        public void EmptyString_Deserialize_TypeLoadException()
+        public void EmptyJsonString_Deserialize_TypeLoadException()
         {
             // Arrange
-            var serialization = "{}";
+            var json = "{}";
 
 
             // Act
-            var act = Record.Exception(() => JsonSerializer.Deserialize<Error>(serialization));
+            var act = Record.Exception(() => JsonSerializer.Deserialize<Error>(json));
 
 
             // Assert
@@ -25,14 +25,14 @@ namespace PowerUtils.Results.Tests.Errors
         }
 
         [Fact]
-        public void WrongJosn_Deserialize_JsonException()
+        public void WrongJson_Deserialize_JsonException()
         {
             // Arrange
-            var serialization = "{]";
+            var json = "{]";
 
 
             // Act
-            var act = Record.Exception(() => JsonSerializer.Deserialize<Error>(serialization));
+            var act = Record.Exception(() => JsonSerializer.Deserialize<Error>(json));
 
 
             // Assert
@@ -43,11 +43,11 @@ namespace PowerUtils.Results.Tests.Errors
         public void EmptyArrayString_DeserializeToIErrorList_EmptyIErrorList()
         {
             // Arrange
-            var serialization = "[]";
+            var json = "[]";
 
 
             // Act
-            var act = JsonSerializer.Deserialize<List<IError>>(serialization);
+            var act = JsonSerializer.Deserialize<List<IError>>(json);
 
 
             // Assert
@@ -62,11 +62,11 @@ namespace PowerUtils.Results.Tests.Errors
         public void EmptyArrayString_DeserializeToIErrorArray_EmptyIErrorArray()
         {
             // Arrange
-            var serialization = "[]";
+            var json = "[]";
 
 
             // Act
-            var act = JsonSerializer.Deserialize<IError[]>(serialization);
+            var act = JsonSerializer.Deserialize<IError[]>(json);
 
 
             // Assert
@@ -142,8 +142,8 @@ namespace PowerUtils.Results.Tests.Errors
 
 
             // Act
-            var serialization = JsonSerializer.Serialize(error);
-            var act = JsonSerializer.Deserialize<Error>(serialization);
+            var json = JsonSerializer.Serialize(error);
+            var act = JsonSerializer.Deserialize<Error>(json);
 
 
             // Assert
@@ -182,8 +182,8 @@ namespace PowerUtils.Results.Tests.Errors
 
 
             // Act
-            var serialization = JsonSerializer.Serialize(errors);
-            var act = JsonSerializer.Deserialize<List<IError>>(serialization);
+            var json = JsonSerializer.Serialize(errors);
+            var act = JsonSerializer.Deserialize<List<IError>>(json);
 
 
             // Assert

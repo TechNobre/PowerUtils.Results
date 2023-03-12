@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.GenericErrors
         }
 
         [Fact]
-        public void FailureError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void FailureError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";

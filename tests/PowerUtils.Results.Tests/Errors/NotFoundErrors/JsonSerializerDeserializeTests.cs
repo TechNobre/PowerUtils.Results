@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.NotFoundErrors
         }
 
         [Fact]
-        public void NotFoundError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void NotFoundError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";
