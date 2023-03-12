@@ -16,11 +16,6 @@ namespace PowerUtils.Results.Serializers
 
             (var type, var property, var code, var description) = JsonSerializerUtils.ReadError(ref reader);
 
-            if(reader.TokenType is not JsonTokenType.EndObject)
-            {
-                throw new JsonException("Unexpected end when reading JSON");
-            }
-
             return ResultReflection.CreateError<TError>(type, property, code, description);
         }
 

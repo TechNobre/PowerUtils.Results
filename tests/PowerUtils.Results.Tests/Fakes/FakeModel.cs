@@ -21,7 +21,5 @@ namespace PowerUtils.Results.Tests.Fakes
             Id = id;
             Name = name;
         }
-
-        //public override string ToString() => $"{Id}, {Name}";
     }
 }

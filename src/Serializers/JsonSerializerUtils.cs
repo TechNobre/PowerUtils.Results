@@ -6,14 +6,16 @@ namespace PowerUtils.Results.Serializers
     internal static class JsonSerializerUtils
     {
         internal const string TYPE_NAME = "_type";
-        internal const string ERRORS_NAME = "errors";
+        internal const string ERRORS_NAME = nameof(IResult.Errors);
+        internal const string VALUE_NAME = "Value";
 
         internal static readonly JsonEncodedText JSON_PROPERTY_NAME = JsonEncodedText.Encode(nameof(IError.Property));
         internal static readonly JsonEncodedText JSON_CODE_NAME = JsonEncodedText.Encode(nameof(IError.Code));
         internal static readonly JsonEncodedText JSON_DESCRIPTION_NAME = JsonEncodedText.Encode(nameof(IError.Description));
 
         internal static readonly JsonEncodedText JSON_ISSUCCESS_NAME = JsonEncodedText.Encode(nameof(IResult.IsSuccess));
-        internal static readonly JsonEncodedText JSON_ERRORS_NAME = JsonEncodedText.Encode(nameof(IResult.Errors));
+        internal static readonly JsonEncodedText JSON_ERRORS_NAME = JsonEncodedText.Encode(ERRORS_NAME);
+        internal static readonly JsonEncodedText JSON_VALUE_NAME = JsonEncodedText.Encode(VALUE_NAME);
 
 
 
