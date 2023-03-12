@@ -2,7 +2,7 @@
 using PowerUtils.Results.Tests.Fakes;
 using Xunit;
 
-namespace PowerUtils.Results.Tests.CommonUtilsTests
+namespace PowerUtils.Results.Tests.ResultReflectionTests
 {
     public class TryGetErrorTypeTests
     {
@@ -15,7 +15,7 @@ namespace PowerUtils.Results.Tests.CommonUtilsTests
 
 
             // Act
-            var act = CommonUtils.TryGetErrorType(fullName);
+            var act = ResultReflection.TryGetErrorType(fullName);
 
 
             // Assert
@@ -31,7 +31,7 @@ namespace PowerUtils.Results.Tests.CommonUtilsTests
 
 
             // Act
-            var act = CommonUtils.TryGetErrorType(fullName);
+            var act = ResultReflection.TryGetErrorType(fullName);
 
 
             // Assert
@@ -47,7 +47,7 @@ namespace PowerUtils.Results.Tests.CommonUtilsTests
 
 
             // Act
-            var act = CommonUtils.TryGetErrorType(fullName);
+            var act = ResultReflection.TryGetErrorType(fullName);
 
 
             // Assert
@@ -62,7 +62,7 @@ namespace PowerUtils.Results.Tests.CommonUtilsTests
 
 
             // Act
-            var act = Record.Exception(() => CommonUtils.TryGetErrorType(fullName));
+            var act = Record.Exception(() => ResultReflection.TryGetErrorType(fullName));
 
 
             // Assert
@@ -77,7 +77,7 @@ namespace PowerUtils.Results.Tests.CommonUtilsTests
 
 
             // Act
-            var act = Record.Exception(() => CommonUtils.TryGetErrorType(fullName));
+            var act = Record.Exception(() => ResultReflection.TryGetErrorType(fullName));
 
 
             // Assert
