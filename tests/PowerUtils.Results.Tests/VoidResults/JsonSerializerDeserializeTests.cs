@@ -24,7 +24,7 @@ namespace PowerUtils.Results.Tests.VoidResults
         }
 
         [Fact]
-        public void EmptyJsonString_Deserialize_Success()
+        public void IsSuccessTrue_Deserialize_Success()
         {
             // Arrange
             var json = @"{
@@ -61,7 +61,7 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
         [Fact]
-        public void JsonStringWithSuccess_Deserialize_Success()
+        public void EmptyJsonString_Deserialize_Success()
         {
             // Arrange
             var json = "{}";
@@ -76,15 +76,15 @@ namespace PowerUtils.Results.Tests.VoidResults
         }
 
         [Fact]
-        public void Success_SerializeDeserialize_SameValue()
+        public void Success_SerializeDeserialize_IsSuccessTrue()
         {
             // Arrange
             var result = Result.Success();
 
 
             // Act
-            var serialization = JsonSerializer.Serialize(result);
-            var act = JsonSerializer.Deserialize<Result>(serialization);
+            var json = JsonSerializer.Serialize(result);
+            var act = JsonSerializer.Deserialize<Result>(json);
 
 
             // Assert
@@ -111,8 +111,8 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Act
-            var serialization = JsonSerializer.Serialize(result);
-            var act = JsonSerializer.Deserialize<Result>(serialization);
+            var json = JsonSerializer.Serialize(result);
+            var act = JsonSerializer.Deserialize<Result>(json);
 
 
             // Assert
@@ -150,8 +150,8 @@ namespace PowerUtils.Results.Tests.VoidResults
 
 
             // Act
-            var serialization = JsonSerializer.Serialize(result);
-            var act = JsonSerializer.Deserialize<Result>(serialization);
+            var json = JsonSerializer.Serialize(result);
+            var act = JsonSerializer.Deserialize<Result>(json);
 
 
             // Assert
@@ -167,6 +167,29 @@ namespace PowerUtils.Results.Tests.VoidResults
                     code2,
                     description2);
             }
+        }
+
+        [Fact]
+        public void Error_SerializeDeserialize_SameError()
+        {
+            // Arrange
+            var property = "client";
+            var code = "NOT_FOUND";
+            var description = "Client not found";
+
+            Result result = Error.NotFound(property, code, description);
+
+
+            // Act
+            var json = JsonSerializer.Serialize(result);
+            var act = JsonSerializer.Deserialize<Result>(json);
+
+
+            // Assert
+            act.Should().ContainsError<NotFoundError>(
+                property,
+                code,
+                description);
         }
     }
 }

@@ -39,6 +39,7 @@
   - [Implicit conversion](#doc-implicit-conversion)
   - [Check validity](#doc-check-validity)
   - [Serialization/Deserialization](#doc-serialization-deserialization)
+    - [Results](#doc-serialization-deserialization-results)
     - [Errors](#doc-serialization-deserialization-errors)
 - [Contribution](#contribution)
 - [License](./LICENSE)
@@ -373,6 +374,90 @@ if(result.IsError == true)
 ```
 
 ### Serialization/Deserialization <a name="doc-serialization-deserialization"></a>
+
+#### Results <a name="doc-serialization-deserialization-results"></a>
+
+**Serialization `Result` success example**
+```csharp
+var result = Result.Success();
+var json = JsonSerializer.Serialize(result);
+/*
+json = {
+    "IsSuccess": true
+}
+*/
+```
+
+```csharp
+var result = Result.Success(45);
+var json = JsonSerializer.Serialize(result);
+/*
+json = {
+    "IsSuccess": true,
+    "Value": 45
+}
+*/
+```
+
+**Serialization `Result` errors example**
+```csharp
+Result result = Error.NotFound("client", "NOT_FOUND", "Client not found");
+Result<int> result = Error.NotFound("client", "NOT_FOUND", "Client not found");
+
+var json = JsonSerializer.Serialize(result);
+/*
+json = {
+    "IsSuccess": false,
+    "Errors": [
+        {
+            "_type": "PowerUtils.Results.NotFoundError",
+            "Property": "client",
+            "Code": "NOT_FOUND",
+            "Description":"Client not found"
+        }
+    ]
+}
+*/
+```
+
+**Deserialization `Result` success example**
+
+```csharp
+var json = """
+    "IsSuccess": true
+    """;
+
+var result = JsonSerializer.Deserialize<Result>(json);
+```
+
+```csharp
+var json = """
+    "IsSuccess": true,
+    "Value": 541.7
+    """;
+
+var result = JsonSerializer.Deserialize<Result<double>>(json);
+```
+
+**Deserialization `Result` errors example**
+
+```csharp
+var json = """
+    "IsSuccess": false,
+    "Errors": [
+        {
+            "_type": "PowerUtils.Results.NotFoundError",
+            "Property": "client",
+            "Code": "NOT_FOUND",
+            "Description":"Client not found"
+        }
+    ]
+    """;
+
+var result = JsonSerializer.Deserialize<Result>(json);
+var result = JsonSerializer.Deserialize<Result<Client>>(json);
+```
+
 
 #### Errors <a name="doc-serialization-deserialization-errors"></a>
 

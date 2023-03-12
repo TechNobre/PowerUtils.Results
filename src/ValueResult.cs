@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json.Serialization;
+using PowerUtils.Results.Serializers;
 
 namespace PowerUtils.Results
 {
     // The '\"\"' before '_value' is used to avoid the following error: "error CS0173: Type of conditional expression cannot be determined because there is no implicit conversion between 'TValue' and 'string'"
     [DebuggerDisplay("{IsSuccess ? \"\" + _value : \"Errors: \" + _errors.Count}")]
+    [JsonConverter(typeof(ValueResultJsonConverter))]
 #if NET6_0_OR_GREATER
     public record struct Result<TValue> : IResult
 #else

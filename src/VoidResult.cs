@@ -50,8 +50,10 @@ namespace PowerUtils.Results
         /// </summary>
         public Result()
         {
+#if NET6_0
             IsError = false;
             _errors = default;
+#endif
         }
 
         /// <summary>

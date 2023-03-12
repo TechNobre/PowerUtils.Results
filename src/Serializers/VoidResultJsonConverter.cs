@@ -40,11 +40,6 @@ namespace PowerUtils.Results.Serializers
                 }
             }
 
-            if(reader.TokenType is not JsonTokenType.EndObject)
-            {
-                throw new JsonException("Unexpected end when reading JSON");
-            }
-
             return errors;
         }
 
