@@ -12,12 +12,12 @@ namespace PowerUtils.Results.Serializers
         //   and we have full control which is only used to serilize and decirilize `Result<TValue>` objects
         public override bool CanConvert(Type typeToConvert) => true;
 
-        public override JsonConverter CreateConverter(Type type, JsonSerializerOptions options)
+        public override JsonConverter CreateConverter(Type typeToConvert, JsonSerializerOptions options)
         {
-            var valueType = type.GetGenericArguments()[0];
+            var valueType = typeToConvert.GetGenericArguments()[0];
 
             return (JsonConverter)Activator.CreateInstance(
-                typeof(ValueResultJsonSerializer<>).MakeGenericType(new Type[] { valueType }),
+                typeof(ValueResultJsonSerializer<>).MakeGenericType(valueType),
                 BindingFlags.Instance | BindingFlags.Public,
                 binder: null,
                 args: new object[] { options },
