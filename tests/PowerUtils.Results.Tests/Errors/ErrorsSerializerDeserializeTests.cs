@@ -10,6 +10,36 @@ namespace PowerUtils.Results.Tests.Errors
     public class ErrorsSerializerDeserializeTests
     {
         [Fact]
+        public void EmptyString_Deserialize_TypeLoadException()
+        {
+            // Arrange
+            var serialization = "{}";
+
+
+            // Act
+            var act = Record.Exception(() => JsonSerializer.Deserialize<Error>(serialization));
+
+
+            // Assert
+            act.Should().BeOfType<TypeLoadException>();
+        }
+
+        [Fact]
+        public void WrongJosn_Deserialize_JsonException()
+        {
+            // Arrange
+            var serialization = "{]";
+
+
+            // Act
+            var act = Record.Exception(() => JsonSerializer.Deserialize<Error>(serialization));
+
+
+            // Assert
+            act.Should().BeOfType<JsonException>();
+        }
+
+        [Fact]
         public void EmptyArrayString_DeserializeToIErrorList_EmptyIErrorList()
         {
             // Arrange

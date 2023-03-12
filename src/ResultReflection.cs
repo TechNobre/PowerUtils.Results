@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 
@@ -22,6 +23,7 @@ namespace PowerUtils.Results
             return null;
         }
 
+
         internal static TError CreateError<TError>(Type type, string property, string code, string description)
             where TError : IError
         {
@@ -30,36 +32,30 @@ namespace PowerUtils.Results
                 throw new TypeLoadException($"Could not load type '{typeof(TError).FullName}'.");
             }
 
-            try
-            {
-                var instance = CreateInstance(type);
+            var instance = createInstance(type);
 
-                PopulateInternalProperty(instance, nameof(IError.Property), property);
-                PopulateInternalProperty(instance, nameof(IError.Code), code);
-                PopulateInternalProperty(instance, nameof(IError.Description), description);
+            populateInternalProperty(instance, nameof(IError.Property), property);
+            populateInternalProperty(instance, nameof(IError.Code), code);
+            populateInternalProperty(instance, nameof(IError.Description), description);
 
-                return (TError)instance;
-            }
-            catch(Exception exception)
-            {
-                throw new TargetInvocationException($"Could not create new instance for '{type.FullName}'", exception);
-            }
+            return (TError)instance;
 
 
-            static object CreateInstance(Type type)
+            [SuppressMessage("SonarQube", "S3011", Justification = "The use of the 'NonPublic' flag is necessary to be able to create an instance to help the deserialization of objects.")]
+            static object createInstance(Type type)
             {
                 // Find first constructor.
-                //    If the constructor has parameters, pass in default for each parameter.
+                //    If the constructor has parameters, pass default for each parameter.
                 var constructor = type.GetConstructors(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public)[0];
                 return constructor.Invoke(new object[constructor.GetParameters().Length]);
             }
 
-            static void PopulateInternalProperty(object instance, string setterName, string value)
-            {
-                var propertyInfo = instance.GetType().GetProperty(setterName);
-                var setter = propertyInfo.GetSetMethod(true);
-                setter.Invoke(instance, new object[] { value });
-            }
+            static void populateInternalProperty(object instance, string setterName, string value)
+                => instance
+                    .GetType()
+                    .GetProperty(setterName)
+                    .GetSetMethod()
+                    .Invoke(instance, new object[] { value });
         }
     }
 }

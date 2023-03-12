@@ -412,6 +412,12 @@ To versions .NET 5.0 or lower, the deserialization using interface is not suppor
 var error = JsonSerializer.Deserialize<IError>(json);
 ```
 
+**Custom error Serialization/Deserialization example**
+
+```csharp
+[JsonConverter(typeof(ErrorJsonConverter<CustomError>))]
+public class CustomError : IError { }
+```
 
 
 ## Contribution <a name="contribution"></a>

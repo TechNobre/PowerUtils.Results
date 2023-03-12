@@ -2,7 +2,7 @@
 
 namespace PowerUtils.Results.Serializers
 {
-    internal class SerializerConstants
+    internal static class SerializerConstants
     {
         internal const string TYPE_NAME = "_type";
 
