@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.ConflictErrors
         }
 
         [Fact]
-        public void ConflictError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void ConflictError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";

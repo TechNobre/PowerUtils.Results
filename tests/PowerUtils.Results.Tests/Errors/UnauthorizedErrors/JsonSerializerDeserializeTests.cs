@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.UnauthorizedErrors
         }
 
         [Fact]
-        public void UnauthorizedError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void UnauthorizedError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";

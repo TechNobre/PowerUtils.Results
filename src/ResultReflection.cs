@@ -15,7 +15,7 @@ namespace PowerUtils.Results
                 .SelectMany(assembly => assembly.GetTypes())
                 .SingleOrDefault(s => s.FullName.Equals(fullName, StringComparison.InvariantCultureIgnoreCase));
 
-            if(type?.GetInterfaces().Contains(typeof(IError)) == true)
+            if(type?.GetInterfaces().Contains(typeof(IError)) is true)
             {
                 return type;
             }

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json.Serialization;
+using PowerUtils.Results.Serializers;
 
 namespace PowerUtils.Results
 {
     [DebuggerDisplay("Errors: {IsSuccess ? 0 : _errors.Count}")]
+    [JsonConverter(typeof(VoidResultJsonConverter))]
 #if NET6_0_OR_GREATER
     public partial record struct Result : IResult
 #else

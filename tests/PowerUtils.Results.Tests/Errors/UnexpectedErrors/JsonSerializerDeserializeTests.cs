@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.UnexpectedErrors
         }
 
         [Fact]
-        public void UnexpectedError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void UnexpectedError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";

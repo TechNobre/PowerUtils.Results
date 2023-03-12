@@ -70,7 +70,7 @@ namespace PowerUtils.Results.Tests.Errors.ValidationErrors
         }
 
         [Fact]
-        public void ValidationError_Serialize_SerializationWithTypePropertyCodeAndDescription()
+        public void ValidationError_Serialize_JsonStringWithTypePropertyCodeAndDescription()
         {
             // Arrange
             var property = "prop";
