@@ -1,3 +1,18 @@
+# [2.8.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.7.0...v2.8.0) (2023-03-14)
+
+
+### Bug Fixes
+
+* Issues when the error type does not exist ([93fa697](https://github.com/TechNobre/PowerUtils.Results/commit/93fa69723e0cdd586e78c66b48567fef3fcef52f))
+
+
+### Features
+
+* Added support to serialize and deserialize custom erros ([b69d0bd](https://github.com/TechNobre/PowerUtils.Results/commit/b69d0bd1aad5ee21f5b0e79057b92524a4d7fdc4))
+* Added support to serialize and deserialize erros using `System.Text.Json` ([652efe2](https://github.com/TechNobre/PowerUtils.Results/commit/652efe2ac6ae0334dd527ad375b5504874025fde))
+* Added support to serialize/deserialize `VoidResult` using `System.Text.Json` ([d209da3](https://github.com/TechNobre/PowerUtils.Results/commit/d209da343e7042d31a52d690b8f5427f9b6c375a))
+* Added support to serialize/deserialize ValueResult using `System.Text.Json` ([cd7c082](https://github.com/TechNobre/PowerUtils.Results/commit/cd7c08235ce50fb33a4a4fcac0a8378ed2b9c937))
+
 # [2.7.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.6.0...v2.7.0) (2023-03-09)
 
 
