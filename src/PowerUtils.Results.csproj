@@ -12,7 +12,7 @@
     <AssemblyName>PowerUtils.Results</AssemblyName>
     <RootNamespace>PowerUtils.Results</RootNamespace>
 
-    <Version>2.7.0</Version>
+    <Version>2.8.0</Version>
 
     <PackageOutputPath>bin\</PackageOutputPath>
   </PropertyGroup>
