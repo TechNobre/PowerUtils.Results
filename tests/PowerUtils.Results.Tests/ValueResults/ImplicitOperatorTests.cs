@@ -62,6 +62,21 @@ namespace PowerUtils.Results.Tests.ValueResults
         }
 
         [Fact]
+        public void ErrorListWithThreeNulls_InplicitCreation_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<IError> { null, null, null };
+
+
+            // Act
+            Result<FakeModel> act = errors;
+
+
+            // Assert
+            act.IsError.Should().BeFalse();
+        }
+
+        [Fact]
         public void EmptyIErrorList_CreateValueResult_IsErrorFalse()
         {
             // Arrange
