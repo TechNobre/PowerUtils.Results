@@ -25,6 +25,21 @@ namespace PowerUtils.Results.Tests.VoidResults
         }
 
         [Fact]
+        public void ErrorListWithThreeNulls_InplicitCreation_IsErrorFalse()
+        {
+            // Arrange
+            var errors = new List<IError> { null, null, null };
+
+
+            // Act
+            Result act = errors;
+
+
+            // Assert
+            act.IsError.Should().BeFalse();
+        }
+
+        [Fact]
         public void EmptyErrorList_CreateVoidResult_IsErrorFalse()
         {
             // Arrange

@@ -65,7 +65,6 @@
     <NoWarn>$(NoWarn);1591</NoWarn> <!-- Prevent XML documentation warnings -->
   </PropertyGroup>
 
-
   <!-- Tests -->
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
