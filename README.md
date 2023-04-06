@@ -44,7 +44,6 @@
 - [Contribution](#contribution)
 - [License](./LICENSE)
 - [Changelog](./CHANGELOG.md)
-- [Credits](#Credits)
 
 
 
@@ -508,16 +507,3 @@ public class CustomError : IError { }
 ## Contribution <a name="contribution"></a>
 
 If you have any questions, comments, or suggestions, please open an [issue](https://github.com/TechNobre/PowerUtils.Results/issues/new/choose) or create a [pull request](https://github.com/TechNobre/PowerUtils.Results/compare)
-
-
-
-## Credits <a name="Credits"></a>
-
-Other excellent libraries you should check out:
-- [error-or](https://github.com/amantinband/error-or)
-- [CSharpFunctionalExtensions](https://github.com/vkhorikov/CSharpFunctionalExtensions)
-- [Ardalis.Result](https://github.com/ardalis/result)
-- [FluentResults](https://github.com/altmann/FluentResults)
-- [OneOf](https://github.com/mcintyre321/OneOf)
-
-_Give your support to the projects mentioned above by giving a star, to encourage the creators to continue the work._
