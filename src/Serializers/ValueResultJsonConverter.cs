@@ -60,18 +60,7 @@ namespace PowerUtils.Results.Serializers
                     if(JsonSerializerUtils.ERRORS_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
                     {
                         isError = true;
-#if NET6_0_OR_GREATER
-                        errors = JsonSerializer.Deserialize(ref reader, typeof(List<IError>), options) as List<IError>;
-#else
-                            errors = new List<IError>();
-                            while(reader.Read() && reader.TokenType is not JsonTokenType.EndArray)
-                            {
-                                (var type, var property, var code, var description) = JsonSerializerUtils.ReadError(ref reader);
-
-                                var error = ResultReflection.CreateError<IError>(type, property, code, description);
-                                errors.Add(error);
-                            }
-#endif
+                        errors = _readErrors(ref reader, options);
                     }
 
                     if(JsonSerializerUtils.VALUE_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
@@ -115,6 +104,23 @@ namespace PowerUtils.Results.Serializers
             }
 
             writer.WriteEndObject();
+        }
+
+        private static List<IError> _readErrors(ref Utf8JsonReader reader, JsonSerializerOptions options)
+        {
+#if NET6_0_OR_GREATER
+            var errors = JsonSerializer.Deserialize(ref reader, typeof(List<IError>), options) as List<IError>;
+#else
+            var errors = new List<IError>();
+            while(reader.Read() && reader.TokenType is not JsonTokenType.EndArray)
+            {
+                (var type, var property, var code, var description) = JsonSerializerUtils.ReadError(ref reader);
+
+                var error = ResultReflection.CreateError<IError>(type, property, code, description);
+                errors.Add(error);
+            }
+#endif
+            return errors;
         }
     }
 }
