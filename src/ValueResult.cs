@@ -218,7 +218,7 @@ namespace PowerUtils.Results
             if(result?.IsError is true)
 #endif
             {
-                return new(result.Errors.ToList());
+                return new(result!.Errors.ToList());
             }
 
             return new List<IError>();
@@ -235,7 +235,7 @@ namespace PowerUtils.Results
             if(result?.IsError is true)
 #endif
             {
-                return result.Errors.ToList();
+                return result!.Errors.ToList();
             }
 
             return new();
