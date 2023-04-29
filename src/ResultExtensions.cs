@@ -10,7 +10,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Add error in result
         /// </summary>
-        public static void AddError(this IResult result, string property, string code, string description = null)
+        public static void AddError(this IResult result, string property, string code, string? description = null)
             => result.AddError(new Error(property, code, description));
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Checks if it is a successful result and deconstructs <see cref="List{IError}"/>
         /// </summary>
-        public static bool IsSuccess(this Result result, out List<IError> errors)
+        public static bool IsSuccess(this Result result, out List<IError>? errors)
         {
             if(result.IsSuccess)
             {
@@ -67,7 +67,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Checks if it is an error result and deconstructs <see cref="List{IError}"/>
         /// </summary>
-        public static bool IsError(this Result result, out List<IError> errors)
+        public static bool IsError(this Result result, out List<IError>? errors)
             => !result.IsSuccess(out errors);
 
         /// <summary>

@@ -27,7 +27,7 @@ namespace PowerUtils.Results
         public bool IsError { get; private set; }
 
 
-        private List<IError> _errors;
+        private List<IError>? _errors;
         /// <summary>
         /// Gets the list of errors
         /// </summary>
@@ -40,7 +40,7 @@ namespace PowerUtils.Results
                     throw new InvalidOperationException("Errors can be retrieved only when the result is an error");
                 }
 
-                return _errors;
+                return _errors!;
             }
         }
 
@@ -83,9 +83,9 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates an error result with the given errors
         /// </summary>
-        private Result(List<IError> errors)
+        private Result(List<IError>? errors)
         {
-            _value = default;
+            _value = default!;
 
             _errors = errors;
             IsError = CommonUtils.RemoveNulls(ref _errors);
@@ -138,7 +138,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Create an <see cref="List{IError}"/> from a result
         /// </summary>
-        public static implicit operator List<IError>(Result<TValue> result) => result._errors;
+        public static implicit operator List<IError>?(Result<TValue> result) => result._errors;
 
         /// <summary>
         /// Creates a success result
@@ -153,23 +153,23 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a list of errors
         /// </summary>
-        public static implicit operator Result<TValue>(List<Error> errors)
+        public static implicit operator Result<TValue>(List<Error>? errors)
             => new(errors?.Select(s => s as IError).ToList());
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a array of errors
         /// </summary>
-        public static implicit operator Result<TValue>(Error[] errors) => errors?.ToList();
+        public static implicit operator Result<TValue>(Error[]? errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a list of errors
         /// </summary>
-        public static implicit operator Result<TValue>(List<IError> errors) => new(errors);
+        public static implicit operator Result<TValue>(List<IError>? errors) => new(errors);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a array of errors
         /// </summary>
-        public static implicit operator Result<TValue>(IError[] errors) => errors?.ToList();
+        public static implicit operator Result<TValue>(IError[]? errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an error

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace PowerUtils.Results.Serializers
@@ -19,12 +20,12 @@ namespace PowerUtils.Results.Serializers
 
 
 
-        internal static (Type Type, string Property, string Code, string Description) ReadError(ref Utf8JsonReader reader)
+        internal static (Type? Type, string? Property, string? Code, string? Description) ReadError(ref Utf8JsonReader reader)
         {
-            Type type = null;
-            string property = null;
-            string code = null;
-            string description = null;
+            Type? type = null;
+            string? property = null;
+            string? code = null;
+            string? description = null;
 
             while(reader.Read() && reader.TokenType is not JsonTokenType.EndObject)
             {
@@ -35,7 +36,7 @@ namespace PowerUtils.Results.Serializers
 
                     if(TYPE_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
                     {
-                        type = ResultReflection.TryGetErrorType(reader.GetString());
+                        type = ResultReflection.TryGetErrorType(reader.GetString()!);
                     }
 
                     else if(nameof(IError.Property).Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
@@ -56,6 +57,25 @@ namespace PowerUtils.Results.Serializers
             }
 
             return (type, property, code, description);
+        }
+
+
+
+        internal static List<IError> ReadErrors(ref Utf8JsonReader reader, JsonSerializerOptions options)
+        {
+#if NET6_0_OR_GREATER
+            var errors = JsonSerializer.Deserialize(ref reader, typeof(List<IError>), options) as List<IError>;
+#else
+            var errors = new List<IError>();
+            while(reader.Read() && reader.TokenType is not JsonTokenType.EndArray)
+            {
+                (var type, var property, var code, var description) = JsonSerializerUtils.ReadError(ref reader);
+
+                var error = ResultReflection.CreateError<IError>(type, property, code, description);
+                errors.Add(error);
+            }
+#endif
+            return errors!;
         }
     }
 }

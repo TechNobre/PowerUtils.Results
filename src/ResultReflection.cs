@@ -7,13 +7,13 @@ namespace PowerUtils.Results
 {
     internal static class ResultReflection
     {
-        internal static Type TryGetErrorType(string fullName)
+        internal static Type? TryGetErrorType(string fullName)
         {
             var type = Type.GetType(fullName, false, true);
 
             type ??= AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())
-                .SingleOrDefault(s => s.FullName.Equals(fullName, StringComparison.InvariantCultureIgnoreCase));
+                .SingleOrDefault(s => s.FullName?.Equals(fullName, StringComparison.InvariantCultureIgnoreCase) is true);
 
             if(type?.GetInterfaces().Contains(typeof(IError)) is true)
             {
@@ -24,7 +24,7 @@ namespace PowerUtils.Results
         }
 
 
-        internal static TError CreateError<TError>(Type type, string property, string code, string description)
+        internal static TError CreateError<TError>(Type? type, string? property, string? code, string? description)
             where TError : IError
         {
             if(type is null)
@@ -50,12 +50,12 @@ namespace PowerUtils.Results
                 return constructor.Invoke(new object[constructor.GetParameters().Length]);
             }
 
-            static void populateInternalProperty(object instance, string setterName, string value)
+            static void populateInternalProperty(object instance, string setterName, string? value)
                 => instance
                     .GetType()
-                    .GetProperty(setterName)
-                    .GetSetMethod()
-                    .Invoke(instance, new object[] { value });
+                    .GetProperty(setterName)!
+                    .GetSetMethod()!
+                    .Invoke(instance, new object?[] { value });
         }
     }
 }

@@ -14,7 +14,7 @@ namespace PowerUtils.Results.Serializers
                 throw new JsonException("Unexpected start when reading JSON");
             }
 
-            List<IError> errors = null;
+            List<IError>? errors = null;
             while(reader.Read() && reader.TokenType is not JsonTokenType.EndObject)
             {
                 if(reader.TokenType is JsonTokenType.PropertyName)
@@ -24,18 +24,7 @@ namespace PowerUtils.Results.Serializers
 
                     if(JsonSerializerUtils.ERRORS_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
                     {
-#if NET6_0_OR_GREATER
-                        errors = JsonSerializer.Deserialize(ref reader, typeof(List<IError>), options) as List<IError>;
-#else
-                        errors = new List<IError>();
-                        while(reader.Read() && reader.TokenType is not JsonTokenType.EndArray)
-                        {
-                            (var type, var property, var code, var description) = JsonSerializerUtils.ReadError(ref reader);
-
-                            var error = ResultReflection.CreateError<IError>(type, property, code, description);
-                            errors.Add(error);
-                        }
-#endif
+                        errors = JsonSerializerUtils.ReadErrors(ref reader, options);
                     }
                 }
             }

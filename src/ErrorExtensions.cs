@@ -9,7 +9,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Get Errors as a list
         /// </summary>
-        public static List<IError> AsList(this IEnumerable<IError> errors) => errors as List<IError>;
+        public static List<IError>? AsList(this IEnumerable<IError>? errors) => errors as List<IError>;
 
 
         /// <summary>
@@ -21,7 +21,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the first error, if does not contain errors returns null
         /// </summary>
-        public static IError FirstOrDefaultError(this IResult result)
+        public static IError? FirstOrDefaultError(this IResult result)
         {
             if(!result.IsError)
             {
@@ -34,7 +34,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the first error that satisfies the condition otherwise returns null
         /// </summary>
-        public static IError FirstOrDefaultError(this IResult result, Func<IError, bool> predicate)
+        public static IError? FirstOrDefaultError(this IResult result, Func<IError, bool> predicate)
         {
             if(!result.IsError)
             {
@@ -53,7 +53,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the last error, if does not contain errors returns null
         /// </summary>
-        public static IError LastOrDefaultError(this IResult result)
+        public static IError? LastOrDefaultError(this IResult result)
         {
             if(!result.IsError)
             {
@@ -66,7 +66,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the last error that satisfies the condition otherwise returns null
         /// </summary>
-        public static IError LastOrDefaultError(this IResult result, Func<IError, bool> predicate)
+        public static IError? LastOrDefaultError(this IResult result, Func<IError, bool> predicate)
         {
             if(!result.IsError)
             {
@@ -85,7 +85,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the error when only exists one, if does not contain errors returns null
         /// </summary>
-        public static IError SingleOrDefaultError(this IResult result)
+        public static IError? SingleOrDefaultError(this IResult result)
         {
             if(!result.IsError)
             {
@@ -98,7 +98,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the error when only one satisfies the condition otherwise returns null
         /// </summary>
-        public static IError SingleOrDefaultError(this IResult result, Func<IError, bool> predicate)
+        public static IError? SingleOrDefaultError(this IResult result, Func<IError, bool> predicate)
         {
             if(!result.IsError)
             {
