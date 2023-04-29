@@ -51,5 +51,20 @@ namespace PowerUtils.Results.Tests.ValueResults
             // Assert
             act.Should().Be(typeof(NotFoundError));
         }
+
+        [Fact]
+        public void Null_GetType_TypeOfModel()
+        {
+            // Arrange
+            var result = Result<FakeModel>.Ok(null);
+
+
+            // Act
+            var act = result.GetType();
+
+
+            // Assert
+            act.Should().Be(typeof(FakeModel));
+        }
     }
 }

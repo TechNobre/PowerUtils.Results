@@ -127,7 +127,7 @@ namespace PowerUtils.Results
                 return this.OfTypeFirstError();
             }
 
-            return _value.GetType();
+            return typeof(TValue);
         }
 
         /// <summary>
