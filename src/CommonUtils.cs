@@ -6,7 +6,7 @@ namespace PowerUtils.Results
     {
         internal const string ERROR_DEBUG_TEMPLATE = "{GetType().Name} > P: {Property}, C: {Code}, D: {Description}";
 
-        internal static bool Equals<TError>(TError error, ref IError other) where TError : IError
+        internal static bool Equals<TError>(TError error, ref IError? other) where TError : IError
         {
             if(other is not TError)
             {
@@ -34,7 +34,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns true if contains error, false is not
         /// </summary>
-        internal static bool RemoveNulls(ref List<IError> list)
+        internal static bool RemoveNulls(ref List<IError>? list)
         {
             list?.RemoveAll(r => r is null);
 
@@ -44,7 +44,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns true if contains error, false is not
         /// </summary>
-        internal static bool AddError(ref List<IError> list, ref IError error)
+        internal static bool AddError(ref List<IError>? list, ref IError error)
         {
             list ??= new List<IError>();
 
@@ -59,7 +59,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns true if contains error, false is not
         /// </summary>
-        internal static bool AddErrors(ref List<IError> list, ref IEnumerable<IError> errors)
+        internal static bool AddErrors(ref List<IError>? list, ref IEnumerable<IError> errors)
         {
             list ??= new List<IError>();
             list.AddRange(errors);
@@ -67,7 +67,7 @@ namespace PowerUtils.Results
             return RemoveNulls(ref list);
         }
 
-        private static bool _hasError(ref List<IError> list)
+        private static bool _hasError(ref List<IError>? list)
         {
             if(list is null)
             {

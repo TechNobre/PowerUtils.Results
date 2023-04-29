@@ -65,7 +65,7 @@ namespace PowerUtils.Results
         /// </summary>
         public string Description { get; init; }
 
-        public Error(string property, string code, string description = null)
+        public Error(string property, string code, string? description = null)
         {
             Property = property;
             Code = code;
@@ -86,13 +86,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
+        public bool Equals(IError? other) => CommonUtils.Equals(this, ref other);
 
 #if NET5_0
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => Equals(obj as IError);
 #endif
 
@@ -137,7 +137,7 @@ namespace PowerUtils.Results
         /// </summary>
         public string Description { get; init; }
 
-        public UnauthorizedError(string property, string code, string description = null)
+        public UnauthorizedError(string property, string code, string? description = null)
         {
             Property = property;
             Code = code;
@@ -158,13 +158,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
+        public bool Equals(IError? other) => CommonUtils.Equals(this, ref other);
 
 #if NET5_0
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => Equals(obj as IError);
 #endif
 
@@ -209,7 +209,7 @@ namespace PowerUtils.Results
         /// </summary>
         public string Description { get; init; }
 
-        public ForbiddenError(string property, string code, string description = null)
+        public ForbiddenError(string property, string code, string? description = null)
         {
             Property = property;
             Code = code;
@@ -230,13 +230,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
+        public bool Equals(IError? other) => CommonUtils.Equals(this, ref other);
 
 #if NET5_0
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => Equals(obj as IError);
 #endif
 
@@ -281,7 +281,7 @@ namespace PowerUtils.Results
         /// </summary>
         public string Description { get; init; }
 
-        public NotFoundError(string property, string code, string description = null)
+        public NotFoundError(string property, string code, string? description = null)
         {
             Property = property;
             Code = code;
@@ -302,13 +302,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
+        public bool Equals(IError? other) => CommonUtils.Equals(this, ref other);
 
 #if NET5_0
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => Equals(obj as IError);
 #endif
 
@@ -353,7 +353,7 @@ namespace PowerUtils.Results
         /// </summary>
         public string Description { get; init; }
 
-        public ConflictError(string property, string code, string description = null)
+        public ConflictError(string property, string code, string? description = null)
         {
             Property = property;
             Code = code;
@@ -374,13 +374,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
+        public bool Equals(IError? other) => CommonUtils.Equals(this, ref other);
 
 #if NET5_0
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => Equals(obj as IError);
 #endif
 
@@ -425,7 +425,7 @@ namespace PowerUtils.Results
         /// </summary>
         public string Description { get; init; }
 
-        public ValidationError(string property, string code, string description = null)
+        public ValidationError(string property, string code, string? description = null)
         {
             Property = property;
             Code = code;
@@ -446,13 +446,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
+        public bool Equals(IError? other) => CommonUtils.Equals(this, ref other);
 
 #if NET5_0
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => Equals(obj as IError);
 #endif
 
@@ -497,7 +497,7 @@ namespace PowerUtils.Results
         /// </summary>
         public string Description { get; init; }
 
-        public UnexpectedError(string property, string code, string description = null)
+        public UnexpectedError(string property, string code, string? description = null)
         {
             Property = property;
             Code = code;
@@ -518,13 +518,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public bool Equals(IError other) => CommonUtils.Equals(this, ref other);
+        public bool Equals(IError? other) => CommonUtils.Equals(this, ref other);
 
 #if NET5_0
         /// <summary>
         /// Returns TRUE if the both errors is equals
         /// </summary>
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
             => Equals(obj as IError);
 #endif
 

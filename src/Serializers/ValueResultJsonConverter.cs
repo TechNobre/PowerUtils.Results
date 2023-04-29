@@ -21,7 +21,7 @@ namespace PowerUtils.Results.Serializers
                 BindingFlags.Instance | BindingFlags.Public,
                 binder: null,
                 args: new object[] { options },
-                culture: null);
+                culture: null)!;
         }
     }
 
@@ -46,8 +46,8 @@ namespace PowerUtils.Results.Serializers
                 throw new JsonException("Unexpected start when reading JSON");
             }
 
-            List<IError> errors = null;
-            TValue value = default;
+            List<IError>? errors = null;
+            TValue value = default!;
             var isError = false;
 
             while(reader.Read() && reader.TokenType is not JsonTokenType.EndObject)
@@ -60,20 +60,20 @@ namespace PowerUtils.Results.Serializers
                     if(JsonSerializerUtils.ERRORS_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
                     {
                         isError = true;
-                        errors = _readErrors(ref reader, options);
+                        errors = JsonSerializerUtils.ReadErrors(ref reader, options);
                     }
 
                     if(JsonSerializerUtils.VALUE_NAME.Equals(propertyName, StringComparison.InvariantCultureIgnoreCase))
                     {
                         isError = false;
-                        value = _valueConverter.Read(ref reader, _valueType, options);
+                        value = _valueConverter.Read(ref reader, _valueType, options)!;
                     }
                 }
             }
 
             if(isError)
             {
-                return errors;
+                return errors!;
             }
 
             return value;
@@ -104,23 +104,6 @@ namespace PowerUtils.Results.Serializers
             }
 
             writer.WriteEndObject();
-        }
-
-        private static List<IError> _readErrors(ref Utf8JsonReader reader, JsonSerializerOptions options)
-        {
-#if NET6_0_OR_GREATER
-            var errors = JsonSerializer.Deserialize(ref reader, typeof(List<IError>), options) as List<IError>;
-#else
-            var errors = new List<IError>();
-            while(reader.Read() && reader.TokenType is not JsonTokenType.EndArray)
-            {
-                (var type, var property, var code, var description) = JsonSerializerUtils.ReadError(ref reader);
-
-                var error = ResultReflection.CreateError<IError>(type, property, code, description);
-                errors.Add(error);
-            }
-#endif
-            return errors;
         }
     }
 }
