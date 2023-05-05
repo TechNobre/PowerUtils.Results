@@ -1,3 +1,10 @@
+## [2.8.1](https://github.com/TechNobre/PowerUtils.Results/compare/v2.8.0...v2.8.1) (2023-05-05)
+
+
+### Bug Fixes
+
+* Null reference when the value is null ([37992eb](https://github.com/TechNobre/PowerUtils.Results/commit/37992eb977a05be80741facbc6ba64fc4f698a61))
+
 # [2.8.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.7.0...v2.8.0) (2023-03-14)
 
 
