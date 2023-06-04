@@ -11,7 +11,7 @@ on:
 
 
 env:
-  SDK_VERSION_7: '7.0.203'
+  SDK_VERSION_7: '7.0.302'
   SDK_VERSION_6: '6.0.408'
   SDK_VERSION_5: '5.0.408'
   TEST_RESULTS_DIRECTORY: './TestResults'
