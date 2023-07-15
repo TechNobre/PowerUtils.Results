@@ -47,7 +47,8 @@ jobs:
 
     # Hack because the last version of the `xunit.runner.visualstudio` doesn't generate the report for some OLD SDK versions like .net 5
     - name: "Replace TargetFrameworks"
-      run: sed -i 's/<TargetFrameworks>.*<\/TargetFrameworks>/<TargetFrameworks>${{ env.FRAMEWORK_VERSION }}<\/TargetFrameworks>/g' ${{ env.TEST_PROJECT_PATH }}
+      run: |
+        find . -type f -name "*.csproj" -exec sed -i 's/<TargetFrameworks>.*<\/TargetFrameworks>/<TargetFrameworks>${{ env.FRAMEWORK_VERSION }}<\/TargetFrameworks>/g' {} +
 
     - name: "Restore .NET Tools"
       run: dotnet tool restore
