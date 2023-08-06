@@ -45,4 +45,14 @@ public class ProductsController : ApiController
             Ok,
             MapError);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> List(CancellationToken cancellationToken = default)
+    {
+        var result = await _mediator.Send(new GetProductsQuery(), cancellationToken);
+
+        return result.MatchFirst(
+            Ok,
+            MapError);
+    }
 }
