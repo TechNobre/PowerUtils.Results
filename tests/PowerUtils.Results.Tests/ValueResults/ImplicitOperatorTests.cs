@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using PowerUtils.Results.Tests.Fakes;
@@ -402,6 +403,23 @@ namespace PowerUtils.Results.Tests.ValueResults
                     code2,
                     description2);
             }
+        }
+
+
+        [Fact]
+        public void IQueryable_Implicit_OriginalValues()
+        {
+            // Arrange
+            var arr = new[] { "me", "you", "them" };
+            var queryable = arr.AsQueryable();
+
+
+            // Act
+            var act = Result.Success(queryable);
+
+
+            // Assert
+            act.Value.Should().BeEquivalentTo(arr);
         }
     }
 }
