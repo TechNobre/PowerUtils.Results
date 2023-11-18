@@ -1,3 +1,10 @@
+## [2.9.1](https://github.com/TechNobre/PowerUtils.Results/compare/v2.9.0...v2.9.1) (2023-11-18)
+
+
+### Bug Fixes
+
+* Added support to .NET8 ([b58c136](https://github.com/TechNobre/PowerUtils.Results/commit/b58c136c50b38dde584756c42e6e693a4c0285e4))
+
 # [2.9.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.8.1...v2.9.0) (2023-11-18)
 
 
