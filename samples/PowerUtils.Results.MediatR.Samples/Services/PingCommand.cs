@@ -24,11 +24,9 @@ public record PingCommand(string Message) : IRequest<string> //, IValidation
     //    return null;
     //}
 
-    public class Handler : IRequestHandler<PingCommand, string>
+    public class Handler(ILogger<Handler> logger) : IRequestHandler<PingCommand, string>
     {
-        private readonly ILogger<Handler> _logger;
-        public Handler(ILogger<Handler> logger)
-            => _logger = logger;
+        private readonly ILogger<Handler> _logger = logger;
 
 
         public Task<string> Handle(PingCommand command, CancellationToken cancellationToken)

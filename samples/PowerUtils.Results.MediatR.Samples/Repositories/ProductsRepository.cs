@@ -23,10 +23,10 @@ public interface IProductsRepository
 
 public class ProductsRepository : IProductsRepository
 {
-    private readonly IDictionary<Guid, Product> _database;
+    private readonly Dictionary<Guid, Product> _database;
 
     public ProductsRepository()
-        => _database = new Dictionary<Guid, Product>();
+        => _database = [];
 
 
     public Task<Product> Get(Guid id, CancellationToken cancellationToken = default)

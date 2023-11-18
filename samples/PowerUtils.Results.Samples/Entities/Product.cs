@@ -2,19 +2,12 @@
 
 namespace PowerUtils.Results.Samples.Entities;
 
-public class Product
+public class Product(string name, uint quantity)
 {
-    public Guid Id { get; init; }
-    public string Name { get; private set; }
-    public uint Quantity { get; private set; }
+    public Guid Id { get; init; } = Guid.NewGuid();
+    public string Name { get; private set; } = name;
+    public uint Quantity { get; private set; } = quantity;
 
-
-    public Product(string name, uint quantity)
-    {
-        Id = Guid.NewGuid();
-        Name = name;
-        Quantity = quantity;
-    }
 
     public void UpdateName(string name)
         => Name = name;

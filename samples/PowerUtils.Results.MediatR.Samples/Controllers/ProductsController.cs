@@ -10,12 +10,9 @@ namespace PowerUtils.Results.MediatR.Samples.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ProductsController : ApiController
+public class ProductsController(IMediator mediator) : ApiController
 {
-    private readonly IMediator _mediator;
-
-    public ProductsController(IMediator mediator)
-        => _mediator = mediator;
+    private readonly IMediator _mediator = mediator;
 
 
 

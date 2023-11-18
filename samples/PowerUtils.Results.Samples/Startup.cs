@@ -23,8 +23,6 @@ public class Startup
 
         app.UseRouting();
 
-        app.UseEndpoints(endpoints
-            => endpoints.MapControllers() // Mapping all controller
-        );
+        app.UseEndpoints(endpoints => endpoints.MapControllers());
     }
 }

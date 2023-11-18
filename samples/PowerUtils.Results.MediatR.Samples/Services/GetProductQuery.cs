@@ -9,11 +9,9 @@ namespace PowerUtils.Results.MediatR.Samples.Services;
 
 public record GetProductQuery(Guid Id) : IRequest<Result<ProductResponse>>
 {
-    public class Handler : IRequestHandler<GetProductQuery, Result<ProductResponse>>
+    public class Handler(IProductsRepository repository) : IRequestHandler<GetProductQuery, Result<ProductResponse>>
     {
-        private readonly IProductsRepository _repository;
-        public Handler(IProductsRepository repository)
-            => _repository = repository;
+        private readonly IProductsRepository _repository = repository;
 
 
         public async Task<Result<ProductResponse>> Handle(GetProductQuery query, CancellationToken cancellationToken)

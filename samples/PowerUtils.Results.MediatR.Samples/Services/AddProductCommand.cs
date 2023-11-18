@@ -35,11 +35,9 @@ public record AddProductCommand(string Name, uint Quantity) : IRequest<Result<Pr
     }
 
 
-    public class Handler : IRequestHandler<AddProductCommand, Result<ProductResponse>>
+    public class Handler(IProductsRepository repository) : IRequestHandler<AddProductCommand, Result<ProductResponse>>
     {
-        private readonly IProductsRepository _repository;
-        public Handler(IProductsRepository repository)
-            => _repository = repository;
+        private readonly IProductsRepository _repository = repository;
 
 
         public async Task<Result<ProductResponse>> Handle(AddProductCommand command, CancellationToken cancellationToken)

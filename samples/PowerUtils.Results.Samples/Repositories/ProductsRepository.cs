@@ -21,10 +21,10 @@ public interface IProductsRepository
 
 public class ProductsRepository : IProductsRepository
 {
-    private readonly IDictionary<Guid, Product> _database;
+    private readonly Dictionary<Guid, Product> _database;
 
     public ProductsRepository()
-        => _database = new Dictionary<Guid, Product>();
+        => _database = [];
 
 
     public Product Get(Guid id)
@@ -45,10 +45,8 @@ public class ProductsRepository : IProductsRepository
         => _database
             .Values
             .Any(a =>
-                a.Id == id
-                &&
-                a.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase)
-            );
+                a.Id == id &&
+                a.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
 
     public void Add(Product product)
         => _database.Add(product.Id, product);

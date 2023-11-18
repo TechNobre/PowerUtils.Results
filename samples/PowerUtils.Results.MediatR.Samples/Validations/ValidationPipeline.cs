@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -28,7 +27,7 @@ internal sealed class ValidationPipeline<TRequest, TResponse> : IPipelineBehavio
         // Fast validations
         var errors = command.Validate();
 
-        if(errors is null || !errors.Any())
+        if(errors is null || errors.Count == 0)
         {
             return await next();
         }

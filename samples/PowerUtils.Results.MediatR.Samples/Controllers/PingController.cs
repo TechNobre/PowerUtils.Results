@@ -8,12 +8,9 @@ namespace PowerUtils.Results.MediatR.Samples.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class PingController : ControllerBase
+public class PingController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public PingController(IMediator mediator)
-        => _mediator = mediator;
+    private readonly IMediator _mediator = mediator;
 
 
     [HttpPost]

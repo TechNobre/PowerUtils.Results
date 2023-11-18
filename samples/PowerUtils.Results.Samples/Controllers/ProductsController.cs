@@ -9,12 +9,9 @@ namespace PowerUtils.Results.Samples.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ProductsController : ApiController
+public class ProductsController(IProductsService service) : ApiController
 {
-    private readonly IProductsService _service;
-
-    public ProductsController(IProductsService service)
-        => _service = service;
+    private readonly IProductsService _service = service;
 
 
 
@@ -50,15 +47,13 @@ public class ProductsController : ApiController
         return new CreatedAtRouteResult(
            nameof(Get),
            new { id = result.Value },
-           result.Value
-        );
+           result.Value);
     }
 
     [HttpPut("{id}")]
     public IActionResult Update(
         Guid id,
-        ProductRequest request
-    )
+        ProductRequest request)
     {
         var result = _service.Update(id, request);
 

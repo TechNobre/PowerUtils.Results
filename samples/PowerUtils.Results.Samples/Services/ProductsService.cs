@@ -17,12 +17,9 @@ public interface IProductsService
     public Result Delete(Guid id);
 }
 
-public class ProductsService : IProductsService
+public class ProductsService(IProductsRepository repository) : IProductsService
 {
-    private readonly IProductsRepository _repository;
-
-    public ProductsService(IProductsRepository repository)
-        => _repository = repository;
+    private readonly IProductsRepository _repository = repository;
 
     public Result<ProductResponse> Get(Guid id)
     {
