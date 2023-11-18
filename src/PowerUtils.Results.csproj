@@ -6,13 +6,13 @@
 
     <!-- Assembly and projecto details -->
     <!-- https://docs.microsoft.com/en-us/dotnet/standard/frameworks -->
-    <TargetFrameworks>net7.0;net6.0;net5.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
 
 
     <AssemblyName>PowerUtils.Results</AssemblyName>
     <RootNamespace>PowerUtils.Results</RootNamespace>
 
-    <Version>2.8.1</Version>
+    <Version>2.9.0</Version>
 
     <PackageOutputPath>bin\</PackageOutputPath>
 
