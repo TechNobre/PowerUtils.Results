@@ -4,7 +4,6 @@
   <PropertyGroup>
     <ProjectGuid>3be5fcac-9891-41c4-9e11-7b9124eec769</ProjectGuid>
 
-    <!-- Assembly and projecto details -->
     <!-- https://docs.microsoft.com/en-us/dotnet/standard/frameworks -->
     <TargetFrameworks>net8.0;net7.0;net6.0;net5.0</TargetFrameworks>
 
