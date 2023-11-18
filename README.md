@@ -17,45 +17,44 @@
 [![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.Results.svg)](https://github.com/TechNobre/PowerUtils.Results/blob/main/LICENSE)
 
 
-- [Support](#support-to)
+- [Support to](#support-to)
 - [How to use](#how-to-use)
-  - [Install NuGet package](#Installation)
-  - [Creating a Result](#doc-creating-result)
-    - [Success](#doc-creating-result-success)
-    - [Errors](#doc-creating-result-errors)
-      - [Add more errors](#doc-creating-result-errors-add)
-      - [Built-in error types](#doc-creating-result-errors-types)
-      - [Custom error](#doc-creating-custom-error)
-    - [Result factory](#doc-creating-result-factory)
-  - [Extensions](#doc-extensions)
-    - [Handling errors](#doc-extensions-handling-errors)
-    - [OfTypeFirstError](#doc-extensions-OfTypeFirstError)
-    - [Handling success](#doc-extensions-handling-success)
-    - [Switch](#doc-extensions-Switch)
-    - [Match](#doc-extensions-Match)
-    - [Conversions](#doc-extensions-conversions)
-    - [DistinctErrors](#doc-extensions-DistinctErrors)
-  - [Deconstruct operators](#doc-deconstruct-operators)
-  - [Implicit conversion](#doc-implicit-conversion)
-  - [Check validity](#doc-check-validity)
-  - [Serialization/Deserialization](#doc-serialization-deserialization)
-    - [Results](#doc-serialization-deserialization-results)
-    - [Errors](#doc-serialization-deserialization-errors)
+  - [Install NuGet package](#install-nuget-package)
+  - [Creating a Result](#creating-a-result)
+    - [Success](#success)
+    - [Errors](#errors)
+      - [Add more errors](#add-more-errors)
+      - [Built-in error types](#built-in-error-types)
+      - [Custom error](#custom-error)
+    - [Result factory](#result-factory)
+  - [Extensions\<](#extensions)
+    - [Handling errors](#handling-errors)
+    - [OfTypeFirstError](#oftypefirsterror)
+    - [Handling success](#handling-success)
+    - [Switch](#switch)
+    - [Match](#match)
+    - [Conversions](#conversions)
+    - [DistinctErrors](#distincterrors)
+  - [Deconstruct operators](#deconstruct-operators)
+  - [Implicit conversion](#implicit-conversion)
+  - [Check validity](#check-validity)
+  - [Serialization/Deserialization](#serializationdeserialization)
+    - [Results](#results)
+    - [Errors](#errors-1)
 - [Contribution](#contribution)
-- [License](./LICENSE)
-- [Changelog](./CHANGELOG.md)
 
 
 
-## Support to <a name="support-to"></a>
+## Support to
+- .NET 8.0
 - .NET 7.0
 - .NET 6.0
 - .NET 5.0
 
 
-## How to use <a name="how-to-use"></a>
+## How to use
 
-### Install NuGet package <a name="Installation"></a>
+### Install NuGet package
 This package is available through Nuget Packages: https://www.nuget.org/packages/PowerUtils.Results
 
 **Nuget**
@@ -70,9 +69,9 @@ dotnet add package PowerUtils.Results
 
 
 
-### Creating a Result <a name="doc-creating-result"></a>
+### Creating a Result
 
-#### Success <a name="doc-creating-result-success"></a>
+#### Success
 ```csharp
 // Void result
 var result = Result.Ok();
@@ -90,7 +89,7 @@ Result<Model> result = model;
 Result result = new Success();
 ```
 
-#### Errors <a name="doc-creating-result-errors"></a>
+#### Errors
 
 
 ```csharp
@@ -121,7 +120,7 @@ var errors = new List<Error>
 Result result = errors;
 ```
 
-##### Add more errors <a name="doc-creating-result-errors-add"></a>
+##### Add more errors
 
 ```csharp
 Result result = new Error("property", "code", "description");
@@ -136,7 +135,7 @@ result.AddErrors(new List<Error>
 });
 ```
 
-##### Built-in error types <a name="doc-creating-result-errors-types"></a>
+##### Built-in error types
 
 - `Error.Error()`;
 - `Error.Unauthorized()`
@@ -146,7 +145,7 @@ result.AddErrors(new List<Error>
 - `Error.Validation()`
 - `Error.Unexpected()`
 
-##### Custom error <a name="doc-creating-custom-error"></a>
+##### Custom error
 
 ```csharp
 public class CustomError : IError
@@ -171,7 +170,7 @@ var result = Result.From<FakeModel>(error);
 ```
 
 
-#### Result factory <a name="doc-creating-result-factory"></a>
+#### Result factory
 Creates a `Result<TValue>` when the error list is null or empty otherwise creates a result with a list of errors.
 
 Delegate is used to instantiate the value only when there are no errors
@@ -189,9 +188,9 @@ var result = Result.Create(
 
 
 
-### Extensions <a name="doc-extensions"></a>
+### Extensions<
 
-#### Handling errors <a name="doc-extensions-handling-errors"></a>
+#### Handling errors
 ```csharp
 Result result = new Error[]
 {
@@ -215,7 +214,7 @@ bool IResult.ContainsError();
 bool IResult.ContainsError(Func<IError, bool> predicate);
 ```
 
-#### OfTypeFirstError <a name="doc-extensions-OfTypeFirstError"></a>
+#### OfTypeFirstError
 
 ```csharp
 Result result = Error.Conflict("property", "code", "description");
@@ -235,14 +234,14 @@ Result<Model> result = model;
 var type = result.GetType(); // Model
 ```
 
-#### Handling success <a name="doc-extensions-handling-success"></a>
+#### Handling success
 
 ```csharp
 bool IResult.IsSuccess();
 bool IResult.IsSuccess(Func<TValue, bool> predicate);
 ```
 
-#### Switch <a name="doc-extensions-Switch"></a>
+#### Switch
 
 ```csharp
 result.Switch(
@@ -264,7 +263,7 @@ await result.SwitchFirstAsync(
     error => onError(error));
 ```
 
-#### Match <a name="doc-extensions-Match"></a>
+#### Match
 
 ```csharp
 TOutput response = result.Match<TValue, TOutput>(
@@ -287,13 +286,13 @@ Task<TOutput> response = result.MatchFirstAsync<TValue, TOutput>(
     error => onError(error));
 ```
 
-#### Conversions <a name="doc-extensions-conversions"></a>
+#### Conversions
 
 ```csharp
 var errorList = result.Errors.AsList();
 ```
 
-#### DistinctErrors <a name="doc-extensions-DistinctErrors"></a>
+#### DistinctErrors
 
 ```csharp
 Result result = new IError[]
@@ -305,7 +304,7 @@ Result result = new IError[]
 var errors = result.DistinctErrors();
 ```
 
-### Deconstruct operators <a name="doc-deconstruct-operators"></a>
+### Deconstruct operators
 
 ```csharp
 var (property, code, description) = Error.Unauthorized("property", "code", "description");
@@ -315,7 +314,7 @@ Result<Model> result = new Model { Id = id, Name = name };
 (var value, var errors) = result;
 ```
 
-### Implicit conversion <a name="doc-implicit-conversion"></a>
+### Implicit conversion
 
 ```csharp
 Result<Model> result = new Model { Id = id, Name = name };
@@ -326,7 +325,7 @@ Result result = Error.Conflict("property", "code", "description");
 List<IError> errors = result;
 ```
 
-### Check validity <a name="doc-check-validity"></a>
+### Check validity
 
 **Valid example**
 ```csharp
@@ -372,9 +371,9 @@ if(result.IsError == true)
 }
 ```
 
-### Serialization/Deserialization <a name="doc-serialization-deserialization"></a>
+### Serialization/Deserialization
 
-#### Results <a name="doc-serialization-deserialization-results"></a>
+#### Results
 
 **Serialization `Result` success example**
 ```csharp
@@ -458,7 +457,7 @@ var result = JsonSerializer.Deserialize<Result<Client>>(json);
 ```
 
 
-#### Errors <a name="doc-serialization-deserialization-errors"></a>
+#### Errors
 
 **Serialization example**
 ```csharp
@@ -504,6 +503,6 @@ public class CustomError : IError { }
 ```
 
 
-## Contribution <a name="contribution"></a>
+## Contribution
 
 If you have any questions, comments, or suggestions, please open an [issue](https://github.com/TechNobre/PowerUtils.Results/issues/new/choose) or create a [pull request](https://github.com/TechNobre/PowerUtils.Results/compare)
