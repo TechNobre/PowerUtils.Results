@@ -1,2 +1,2 @@
 dotnet build -c Release ./tests/PowerUtils.Results.Benchmarks/PowerUtils.Results.Benchmarks.csproj
-dotnet run -p ./tests/PowerUtils.Results.Benchmarks/PowerUtils.Results.Benchmarks.csproj -c Release -f net7.0
+dotnet run -p ./tests/PowerUtils.Results.Benchmarks/PowerUtils.Results.Benchmarks.csproj -c Release -f net8.0
