@@ -18,7 +18,7 @@ on:
 
 
 env:
-  SDK_VERSION: '8.0.100'
+  SDK_VERSION: '8.0.203'
   FRAMEWORK_VERSION: 'net8.0'
 
   GIT_ORGANIZATION: 'TechNobre'
