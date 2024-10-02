@@ -42,7 +42,7 @@ jobs:
       id: 'semantic-release'
       uses: cycjimmy/semantic-release-action@v4.1.1
       with:
-        semantic_version: 22.0.8
+        semantic_version: 24.1.2
         extra_plugins: |
           semantic-release-plugin-csproj
           @semantic-release/changelog
