@@ -1,3 +1,10 @@
+# [2.10.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.9.1...v2.10.0) (2024-11-12)
+
+
+### Features
+
+* Added support to .NET9 ([11894c6](https://github.com/TechNobre/PowerUtils.Results/commit/11894c683cdd00c0d57bb6be194783d001d87705))
+
 ## [2.9.1](https://github.com/TechNobre/PowerUtils.Results/compare/v2.9.0...v2.9.1) (2023-11-18)
 
 
