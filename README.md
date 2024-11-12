@@ -27,7 +27,7 @@
       - [Built-in error types](#built-in-error-types)
       - [Custom error](#custom-error)
     - [Result factory](#result-factory)
-  - [Extensions\<](#extensions)
+  - [Extensions](#extensions)
     - [Handling errors](#handling-errors)
     - [OfTypeFirstError](#oftypefirsterror)
     - [Handling success](#handling-success)
@@ -189,7 +189,7 @@ var result = Result.Create(
 
 
 
-### Extensions<
+### Extensions
 
 #### Handling errors
 ```csharp
