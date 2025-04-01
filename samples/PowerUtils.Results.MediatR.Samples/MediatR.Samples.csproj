@@ -11,7 +11,7 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
