@@ -11,19 +11,23 @@ namespace PowerUtils.Results
     [DebuggerDisplay("{IsSuccess ? \"\" + _value : \"Errors: \" + _errors.Count}")]
     [JsonConverter(typeof(ValueResultJsonConverter))]
 #if NET6_0_OR_GREATER
-    public record struct Result<TValue> : IResult
+    [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
+    public partial record struct Result<TValue> : IResult
 #else
+    [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
     public sealed record Result<TValue> : IResult
 #endif
     {
         /// <summary>
         /// Gets a value indicating whether the state is success
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public bool IsSuccess => !IsError;
 
         /// <summary>
         /// Gets a value indicating whether the state is error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public bool IsError { get; private set; }
 
 
@@ -31,6 +35,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the list of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public IEnumerable<IError> Errors
         {
             get
@@ -48,6 +53,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the value
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public TValue Value
         {
             get
@@ -98,6 +104,7 @@ namespace PowerUtils.Results
         /// </summary>
         /// <param name="value">Value in result</param>
         /// <param name="errors">Error list</param>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public void Deconstruct(out TValue value, out List<IError> errors)
         {
             value = _value;
@@ -108,18 +115,21 @@ namespace PowerUtils.Results
         /// <summary>
         /// Add error in result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public void AddError(IError error)
             => IsError = CommonUtils.AddError(ref _errors, ref error);
 
         /// <summary>
         /// Add errors in result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public void AddErrors(IEnumerable<IError> errors)
             => IsError = CommonUtils.AddErrors(ref _errors, ref errors);
 
         /// <summary>
         /// Gets the type of the value or type of the first error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public new Type GetType()
         {
             if(IsError)
@@ -133,83 +143,98 @@ namespace PowerUtils.Results
         /// <summary>
         /// Create boolean status with result status (Valid or not valid)
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator bool(Result<TValue> result) => !result.IsError;
 
         /// <summary>
         /// Create an <see cref="List{IError}"/> from a result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator List<IError>?(Result<TValue> result) => result._errors;
 
         /// <summary>
         /// Creates a success result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static Result<TValue> Ok(TValue value) => new(value);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a value
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(TValue value) => new(value);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a list of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(List<Error>? errors)
             => new(errors?.Select(s => s as IError).ToList());
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a array of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(Error[]? errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a list of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(List<IError>? errors) => new(errors);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a array of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(IError[]? errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(Error error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an unauthorized error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(UnauthorizedError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an forbidden error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(ForbiddenError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an not found error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(NotFoundError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an conflict error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(ConflictError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an validation error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(ValidationError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an unexpected error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(UnexpectedError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from a <see cref="Result"/>
         /// </summary>
-
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result<TValue>(Result result)
         {
 #if NET6_0_OR_GREATER
@@ -227,6 +252,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates an <see cref="Result"/> from a <see cref="Result{TValue}"/>
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(Result<TValue> result)
         {
 #if NET6_0_OR_GREATER
@@ -244,11 +270,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates an value from a <see cref="Result{TValue}"/>
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator TValue(Result<TValue> result) => result.Value;
 
         /// <summary>
         /// Creates an <see cref="Result{TValue}"/> from an <see cref="IError"/>
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static Result<TValue> From(IError error) => new(error);
 
         /// <summary>

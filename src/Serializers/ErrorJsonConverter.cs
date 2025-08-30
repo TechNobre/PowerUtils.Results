@@ -4,9 +4,11 @@ using System.Text.Json.Serialization;
 
 namespace PowerUtils.Results.Serializers
 {
+    [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
     public sealed class ErrorJsonConverter<TError> : JsonConverter<TError>
         where TError : IError
     {
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public override TError Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if(reader.TokenType is not JsonTokenType.StartObject)
@@ -19,6 +21,7 @@ namespace PowerUtils.Results.Serializers
             return ResultReflection.CreateError<TError>(type, property, code, description);
         }
 
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public override void Write(Utf8JsonWriter writer, TError value, JsonSerializerOptions options)
         {
             writer.WriteStartObject();
