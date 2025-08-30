@@ -18,11 +18,13 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets a value indicating whether the state is success
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public bool IsSuccess => !IsError;
 
         /// <summary>
         /// Gets a value indicating whether the state is error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public bool IsError { get; private set; }
 
 
@@ -30,6 +32,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Gets the list of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public IEnumerable<IError> Errors
         {
             get
@@ -48,6 +51,7 @@ namespace PowerUtils.Results
         /// <summary>
         /// Creates a success result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public Result()
         {
 #if NET6_0
@@ -76,18 +80,21 @@ namespace PowerUtils.Results
         /// <summary>
         /// Add error in result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public void AddError(IError error)
             => IsError = CommonUtils.AddError(ref _errors, ref error);
 
         /// <summary>
         /// Add errors in result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public void AddErrors(IEnumerable<IError> errors)
             => IsError = CommonUtils.AddErrors(ref _errors, ref errors);
 
         /// <summary>
         /// Gets the type of the value or type of the first error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public new Type GetType()
         {
             if(IsError)
@@ -101,72 +108,86 @@ namespace PowerUtils.Results
         /// <summary>
         /// Create boolean status with result status (Valid or not valid)
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator bool(Result result) => !result.IsError;
 
         /// <summary>
         /// Create an <see cref="List{IError}"/> from a result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator List<IError>?(Result result) => result._errors;
 
         /// <summary>
         /// Creates a success result
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(Success _) => new();
 
         /// <summary>
         /// Creates an <see cref="Result"/> from a list of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(List<Error>? errors)
             => new(errors?.Select(s => s as IError).ToList());
 
         /// <summary>
         /// Creates an <see cref="Result"/> from a array of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(Error[]? errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result"/> from a list of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(List<IError>? errors) => new(errors);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from a array of errors
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(IError[]? errors) => errors?.ToList();
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(Error error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an unauthorized error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(UnauthorizedError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an forbidden error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(ForbiddenError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an not found error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(NotFoundError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an conflict error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(ConflictError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an validation error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(ValidationError error) => From(error);
 
         /// <summary>
         /// Creates an <see cref="Result"/> from an unexpected error
         /// </summary>
+        [Obsolete("This package has been discontinued because it never evolved, and the code present in this package does not justify its continuation. It is preferable to implement this code directly in the project if necessary.")]
         public static implicit operator Result(UnexpectedError error) => From(error);
     }
 }
