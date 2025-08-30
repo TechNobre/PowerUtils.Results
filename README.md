@@ -10,16 +10,6 @@ This package has been discontinued because it never evolved, and the code presen
 
 ***Wrapper to transfer results or errors between layers or resources***
 
-![Tests](https://github.com/TechNobre/PowerUtils.Results/actions/workflows/tests.yml/badge.svg)
-[![Mutation tests](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FTechNobre%2FPowerUtils.Results%2Fmain)](https://dashboard.stryker-mutator.io/reports/github.com/TechNobre/PowerUtils.Results/main)
-
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Results&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Results)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Results&metric=coverage)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Results)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Results&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Results)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=TechNobre_PowerUtils.Results&metric=bugs)](https://sonarcloud.io/summary/new_code?id=TechNobre_PowerUtils.Results)
-
-[![NuGet](https://img.shields.io/nuget/v/PowerUtils.Results.svg)](https://www.nuget.org/packages/PowerUtils.Results)
-[![Nuget](https://img.shields.io/nuget/dt/PowerUtils.Results.svg)](https://www.nuget.org/packages/PowerUtils.Results)
 [![License: MIT](https://img.shields.io/github/license/TechNobre/PowerUtils.Results.svg)](https://github.com/TechNobre/PowerUtils.Results/blob/main/LICENSE)
 
 
