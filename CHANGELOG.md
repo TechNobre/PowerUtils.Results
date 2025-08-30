@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.10.0...v3.0.0) (2025-08-30)
+
+
+### Bug Fixes
+
+* Marked all implementations as `Obsolete` ([84d2034](https://github.com/TechNobre/PowerUtils.Results/commit/84d2034a31c0bab8cce22d5c36a787702e4b805d))
+
+
+### BREAKING CHANGES
+
+* Deprecated package
+
 # [2.10.0](https://github.com/TechNobre/PowerUtils.Results/compare/v2.9.1...v2.10.0) (2024-11-12)
 
 
